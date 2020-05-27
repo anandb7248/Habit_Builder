@@ -1,10 +1,10 @@
 import React from "react";
 import styled from "styled-components";
-import { TouchableOpacity } from "react-native";
+import { TouchableOpacity, StyleSheet } from "react-native";
 
 function SmallButton(props) {
   return (
-    <TouchableOpacity>
+    <TouchableOpacity style={styles.container}>
       <View backgroundColor={props.color}>
         <Text>{props.text}</Text>
       </View>
@@ -13,6 +13,14 @@ function SmallButton(props) {
 }
 
 export default SmallButton;
+
+const styles = StyleSheet.create({
+  container: {
+    height: 35,
+    width: 35,
+    borderRadius: 5,
+  },
+});
 
 const View = styled.View`
   height: 35px;

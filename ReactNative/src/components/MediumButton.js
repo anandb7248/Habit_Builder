@@ -18,7 +18,6 @@ const styles = StyleSheet.create({
   container: {
     height: 40,
     width: 100,
-    /* margin: auto; */
     borderRadius: 5,
   },
 });
@@ -26,7 +25,6 @@ const styles = StyleSheet.create({
 const View = styled.View`
   height: 40px;
   width: 100px;
-  /* margin: auto; */
   border-radius: 5px;
 `;
 

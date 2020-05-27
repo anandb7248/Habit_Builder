@@ -1,10 +1,10 @@
 import React from "react";
 import styled from "styled-components";
-import { TouchableOpacity } from "react-native";
+import { TouchableOpacity, StyleSheet } from "react-native";
 
 function ReminderButton(props) {
   return (
-    <TouchableOpacity>
+    <TouchableOpacity style={styles.container}>
       <View>
         <Text>{props.text}</Text>
       </View>
@@ -14,13 +14,19 @@ function ReminderButton(props) {
 
 export default ReminderButton;
 
+const styles = StyleSheet.create({
+  container: {
+    height: 50,
+    width: 246,
+    borderRadius: 25,
+  },
+});
+
 const View = styled.View`
   background-color: white;
   height: 50px;
   width: 246px;
-  margin: 20px auto;
   border-radius: 25px;
-  padding-horizontal: 20px;
 `;
 
 const Text = styled.Text`

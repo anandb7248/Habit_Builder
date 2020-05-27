@@ -36,7 +36,9 @@ function SetHabitScreen(props) {
         <SmallButton text="F" color={COLORS.appGray} />
         <SmallButton text="Sa" color={COLORS.appGray} />
       </ViewHorizontal>
-      <LongButton text="Everyday" color={COLORS.appYelow} />
+      <Container>
+        <LongButton text="Everyday" color={COLORS.appYelow} />
+      </Container>
       <Padding />
 
       <TextLabel label="Give me a reminder at" />
@@ -44,7 +46,9 @@ function SetHabitScreen(props) {
         <Bell />
         <ReminderButton text="10 am" />
       </ViewHorizontal>
-      <BigButton text="Set Goal" />
+      <Container>
+        <BigButton text="Set Goal" />
+      </Container>
     </View>
   );
 }
@@ -68,16 +72,5 @@ const ViewHorizontal = styled.View`
 `;
 
 const Container = styled.View`
-  background: white;
-  border-radius: 25px;
-  width: 350px;
-  height: 40px;
-  margin: 10px auto;
-`;
-
-const Label = styled.Text`
-  color: ${COLORS.appBlue};
-  font-size: 12px;
-  font-weight: bold;
-  margin: auto auto;
+  align-items: center;
 `;
