@@ -7,8 +7,10 @@ function Bell(props) {
 
 export default Bell;
 
+// TODO: ask how to resize dynamicaly
 const Logo = styled.Image`
-  width: 200px;
-  height: 200px;
-  margin: 149px auto;
+  width: 50px;
+  height: 50px;
+  /* margin: auto; */
+  align-items: center;
 `;
