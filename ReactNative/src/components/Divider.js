@@ -9,7 +9,7 @@ export default Divider;
 
 const Line = styled.View`
   width: 350px;
-  margin: 20px auto;
+  margin: 5px auto;
   height: 1px;
   background-color: white;
 `;

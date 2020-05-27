@@ -31,6 +31,6 @@ const Subtitle = styled.Text`
   color: white;
   font-size: 18px;
   width: 360px;
-  margin: 0 auto;
+  margin: 20px auto;
   text-align: center;
 `;

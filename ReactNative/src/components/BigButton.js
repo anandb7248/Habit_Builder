@@ -18,8 +18,8 @@ const View = styled.View`
   background-color: white;
   height: 75px;
   width: 320px;
-  margin: 0 auto;
-  border-radius: 35px;
+  margin: 20px auto;
+  border-radius: 25px;
 `;
 
 const Text = styled.Text`
