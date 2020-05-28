@@ -11,8 +11,9 @@ import DatePicker from "../components/DatePicker";
 import { TouchableOpacity } from "react-native";
 
 function SetGoalScreen(props) {
-  const defaultDaysToComplete = 21;
   const [goal, setGoal] = useState("");
+  const [habits, setHabits] = useState(["", "", "", "", ""]);
+  const defaultDaysToComplete = 21;
   const startDate = new Date();
   const [endDate, setEndDate] = useState(new Date());
   const [showDatePicker, toggleDatePicker] = useState(false);
@@ -44,7 +45,6 @@ function SetGoalScreen(props) {
   return (
     <View>
       <PageHeader text="Set a Goal"></PageHeader>
-
       <Divider />
       <StartingDate>
         From Today: {moment(startDate).format("MMM D, YYYY")}
@@ -69,33 +69,14 @@ function SetGoalScreen(props) {
         {numberOfDays === 0 ? "---" : numberOfDays} days to completion
       </DaysToCompletion>
       <Divider />
-
       <TextLabel label="Daily Habits to Achieve your Goal" />
-      <Container>
-        <TouchableOpacity style={{ flex: 1 }}>
-          <Label>Exercise everyday for 1 hour</Label>
-        </TouchableOpacity>
-      </Container>
-      <Container>
-        <TouchableOpacity style={{ flex: 1 }}>
-          <Label>Drink a kale smoothie each day</Label>
-        </TouchableOpacity>
-      </Container>
-      <Container>
-        <TouchableOpacity style={{ flex: 1 }}>
-          <Label>Do IF with 8 hour eating window</Label>
-        </TouchableOpacity>
-      </Container>
-      <Container>
-        <TouchableOpacity style={{ flex: 1 }}>
-          <Label>-</Label>
-        </TouchableOpacity>
-      </Container>
-      <Container>
-        <TouchableOpacity style={{ flex: 1 }}>
-          <Label>-</Label>
-        </TouchableOpacity>
-      </Container>
+      {habits.map((habit, index) => (
+        <Container>
+          <TouchableOpacity style={{ flex: 1 }}>
+            <Label>{habit !== "" ? habit : "-"}</Label>
+          </TouchableOpacity>
+        </Container>
+      ))}
       <BigButton text="Set Goal" />
       <DatePicker
         show={showDatePicker}
