@@ -39,7 +39,8 @@ const View = styled.View`
 
 const DateText = styled.Text`
   color: ${COLORS.appBlue};
-  font-size: 12px;
+  font-size: 16px;
   font-weight: bold;
   margin: auto auto;
+  font-family: "PTSans-Regular";
 `;

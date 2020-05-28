@@ -16,7 +16,7 @@ export default function App() {
   if (fontsLoaded) {
     // return <OnboardingScreen />;
     // return <NotificationScreen />;
-    return <SetGoalScreen />;
+    return <OnboardingScreen />;
   } else {
     return (
       <AppLoading startAsync={getFont} onFinish={() => setFontsLoaded(true)} />

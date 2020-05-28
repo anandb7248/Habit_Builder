@@ -13,5 +13,5 @@ const HeaderText = styled.Text`
   font-size: 64px;
   padding: 50px 26px 0px;
   margin: 0 auto;
-  /* font-family: "PTSans-Regular"; */
+  font-family: "PTSans-Regular";
 `;

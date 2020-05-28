@@ -27,7 +27,8 @@ const View = styled.View`
 
 const TextInput = styled.TextInput`
   color: ${COLORS.appBlue};
-  font-size: 18px;
+  font-size: 22px;
   font-weight: bold;
   margin: auto auto;
+  font-family: "PTSans-Regular";
 `;

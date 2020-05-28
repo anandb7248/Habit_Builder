@@ -68,13 +68,15 @@ const StartingDate = styled.Text`
   color: white;
   margin: 0 auto;
   padding: 20px;
+  font-family: "PTSans-Regular";
 `;
 
 const DaysToCompletion = styled.Text`
   color: ${COLORS.appYelow};
   font-size: 18px;
   font-weight: bold;
-  margin: 10px auto;
+  margin: 5px auto;
+  font-family: "PTSans-Regular";
 `;
 
 const Container = styled.View`
@@ -87,7 +89,8 @@ const Container = styled.View`
 
 const Label = styled.Text`
   color: ${COLORS.appBlue};
-  font-size: 12px;
+  font-size: 16px;
   font-weight: bold;
   margin: auto auto;
+  font-family: "PTSans-Regular";
 `;
