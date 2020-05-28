@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import styled from "styled-components";
 import COLORS from "../styles/Colors";
 import PageHeader from "../components/PageHeader";
@@ -6,7 +6,6 @@ import Divider from "../components/Divider";
 import BigButton from "../components/BigButton";
 import BigTextInput from "../components/BigTextInput";
 import TextLabel from "../components/TextLabel";
-import { TouchableOpacity } from "react-native";
 import MediumButton from "../components/MediumButton";
 import SmallButton from "../components/SmallButton";
 import LongButton from "../components/LongButton";
@@ -40,10 +39,11 @@ function SetHabitScreen(props) {
         <LongButton text="Everyday" color={COLORS.appYelow} />
       </Container>
       <Padding />
+      <Padding />
 
       <TextLabel label="Give me a reminder at" />
       <ViewHorizontal>
-        <Bell />
+        <Bell size={50} />
         <ReminderButton text="10 am" />
       </ViewHorizontal>
       <Container>
