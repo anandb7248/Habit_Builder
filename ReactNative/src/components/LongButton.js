@@ -34,4 +34,5 @@ const Text = styled.Text`
   margin: auto auto;
   color: #ffffff;
   font-size: 22px;
+  font-family: PTSans-Regular;
 `;
