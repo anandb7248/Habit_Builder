@@ -12,6 +12,7 @@ import { TouchableOpacity } from "react-native";
 
 function SetGoalScreen(props) {
   const today = moment().format("MMM D, YYYY");
+  const [goal, setGoal] = useState("");
 
   return (
     <View>
@@ -19,7 +20,11 @@ function SetGoalScreen(props) {
 
       <Divider />
       <StartingDate>From Today: {today}</StartingDate>
-      <BigTextInput></BigTextInput>
+      <BigTextInput
+        inputText={goal}
+        setInputText={setGoal}
+        placeholder="What would you like to achieve?"
+      ></BigTextInput>
       <TextLabel label="When do you want to achieve your goal?" />
       <DatePicker />
       <DaysToCompletion>60 days to completion</DaysToCompletion>
