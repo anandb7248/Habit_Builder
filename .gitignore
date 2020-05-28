@@ -1,6 +1,7 @@
 .DS_Store
 node_modules
 ./ReactNative/.expo
+ReactNative/.expo/packager-info.json
 
 # Xcode
 #
