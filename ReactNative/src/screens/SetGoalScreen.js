@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import styled from "styled-components";
 import COLORS from "../styles/Colors";
 import PageHeader from "../components/PageHeader";
@@ -11,23 +11,63 @@ import DatePicker from "../components/DatePicker";
 import { TouchableOpacity } from "react-native";
 
 function SetGoalScreen(props) {
-  const today = moment().format("MMM D, YYYY");
+  const defaultDaysToComplete = 21;
   const [goal, setGoal] = useState("");
+  const startDate = new Date();
+  const [endDate, setEndDate] = useState(new Date());
+  const [showDatePicker, toggleDatePicker] = useState(false);
+  const [numberOfDays, setNumberOfDays] = useState(0);
+
+  useEffect(() => {
+    // Right initially, set the end date to 21 days from today
+    var today = new Date();
+    var twentyOneDaysInFuture = today.setDate(
+      today.getDate() + defaultDaysToComplete
+    );
+    setEndDate(new Date(twentyOneDaysInFuture));
+    setNumberOfDays(defaultDaysToComplete);
+  }, []);
+
+  const configureDates = (changedDate) => {
+    if (changedDate < startDate) {
+      setEndDate(startDate);
+      setNumberOfDays(0);
+    } else {
+      setEndDate(changedDate);
+
+      const diffTime = changedDate - startDate;
+      const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+      setNumberOfDays(diffDays);
+    }
+  };
 
   return (
     <View>
       <PageHeader text="Set a Goal"></PageHeader>
 
       <Divider />
-      <StartingDate>From Today: {today}</StartingDate>
+      <StartingDate>
+        From Today: {moment(startDate).format("MMM D, YYYY")}
+      </StartingDate>
       <BigTextInput
         inputText={goal}
         setInputText={setGoal}
         placeholder="What would you like to achieve?"
       ></BigTextInput>
       <TextLabel label="When do you want to achieve your goal?" />
-      <DatePicker />
-      <DaysToCompletion>60 days to completion</DaysToCompletion>
+      <Container>
+        <TouchableOpacity
+          style={{ flex: 1 }}
+          onPress={() => {
+            toggleDatePicker((prev) => !prev);
+          }}
+        >
+          <Label>{moment(endDate).format("MMM D, YYYY")}</Label>
+        </TouchableOpacity>
+      </Container>
+      <DaysToCompletion>
+        {numberOfDays === 0 ? "---" : numberOfDays} days to completion
+      </DaysToCompletion>
       <Divider />
 
       <TextLabel label="Daily Habits to Achieve your Goal" />
@@ -57,6 +97,12 @@ function SetGoalScreen(props) {
         </TouchableOpacity>
       </Container>
       <BigButton text="Set Goal" />
+      <DatePicker
+        show={showDatePicker}
+        toggle={toggleDatePicker}
+        date={endDate}
+        onChange={configureDates}
+      />
     </View>
   );
 }
