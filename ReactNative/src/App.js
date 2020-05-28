@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import OnboardingScreen from "./screens/OnboardingScreen";
 import NotificationScreen from "./screens/NotificationScreen";
 import SetGoalScreen from "./screens/SetGoalScreen";
-import SetHabitScreen from "./screens/SetHabitScreen";
 import * as Font from "expo-font";
 import { AppLoading } from "expo";
 
@@ -17,8 +16,7 @@ export default function App() {
   if (fontsLoaded) {
     // return <OnboardingScreen />;
     // return <NotificationScreen />;
-    // return <SetGoalScreen />;
-    return <SetHabitScreen />;
+    return <SetGoalScreen />;
   } else {
     return (
       <AppLoading startAsync={getFont} onFinish={() => setFontsLoaded(true)} />
