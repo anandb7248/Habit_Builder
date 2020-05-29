@@ -33,4 +33,5 @@ const Subtitle = styled.Text`
   width: 360px;
   margin: 20px auto;
   text-align: center;
+  font-family: "PTSans-Regular";
 `;
