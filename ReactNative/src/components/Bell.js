@@ -1,14 +1,18 @@
 import React from "react";
 import styled from "styled-components";
+import { Image } from "react-native";
 
 function Bell(props) {
-  return <Logo source={require("../assets/images/Bell.png")} />;
+  return (
+    <Image
+      source={require("../assets/images/Bell.png")}
+      style={{
+        height: props.size,
+        width: props.size,
+        alignItems: "center",
+      }}
+    />
+  );
 }
 
 export default Bell;
-
-const Logo = styled.Image`
-  width: 200px;
-  height: 200px;
-  margin: 149px auto;
-`;

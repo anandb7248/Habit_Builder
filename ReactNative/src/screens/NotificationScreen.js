@@ -12,7 +12,9 @@ function NotificationScreen() {
       <PageHeader text="Notification" />
       <Divider />
       <Subtitle>Allow notifications to help you achieve your goals!</Subtitle>
-      <Bell />
+      <Padding>
+        <Bell size={200} />
+      </Padding>
       <BigButton text="Allow Notification" />
     </View>
   );
@@ -23,6 +25,11 @@ export default NotificationScreen;
 const View = styled.View`
   flex: 1;
   background-color: ${COLORS.appBlue};
+`;
+
+const Padding = styled.View`
+  align-items: center;
+  padding-vertical: 150px;
 `;
 
 const Subtitle = styled.Text`
