@@ -2,14 +2,13 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import COLORS from "../styles/Colors";
 
-function BigTextInput() {
-  const [inputText, setInputText] = useState("Lose 10 Pounds");
-
+function BigTextInput(props) {
   return (
     <View>
       <TextInput
-        onChangeText={(text) => setInputText(text)}
-        value={inputText}
+        placeholder={props.placeholder}
+        onChangeText={(text) => props.setInputText(text)}
+        value={props.inputText}
       />
     </View>
   );
@@ -27,7 +26,8 @@ const View = styled.View`
 
 const TextInput = styled.TextInput`
   color: ${COLORS.appBlue};
-  font-size: 18px;
+  font-size: 22px;
   font-weight: bold;
   margin: auto auto;
+  font-family: "PTSans-Regular";
 `;
