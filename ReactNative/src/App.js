@@ -4,6 +4,8 @@ import NotificationScreen from "./screens/NotificationScreen";
 import SetGoalScreen from "./screens/SetGoalScreen";
 import * as Font from "expo-font";
 import { AppLoading } from "expo";
+import { NavigationContainer } from "@react-navigation/native";
+import InitialAppNav from "./navigator/InitialAppNav";
 
 const getFont = () =>
   Font.loadAsync({
@@ -16,7 +18,12 @@ export default function App() {
   if (fontsLoaded) {
     // return <OnboardingScreen />;
     // return <NotificationScreen />;
-    return <SetGoalScreen />;
+    // return <SetGoalScreen />;
+    return (
+      <NavigationContainer>
+        <InitialAppNav />
+      </NavigationContainer>
+    );
   } else {
     return (
       <AppLoading startAsync={getFont} onFinish={() => setFontsLoaded(true)} />
