@@ -1,5 +1,6 @@
-import React from "react";
-import { Image, StyleSheet, View } from "react-native";
+import React, { useState } from "react";
+import { Image, StyleSheet } from "react-native";
+import AppLogo from "../components/AppLogo";
 import UserIcon from "../assets/images/User.svg";
 import PasswordIcon from "../assets/images/Password.svg";
 import BigButton from "../components/BigButton";
@@ -33,39 +34,52 @@ const styles = StyleSheet.create({
 });
 
 const SignUpScreen = () => {
+  const [userEmail, setUserEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
+
   return (
-    <Wrapper>
+    <View>
       <HeaderText>Habit Builder</HeaderText>
       <View style={styles.horizontalRule} />
-      <Image
-        source={require("../assets/images/AppIcon.png")}
-        style={styles.container}
-      />
-      <LargeTextInput placeholder="Email">
+      <AppLogo />
+      <LargeTextInput
+        inputText={userEmail}
+        setInputText={setUserEmail}
+        placeholder="Email"
+      >
         <UserIcon />
       </LargeTextInput>
-      <LargeTextInput placeholder="Password">
+      <LargeTextInput
+        inputText={password}
+        setInputText={setPassword}
+        placeholder="Password"
+      >
         <PasswordIcon />
       </LargeTextInput>
-      <LargeTextInput placeholder="Password" />
+      <LargeTextInput
+        inputText={confirmPassword}
+        setInputText={setConfirmPassword}
+        placeholder="Confirm Password"
+      />
       <BigButton text="Sign Up" />
       <LongButton text="Sign Up with Facebook" />
       <LongButton text="Sign Up with Gmail" />
-      <LoginWrapper>
+      <LoginContainer>
         <TextLabel label="Already have an account?" />
         <MediumButton text="Login" />
-      </LoginWrapper>
-    </Wrapper>
+      </LoginContainer>
+    </View>
   );
 };
 
-const Wrapper = styled.View`
+const View = styled.View`
   background-color: ${COLORS.appBlue};
   width: ${wp("100%")};
   position: relative;
 `;
 
-const LoginWrapper = styled.View`
+const LoginContainer = styled.View`
   position: relative;
 `;
 
