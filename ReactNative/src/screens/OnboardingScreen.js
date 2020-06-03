@@ -6,7 +6,7 @@ import Divider from "../components/Divider";
 import AppLogo from "../components/AppLogo";
 import BigButton from "../components/BigButton";
 
-function OnboardingScreen() {
+function OnboardingScreen({ navigation }) {
   return (
     <View>
       <PageHeader text="Habit Builder" />
@@ -15,7 +15,10 @@ function OnboardingScreen() {
         Achieve your goals with the consistent completion of daily habits!
       </Subtitle>
       <AppLogo />
-      <BigButton text="Get Started" />
+      <BigButton
+        text="Get Started"
+        onPress={() => navigation.navigate("SetGoal")}
+      />
     </View>
   );
 }
