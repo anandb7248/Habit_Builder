@@ -1,24 +1,23 @@
 import React, { useState, useRef, useEffect } from "react";
 import styled from "styled-components";
 import DateTimePicker from "@react-native-community/datetimepicker";
-import { TouchableOpacity, Animated, Button } from "react-native";
-import COLORS from "../styles/Colors";
+import { Animated } from "react-native";
 
 function TimePicker(props) {
   const topTimePicker = useRef(new Animated.Value(0)).current;
-  const [date, setDate] = useState(new Date(1598051730000));
+  const [date, setDate] = useState(new Date());
 
   const show = () => {
     Animated.spring(topTimePicker, { toValue: -250 }).start();
   };
-
   const hide = () => {
-    Animated.spring(topTimePicker, { toValue: 75 }).start();
+    Animated.spring(topTimePicker, { toValue: 100 }).start();
   };
 
-  const Change = (event, selectedDate) => {
-    const currentDate = selectedDate || date;
-    props.onChange(currentDate);
+  const setTime = (event, date) => {
+    if (date !== undefined) {
+      // Use the hour and minute from the date object
+    }
   };
 
   useEffect(() => {
@@ -43,7 +42,7 @@ function TimePicker(props) {
         modalTransparent={true}
         value={date}
         mode={"time"}
-        onChange={props.onChange}
+        onChange={setTime}
       />
     </AnimatedView>
   );
@@ -65,11 +64,3 @@ const DoneButton = styled.Button`
 `;
 
 const AnimatedView = Animated.createAnimatedComponent(View);
-
-const DateText = styled.Text`
-  color: ${COLORS.appBlue};
-  font-size: 16px;
-  font-weight: bold;
-  margin: auto auto;
-  font-family: "PTSans-Regular";
-`;

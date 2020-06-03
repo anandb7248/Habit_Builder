@@ -1,11 +1,4 @@
 import React, { useState } from "react";
-import {
-  Button,
-  Platform,
-  TouchableOpacity,
-  Text,
-  StyleSheet,
-} from "react-native";
 import styled from "styled-components";
 import COLORS from "../styles/Colors";
 import PageHeader from "../components/PageHeader";
@@ -18,10 +11,7 @@ import SmallButton from "../components/SmallButton";
 import LongButton from "../components/LongButton";
 import Bell from "../components/Bell";
 import ReminderButton from "../components/ReminderButton";
-import DateTimePicker from "@react-native-community/datetimepicker";
-import DatePicker from "../components/DatePicker";
 import TimePicker from "../components/TimePicker";
-import RNDateTimePicker from "@react-native-community/datetimepicker";
 
 function SetHabitScreen(props) {
   const [status, setStatus] = useState("Daily");
@@ -43,6 +33,7 @@ function SetHabitScreen(props) {
     setShow(!show);
     setDate(currentDate);
   };
+
   const showMode = (currentMode) => {
     setShow(true);
     setMode(currentMode);
@@ -50,6 +41,41 @@ function SetHabitScreen(props) {
 
   const showTimepicker = () => {
     showMode("time");
+  };
+
+  const toggleDay = (day) => {
+    return day ? COLORS.appYelow : COLORS.appGray;
+  };
+
+  const toggleWeek = (day) => {
+    if (
+      sunday
+      // &&
+      // monday &&
+      // tuesday &&
+      // wednesday &&
+      // thursday &&
+      // friday &&
+      // saturday
+    ) {
+      sundayStatus;
+      // mondayStatus(!monday);
+      // tuesdayStatus(!tuesday);
+      // wednesdayStatus(!wednesday);
+      // thursdayStatus(!thursday);
+      // fridayStatus(!friday);
+      // saturdayStatus(!saturday);
+      // toggleDay(sunday);
+      // toggleDay(monday);
+      // toggleDay(tuesday);
+      // toggleDay(wednesday);
+      // toggleDay(thursday);
+      // toggleDay(friday);
+      // toggleDay(saturday);
+    }
+    console.log(sunday);
+
+    return day ? COLORS.appYelow : COLORS.appGray;
   };
 
   return (
@@ -72,71 +98,47 @@ function SetHabitScreen(props) {
           onPress={() => setStatus("Weekly")}
         />
       </ViewHorizontal>
-      {/* <MyView>
-        <Button
-          style={{ height: 100, width: 200 }}
-          onPress={() => {
-            toggleTimePicker((prev) => !prev);
-          }}
-          title="Show Timer"
-        />
-      </MyView> */}
-      {/* <View>
-        <Button onPress={showTimepicker} title="Show time!" />
-        {show && (
-          <DateTimePicker
-            testID="dateTimePicker"
-            timeZoneOffsetInMinutes={0}
-            value={date}
-            mode={mode}
-            is24Hour={true}
-            display="default"
-            onChange={onChange}
-            style={styles.btn}
-          />
-        )}
-      </View> */}
       <ViewHorizontal>
         <SmallButton
           text="Su"
-          color={sunday ? COLORS.appYelow : COLORS.appGray}
+          color={toggleDay(sunday)}
           onPress={() => sundayStatus(!sunday)}
         />
         <SmallButton
           text="M"
-          color={monday ? COLORS.appYelow : COLORS.appGray}
+          color={toggleDay(monday)}
           onPress={() => mondayStatus(!monday)}
         />
         <SmallButton
           text="T"
-          color={tuesday ? COLORS.appYelow : COLORS.appGray}
+          color={toggleDay(tuesday)}
           onPress={() => tuesdayStatus(!tuesday)}
         />
         <SmallButton
           text="W"
-          color={wednesday ? COLORS.appYelow : COLORS.appGray}
+          color={toggleDay(wednesday)}
           onPress={() => wednesdayStatus(!wednesday)}
         />
         <SmallButton
           text="Th"
-          color={thursday ? COLORS.appYelow : COLORS.appGray}
+          color={toggleDay(thursday)}
           onPress={() => thursdayStatus(!thursday)}
         />
         <SmallButton
           text="F"
-          color={friday ? COLORS.appYelow : COLORS.appGray}
+          color={toggleDay(friday)}
           onPress={() => fridayStatus(!friday)}
         />
         <SmallButton
           text="Sa"
-          color={saturday ? COLORS.appYelow : COLORS.appGray}
+          color={toggleDay(saturday)}
           onPress={() => saturdayStatus(!saturday)}
         />
       </ViewHorizontal>
       <Container>
         <LongButton
           text="Everyday"
-          color={everyday ? COLORS.appYelow : COLORS.appGray}
+          color={toggleWeek(everyday)}
           onPress={() => everydayStatus(!everyday)}
         />
       </Container>
@@ -166,29 +168,12 @@ function SetHabitScreen(props) {
 
 export default SetHabitScreen;
 
-const styles = StyleSheet.create({
-  btn: {
-    backgroundColor: "white",
-    borderRadius: 25,
-    flexBasis: 100,
-    height: 300,
-    margin: 15,
-    zIndex: 20,
-  },
-});
-
 const Padding = styled.View`
   padding-vertical: 20px;
 `;
 
 const View = styled.View`
   flex: 1;
-  background-color: ${COLORS.appBlue};
-`;
-
-const MyView = styled.View`
-  width: 100px;
-  height: 100px;
   background-color: ${COLORS.appBlue};
 `;
 
