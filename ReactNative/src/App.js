@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import OnboardingScreen from "./screens/OnboardingScreen";
 import NotificationScreen from "./screens/NotificationScreen";
 import SetGoalScreen from "./screens/SetGoalScreen";
+import SignUpScreen from "./screens/SignUpScreen";
 import * as Font from "expo-font";
 import { AppLoading } from "expo";
 import { NavigationContainer } from "@react-navigation/native";
@@ -19,11 +20,12 @@ export default function App() {
     // return <OnboardingScreen />;
     // return <NotificationScreen />;
     // return <SetGoalScreen />;
-    return (
-      <NavigationContainer>
-        <InitialAppNav />
-      </NavigationContainer>
-    );
+    return <SignUpScreen />;
+    // return (
+    //   <NavigationContainer>
+    //     <InitialAppNav />
+    //   </NavigationContainer>
+    // );
   } else {
     return (
       <AppLoading startAsync={getFont} onFinish={() => setFontsLoaded(true)} />
