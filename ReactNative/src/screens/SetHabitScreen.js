@@ -48,33 +48,7 @@ function SetHabitScreen(props) {
   };
 
   const toggleWeek = (day) => {
-    if (
-      sunday
-      // &&
-      // monday &&
-      // tuesday &&
-      // wednesday &&
-      // thursday &&
-      // friday &&
-      // saturday
-    ) {
-      sundayStatus;
-      // mondayStatus(!monday);
-      // tuesdayStatus(!tuesday);
-      // wednesdayStatus(!wednesday);
-      // thursdayStatus(!thursday);
-      // fridayStatus(!friday);
-      // saturdayStatus(!saturday);
-      // toggleDay(sunday);
-      // toggleDay(monday);
-      // toggleDay(tuesday);
-      // toggleDay(wednesday);
-      // toggleDay(thursday);
-      // toggleDay(friday);
-      // toggleDay(saturday);
-    }
-    console.log(sunday);
-
+    // attempted/failed logic for week toggle went here
     return day ? COLORS.appYelow : COLORS.appGray;
   };
 
