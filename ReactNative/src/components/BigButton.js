@@ -4,7 +4,7 @@ import { TouchableOpacity } from "react-native";
 
 function BigButton(props) {
   return (
-    <TouchableOpacity>
+    <TouchableOpacity onPress={props.onPress}>
       <View>
         <Text>{props.text}</Text>
       </View>
