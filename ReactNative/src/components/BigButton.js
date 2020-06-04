@@ -1,7 +1,6 @@
 import React from "react";
 import styled from "styled-components";
 import { TouchableOpacity } from "react-native";
-import { RFPercentage } from "react-native-responsive-fontsize";
 import {
   heightPercentageToDP as hp,
   widthPercentageToDP as wp,
@@ -11,7 +10,7 @@ function BigButton(props) {
   return (
     <TouchableOpacity>
       <View style={{ height: hp("10%"), width: wp("75%") }}>
-        <Text style={{ fontSize: RFPercentage(5) }}>{props.text}</Text>
+        <Text>{props.text}</Text>
       </View>
     </TouchableOpacity>
   );
@@ -28,5 +27,6 @@ const View = styled.View`
 const Text = styled.Text`
   margin: auto auto;
   color: #597099;
+  font-size: ${hp("4%")};
   font-family: "PTSans-Regular";
 `;

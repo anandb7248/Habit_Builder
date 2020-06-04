@@ -5,7 +5,6 @@ import COLORS from "../styles/Colors";
 import Divider from "../components/Divider";
 import AppLogo from "../components/AppLogo";
 import BigButton from "../components/BigButton";
-import { RFPercentage } from "react-native-responsive-fontsize";
 import {
   heightPercentageToDP as hp,
   widthPercentageToDP as wp,
@@ -16,7 +15,7 @@ function OnboardingScreen() {
     <View>
       <PageHeader text="Habit Builder" />
       <Divider />
-      <Subtitle style={{ fontSize: RFPercentage(2), width: wp("90%") }}>
+      <Subtitle style={{ width: wp("80%") }}>
         Achieve your goals with the consistent completion of daily habits!
       </Subtitle>
       <AppLogo />
@@ -36,5 +35,6 @@ const Subtitle = styled.Text`
   color: white;
   margin: 20px auto;
   text-align: center;
+  font-size: ${hp("2%")};
   font-family: "PTSans-Regular";
 `;

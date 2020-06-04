@@ -1,17 +1,19 @@
 import React from "react";
 import styled from "styled-components";
 import COLORS from "../styles/Colors";
-import { RFPercentage, RFValue } from "react-native-responsive-fontsize";
+import {
+  widthPercentageToDP as wp,
+  heightPercentageToDP as hp,
+} from "react-native-responsive-screen";
 
 function PageHeader(props) {
-  return (
-    <HeaderText style={{ fontSize: RFPercentage(7) }}>{props.text}</HeaderText>
-  );
+  return <HeaderText>{props.text}</HeaderText>;
 }
 
 export default PageHeader;
 
 const HeaderText = styled.Text`
+  font-size: ${hp("7%")};
   color: ${COLORS.appYelow};
   padding: 50px 26px 0px;
   margin: 0 auto;
