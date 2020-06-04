@@ -5,13 +5,17 @@ import COLORS from "../styles/Colors";
 import Divider from "../components/Divider";
 import AppLogo from "../components/AppLogo";
 import BigButton from "../components/BigButton";
+import {
+  heightPercentageToDP as hp,
+  widthPercentageToDP as wp,
+} from "react-native-responsive-screen";
 
 function OnboardingScreen({ navigation }) {
   return (
     <View>
       <PageHeader text="Habit Builder" />
       <Divider />
-      <Subtitle>
+      <Subtitle style={{ width: wp("80%") }}>
         Achieve your goals with the consistent completion of daily habits!
       </Subtitle>
       <AppLogo />
@@ -32,9 +36,8 @@ const View = styled.View`
 
 const Subtitle = styled.Text`
   color: white;
-  font-size: 18px;
-  width: 360px;
   margin: 20px auto;
   text-align: center;
+  font-size: ${hp("2%")};
   font-family: "PTSans-Regular";
 `;
