@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import COLORS from "../styles/Colors";
 import PageHeader from "../components/PageHeader";
@@ -11,44 +11,130 @@ import SmallButton from "../components/SmallButton";
 import LongButton from "../components/LongButton";
 import Bell from "../components/Bell";
 import ReminderButton from "../components/ReminderButton";
+import TimePicker from "../components/TimePicker";
 
 function SetHabitScreen(props) {
+  const [status, setStatus] = useState("Daily");
+  const daysText = ["Su", "M", "Tu", "W", "Th", "F", "Sa"];
+  const [days, setDays] = useState([
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+  ]);
+
+  const [everyday, everydayStatus] = useState(true);
+  const [show, setShow] = useState(false);
+  const [mode, setMode] = useState("date");
+  const [date, setDate] = useState(new Date(1598051730000));
+  const [showTimePicker, toggleTimePicker] = useState(false);
+
+  const handleDayClick = (index) => {
+    let newDays = [...days];
+    newDays[index] = !newDays[index];
+    setDays(newDays);
+
+    const countOn = newDays.filter((d) => {
+      return d === true;
+    }).length;
+
+    if (countOn === 7) {
+      setDays([false, false, false, false, false, false, false]);
+      everydayStatus(true);
+    } else {
+      everydayStatus(false);
+    }
+  };
+
+  const handleEverydayClick = () => {
+    everydayStatus(!everyday);
+
+    if (!everyday) {
+      setDays([false, false, false, false, false, false, false]);
+    }
+  };
+
+  const onChange = (event, selectedDate) => {
+    const currentDate = selectedDate || date;
+    setShow(!show);
+    setDate(currentDate);
+  };
+
+  const showMode = (currentMode) => {
+    setShow(true);
+    setMode(currentMode);
+  };
+
+  const showTimepicker = () => {
+    showMode("time");
+  };
+
   return (
     <View>
       <PageHeader text="Set a Habit"></PageHeader>
-
       <Divider />
       <Padding>
-        <BigTextInput></BigTextInput>
+        <BigTextInput placeholder="What is the name of your habit?"></BigTextInput>
       </Padding>
       <TextLabel label="I want to repeat this..." />
       <ViewHorizontal>
-        <MediumButton text="Daily" color={COLORS.appYelow} />
-        <MediumButton text="Weekly" color={COLORS.appGray} />
+        <MediumButton
+          text="Daily"
+          color={status === "Daily" ? COLORS.appYelow : COLORS.appGray}
+          onPress={() => setStatus("Daily")}
+        />
+        <MediumButton
+          text="Weekly"
+          color={status === "Weekly" ? COLORS.appYelow : COLORS.appGray}
+          onPress={() => setStatus("Weekly")}
+        />
       </ViewHorizontal>
       <ViewHorizontal>
-        <SmallButton text="Su" color={COLORS.appGray} />
-        <SmallButton text="M" color={COLORS.appGray} />
-        <SmallButton text="T" color={COLORS.appGray} />
-        <SmallButton text="W" color={COLORS.appGray} />
-        <SmallButton text="Th" color={COLORS.appGray} />
-        <SmallButton text="F" color={COLORS.appGray} />
-        <SmallButton text="Sa" color={COLORS.appGray} />
+        {daysText.map((day, index) => {
+          return (
+            <SmallButton
+              key={index}
+              text={day}
+              color={days[index] === true ? COLORS.appYelow : COLORS.appGray}
+              onPress={() => {
+                handleDayClick(index);
+              }}
+            />
+          );
+        })}
       </ViewHorizontal>
       <Container>
-        <LongButton text="Everyday" color={COLORS.appYelow} />
+        <LongButton
+          text="Everyday"
+          color={everyday === true ? COLORS.appYelow : COLORS.appGray}
+          onPress={() => {
+            handleEverydayClick();
+          }}
+        />
       </Container>
       <Padding />
       <Padding />
-
       <TextLabel label="Give me a reminder at" />
       <ViewHorizontal>
         <Bell size={50} />
-        <ReminderButton text="10 am" />
+        <ReminderButton
+          text="10 am"
+          onPress={() => {
+            toggleTimePicker((prev) => !prev);
+          }}
+        />
       </ViewHorizontal>
       <Container>
         <BigButton text="Set Goal" />
       </Container>
+      <TimePicker
+        show={showTimePicker}
+        toggle={toggleTimePicker}
+        onChange={onChange}
+      />
     </View>
   );
 }
