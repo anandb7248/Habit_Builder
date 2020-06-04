@@ -15,18 +15,47 @@ import TimePicker from "../components/TimePicker";
 
 function SetHabitScreen(props) {
   const [status, setStatus] = useState("Daily");
-  const [sunday, sundayStatus] = useState(false);
-  const [monday, mondayStatus] = useState(false);
-  const [tuesday, tuesdayStatus] = useState(false);
-  const [wednesday, wednesdayStatus] = useState(false);
-  const [thursday, thursdayStatus] = useState(false);
-  const [friday, fridayStatus] = useState(false);
-  const [saturday, saturdayStatus] = useState(false);
-  const [everyday, everydayStatus] = useState(false);
+  const daysText = ["Su", "M", "Tu", "W", "Th", "F", "Sa"];
+  const [days, setDays] = useState([
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+  ]);
+
+  const [everyday, everydayStatus] = useState(true);
   const [show, setShow] = useState(false);
   const [mode, setMode] = useState("date");
   const [date, setDate] = useState(new Date(1598051730000));
   const [showTimePicker, toggleTimePicker] = useState(false);
+
+  const handleDayClick = (index) => {
+    let newDays = [...days];
+    newDays[index] = !newDays[index];
+    setDays(newDays);
+
+    const countOn = newDays.filter((d) => {
+      return d === true;
+    }).length;
+
+    if (countOn === 7) {
+      setDays([false, false, false, false, false, false, false]);
+      everydayStatus(true);
+    } else {
+      everydayStatus(false);
+    }
+  };
+
+  const handleEverydayClick = () => {
+    everydayStatus(!everyday);
+
+    if (!everyday) {
+      setDays([false, false, false, false, false, false, false]);
+    }
+  };
 
   const onChange = (event, selectedDate) => {
     const currentDate = selectedDate || date;
@@ -43,21 +72,12 @@ function SetHabitScreen(props) {
     showMode("time");
   };
 
-  const toggleDay = (day) => {
-    return day ? COLORS.appYelow : COLORS.appGray;
-  };
-
-  const toggleWeek = (day) => {
-    // attempted/failed logic for week toggle went here
-    return day ? COLORS.appYelow : COLORS.appGray;
-  };
-
   return (
     <View>
       <PageHeader text="Set a Habit"></PageHeader>
       <Divider />
       <Padding>
-        <BigTextInput></BigTextInput>
+        <BigTextInput placeholder="What is the name of your habit?"></BigTextInput>
       </Padding>
       <TextLabel label="I want to repeat this..." />
       <ViewHorizontal>
@@ -73,47 +93,26 @@ function SetHabitScreen(props) {
         />
       </ViewHorizontal>
       <ViewHorizontal>
-        <SmallButton
-          text="Su"
-          color={toggleDay(sunday)}
-          onPress={() => sundayStatus(!sunday)}
-        />
-        <SmallButton
-          text="M"
-          color={toggleDay(monday)}
-          onPress={() => mondayStatus(!monday)}
-        />
-        <SmallButton
-          text="T"
-          color={toggleDay(tuesday)}
-          onPress={() => tuesdayStatus(!tuesday)}
-        />
-        <SmallButton
-          text="W"
-          color={toggleDay(wednesday)}
-          onPress={() => wednesdayStatus(!wednesday)}
-        />
-        <SmallButton
-          text="Th"
-          color={toggleDay(thursday)}
-          onPress={() => thursdayStatus(!thursday)}
-        />
-        <SmallButton
-          text="F"
-          color={toggleDay(friday)}
-          onPress={() => fridayStatus(!friday)}
-        />
-        <SmallButton
-          text="Sa"
-          color={toggleDay(saturday)}
-          onPress={() => saturdayStatus(!saturday)}
-        />
+        {daysText.map((day, index) => {
+          return (
+            <SmallButton
+              key={index}
+              text={day}
+              color={days[index] === true ? COLORS.appYelow : COLORS.appGray}
+              onPress={() => {
+                handleDayClick(index);
+              }}
+            />
+          );
+        })}
       </ViewHorizontal>
       <Container>
         <LongButton
           text="Everyday"
-          color={toggleWeek(everyday)}
-          onPress={() => everydayStatus(!everyday)}
+          color={everyday === true ? COLORS.appYelow : COLORS.appGray}
+          onPress={() => {
+            handleEverydayClick();
+          }}
         />
       </Container>
       <Padding />
