@@ -28,7 +28,7 @@ function InitialAppNav() {
       <Stack.Screen
         name="Notification"
         component={NotificationScreen}
-        options={{ headerShown: true }}
+        options={{ headerShown: false }}
       />
     </Stack.Navigator>
   );
