@@ -15,6 +15,20 @@ import {
 import LargeTextInput from "../components/LargeTextInput";
 import COLORS from "../styles/Colors";
 import { db } from "../utils/firebase";
+import { connect } from "react-redux";
+import { watchPersonData } from "./../redux/app-redux";
+
+const mapStateToProps = (state) => {
+  return {
+    personData: state.personData,
+  };
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    watchPersonData: () => dispatch(watchPersonData()),
+  };
+};
 
 const styles = StyleSheet.create({
   container: {
@@ -34,17 +48,16 @@ const styles = StyleSheet.create({
   },
 });
 
-const SignUpScreen = () => {
+const SignUpScreen = (props) => {
   const [userEmail, setUserEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
 
   const test = () => {
-    db.collection("users")
-      .doc("squidward")
+    db.collection("a")
+      .doc("b")
       .set({
-        name: "The Quickster",
-        power: "Super Speed",
+        name: "c",
       })
       .then(() => {
         console.log("Data was sent");
@@ -57,7 +70,10 @@ const SignUpScreen = () => {
   return (
     <View>
       <Button title="Press" onPress={test} />
-      <HeaderText>Habit Builder</HeaderText>
+      {/* <HeaderText>Habit Builder</HeaderText> */}
+      <HeaderText>
+        {props.personData ? props.personData.name : "nothing"}
+      </HeaderText>
       <View style={styles.horizontalRule} />
       <AppLogo />
       <LargeTextInput
@@ -107,4 +123,4 @@ const HeaderText = styled.Text`
   font-family: "PTSans-Regular";
 `;
 
-export default SignUpScreen;
+export default connect(mapStateToProps, mapDispatchToProps)(SignUpScreen);

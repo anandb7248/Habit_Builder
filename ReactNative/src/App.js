@@ -8,13 +8,13 @@ import * as Font from "expo-font";
 import { AppLoading } from "expo";
 import { NavigationContainer } from "@react-navigation/native";
 import InitialAppNav from "./navigator/InitialAppNav";
-
 import { decode, encode } from "base-64";
+import { Provider } from "react-redux";
+import { store } from "./redux/app-redux";
 
 if (!global.btoa) {
   global.btoa = encode;
 }
-
 if (!global.atob) {
   global.atob = decode;
 }
@@ -32,7 +32,11 @@ export default function App() {
     // return <NotificationScreen />;
     // return <SetGoalScreen />;
     // return <SetHabitScreen />;
-    return <SignUpScreen />;
+    return (
+      <Provider store={store}>
+        <SignUpScreen />
+      </Provider>
+    );
     // return (
     //   <NavigationContainer>
     //     <InitialAppNav />
