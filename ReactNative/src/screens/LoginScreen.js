@@ -3,7 +3,7 @@ import { Image, StyleSheet, View } from "react-native";
 import AppLogo from "../components/AppLogo";
 import UserIcon from "../assets/images/User.svg";
 import PasswordIcon from "../assets/images/Password.svg";
-import BigButton from "../components/BigButton";
+import ModButton from "../components/ModButton";
 import LongButton from "../components/LongButton";
 import MediumButton from "../components/MediumButton";
 import styled from "styled-components";
@@ -26,7 +26,7 @@ const HeaderText = styled.Text`
 
 const LoginView = styled.View`
     background-color: ${COLORS.appBlue};
-    margin-top: ${hp('6%')};
+    margin-top: ${hp('6.5%')};
     height: ${hp('100%')};
     align-items: center;
     justify-content: center;
@@ -35,11 +35,10 @@ const LoginView = styled.View`
 const LogoContainer = styled.View`
     align-items: center;
     justify-content: center;
+    padding: 10px;
 `
 
-const ButtonContainer = styled.View`
-    
-`
+
 
 function LoginScreen(props) {
 
@@ -53,27 +52,38 @@ function LoginScreen(props) {
             <LogoContainer>
              <AppLogo
                 width={"100%"}
-                height={"30%"}/>
+                height={"35%"}/>
             </LogoContainer >
             
             <LargeTextInput 
                 inputText={userEmail}
                 setInputText={setUserEmail}
-                placeholder={"Email"}> 
+                placeholder={"Email"}
+                width={"85%"}> 
                 <UserIcon/>
             </LargeTextInput>
             <LargeTextInput 
                 inputText={password}
                 setInputText={setPassword}
-                placeholder="Password">
+                placeholder="Password"
+                width={"85%"}>
                     <PasswordIcon/>
             </LargeTextInput>
-            <BigButton
-                text="Sign In"/>
-           
-            <LongButton
+            <ModButton
+                text="Sign In"
+                spacing={'30px'}
+                width={"85%"}/>
+            <ModButton
+                height={'5%'}
+                width={"85%"}
+                fontSize={'3%'}
+                spacing={'5px'}
                 text="Sign In with Facebook"/>
-            <LongButton
+            <ModButton
+                height={'5%'}
+                width={"85%"}
+                fontSize={'3%'}
+                spacing={'5px'}
                 text="Sign In with Google"/>
             
         </LoginView>
