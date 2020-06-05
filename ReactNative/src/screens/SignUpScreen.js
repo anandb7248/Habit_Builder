@@ -40,10 +40,18 @@ const SignUpScreen = () => {
   const [confirmPassword, setConfirmPassword] = useState("");
 
   const test = () => {
-    db.collection("users").add({
-      firstName: "The",
-      lastName: "Quickster",
-    });
+    db.collection("users")
+      .doc("squidward")
+      .set({
+        name: "The Quickster",
+        power: "Super Speed",
+      })
+      .then(() => {
+        console.log("Data was sent");
+      })
+      .catch((err) => {
+        console.log(`Failed: ${err}`);
+      });
   };
 
   return (

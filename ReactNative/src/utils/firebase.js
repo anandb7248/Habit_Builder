@@ -14,7 +14,9 @@ const firebaseConfig = {
   measurementId: "G-9F1Y75L70S",
 };
 
-firebase.initializeApp(firebaseConfig);
+if (!firebase.apps.length) {
+  firebase.initializeApp(firebaseConfig);
+}
 
 // export const auth = firebase.auth();
 export const db = firebase.firestore();

@@ -9,6 +9,16 @@ import { AppLoading } from "expo";
 import { NavigationContainer } from "@react-navigation/native";
 import InitialAppNav from "./navigator/InitialAppNav";
 
+import { decode, encode } from "base-64";
+
+if (!global.btoa) {
+  global.btoa = encode;
+}
+
+if (!global.atob) {
+  global.atob = decode;
+}
+
 const getFont = () =>
   Font.loadAsync({
     "PTSans-Regular": require("./assets/fonts/PTSans-Regular.ttf"),
