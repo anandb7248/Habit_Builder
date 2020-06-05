@@ -5,6 +5,7 @@ import PasswordIcon from "../assets/images/Password.svg";
 import ModButton from "../components/ModButton";
 import styled from "styled-components";
 import Divider from "../components/Divider";
+import PageHeader from "../components/PageHeader"
 
 import {
   widthPercentageToDP as wp,
@@ -16,14 +17,14 @@ import COLORS from "../styles/Colors";
 const HeaderText = styled.Text`
   color: ${COLORS.appYelow};
   margin: 0 auto;
-  font-size: ${hp("5%")}px;
+  padding-top: 20px;
+  font-size: ${hp("7%")}px;
   font-family: "PTSans-Regular";
 `
 
 const LoginView = styled.View`
     background-color: ${COLORS.appBlue};
-    margin-top: ${hp('6.5%')}px;
-    height: ${hp('100%')}px;
+    flex: 1;
     align-items: center;
     justify-content: center;
 `
@@ -75,7 +76,6 @@ function LoginScreen(props) {
                 fontSize={'3%'}
                 spacing={'5px'}
                 text="Sign In with Google"/>
-            
         </LoginView>
     )
 }
