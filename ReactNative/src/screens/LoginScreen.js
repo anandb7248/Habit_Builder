@@ -1,15 +1,11 @@
 import React, { useState } from "react";
-import { Image, StyleSheet, View } from "react-native";
 import AppLogo from "../components/AppLogo";
 import UserIcon from "../assets/images/User.svg";
 import PasswordIcon from "../assets/images/Password.svg";
 import ModButton from "../components/ModButton";
-import LongButton from "../components/LongButton";
-import MediumButton from "../components/MediumButton";
 import styled from "styled-components";
 import Divider from "../components/Divider";
 
-import TextLabel from "../components/TextLabel";
 import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
@@ -22,7 +18,7 @@ const HeaderText = styled.Text`
   margin: 0 auto;
   font-size: ${hp("5%")};
   font-family: "PTSans-Regular";
-`;
+`
 
 const LoginView = styled.View`
     background-color: ${COLORS.appBlue};
@@ -31,17 +27,12 @@ const LoginView = styled.View`
     align-items: center;
     justify-content: center;
 `
-
 const LogoContainer = styled.View`
     align-items: center;
     justify-content: center;
     padding: 10px;
 `
-
-
-
 function LoginScreen(props) {
-
     const [userEmail, setUserEmail] = useState("");
     const [password, setPassword] = useState("");
     
@@ -54,7 +45,6 @@ function LoginScreen(props) {
                 width={"100%"}
                 height={"35%"}/>
             </LogoContainer >
-            
             <LargeTextInput 
                 inputText={userEmail}
                 setInputText={setUserEmail}

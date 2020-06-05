@@ -20,8 +20,8 @@ export default ModButton;
 
 const View = styled.View`
   background-color: white;
-  height: ${props => props.height ? hp(props.height) : "75px"};
-  width: ${props => props.width ? wp(props.width) : "320px"};
+  height: ${props => props.height ? hp(props.height) : "75"}px;
+  width: ${props => props.width ? wp(props.width) : "320"}px;
   margin: ${props => props.spacing ? props.spacing : "20px"} auto;
   border-radius: 25px;
 `;
@@ -29,6 +29,6 @@ const View = styled.View`
 const Text = styled.Text`
   margin: auto auto;
   color: #597099;
-  font-size: ${props => props.fontSize ? hp(props.fontSize) : "32px"};
+  font-size: ${props => props.fontSize ? hp(props.fontSize) : "32"}px;
   font-family: "PTSans-Regular";
 `;

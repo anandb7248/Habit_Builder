@@ -12,8 +12,8 @@ function AppLogo(props) {
 export default AppLogo;
 
 const Logo = styled.Image`
-  width: ${props => props.width ? wp(props.width) : "300px"};
-  height: ${props => props.height ? hp(props.height) : "348px"};
+  width: ${props => props.width ? wp(props.width) : "300"}px;
+  height: ${props => props.height ? hp(props.height) : "348"}px;
   ${props => props.width || props.height ? "resizeMode: contain;" : "margin: 75px auto;"}
 `;
 
