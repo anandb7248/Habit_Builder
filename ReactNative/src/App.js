@@ -10,7 +10,7 @@ import { NavigationContainer } from "@react-navigation/native";
 import InitialAppNav from "./navigator/InitialAppNav";
 import { decode, encode } from "base-64";
 import { Provider } from "react-redux";
-import { store } from "./redux/app-redux";
+import configureStore from "./redux/configureStore";
 import LoginScreen from "./screens/LoginScreen"
 
 if (!global.btoa) {
@@ -24,6 +24,8 @@ const getFont = () =>
   Font.loadAsync({
     "PTSans-Regular": require("./assets/fonts/PTSans-Regular.ttf"),
   });
+
+const store = configureStore();
 
 export default function App() {
   const [fontsLoaded, setFontsLoaded] = useState(false);

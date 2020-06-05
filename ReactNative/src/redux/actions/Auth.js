@@ -71,6 +71,7 @@ const verifySuccess = () => {
 */
 
 export const loginUser = (email, password) => dispatch => {
+  /* alerts our store that a user is logging in */
   dispatch(requestLogin());
   auth.signInWithEmailAndPassword(email, password)
   .then(user => {
@@ -81,3 +82,38 @@ export const loginUser = (email, password) => dispatch => {
   });
 };
 
+/*
+  Logout thunk -> logs auth user out of firebase
+*/
+export const logoutUser = () => dispatch => {
+  /* Notify store of logout request */
+  dispatch(requestLogout());
+  auth.signOut()
+  .then(() => {
+    dispatch(receiveLogout());
+  })
+  .catch(error => {
+    dispatch(logoutError());
+  })
+}
+
+/*
+  Auth State Change thunk -> calls firebase .onAuthStateChange function
+  which looks for a preexisting user session and re-establishes it. This
+  will happen on refresh. Method also sets up a listener while the app is 
+  running to change user session tokens when they expire. 
+*/
+
+export const verifyAuth = () => dispatch => {
+  dispatch(verifyRequest());
+  myFirebase.auth().onAuthStateChanged(user => {
+    if (user !== null) {
+      /*
+        We check if user is null because we only want to log 
+        someone in if firebase finds a user session.
+      */
+      dispatch(receiveLogin(user));
+    }
+    dispatch(verifySuccess());
+  });
+};
