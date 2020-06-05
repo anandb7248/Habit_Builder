@@ -23,13 +23,14 @@ export default function App() {
     // return <NotificationScreen />;
     // return <SetGoalScreen />;
     //return <SignUpScreen />;
-    return <LoginScreen/>;
+    // return <LoginScreen/>;
     // return <SetHabitScreen />;
-    // return (
-    //   <NavigationContainer>
-    //     <InitialAppNav />
-    //   </NavigationContainer>
-    // );
+    // return <SignUpScreen />;
+    return (
+      <NavigationContainer>
+        <InitialAppNav />
+      </NavigationContainer>
+    );
   } else {
     return (
       <AppLoading startAsync={getFont} onFinish={() => setFontsLoaded(true)} />
