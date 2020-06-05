@@ -8,6 +8,7 @@ import * as Font from "expo-font";
 import { AppLoading } from "expo";
 import { NavigationContainer } from "@react-navigation/native";
 import InitialAppNav from "./navigator/InitialAppNav";
+import LoginScreen from "./screens/LoginScreen";
 
 const getFont = () =>
   Font.loadAsync({
@@ -21,6 +22,8 @@ export default function App() {
     // return <OnboardingScreen />;
     // return <NotificationScreen />;
     // return <SetGoalScreen />;
+    //return <SignUpScreen />;
+    // return <LoginScreen/>;
     // return <SetHabitScreen />;
     // return <SignUpScreen />;
     return (
