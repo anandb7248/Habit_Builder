@@ -52,12 +52,13 @@ const SignUpScreen = (props) => {
   const [userEmail, setUserEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
+  const [data, setData] = useState([]);
 
-  const test = () => {
-    db.collection("a")
-      .doc("b")
+  const postData = () => {
+    db.collection("users")
+      .doc("squidward")
       .set({
-        name: "c",
+        name: "The Quickster",
       })
       .then(() => {
         console.log("Data was sent");
@@ -67,9 +68,24 @@ const SignUpScreen = (props) => {
       });
   };
 
+  const getData = () => {
+    db.collection("users")
+      .doc("squidward")
+      .get()
+      .then((doc) => {
+        console.log("data was retrieved");
+        console.log(doc.data());
+        console.log(props.personData);
+      })
+      .catch((err) => {
+        console.log(`Failed: ${err}`);
+      });
+  };
+
   return (
     <View>
-      <Button title="Press" onPress={test} />
+      <Button title="Post Data" onPress={postData} />
+      <Button title="Get Data" onPress={getData} />
       {/* <HeaderText>Habit Builder</HeaderText> */}
       <HeaderText>
         {props.personData ? props.personData.name : "nothing"}
