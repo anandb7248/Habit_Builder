@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import OnboardingScreen from "./screens/OnboardingScreen";
 import NotificationScreen from "./screens/NotificationScreen";
 import SetGoalScreen from "./screens/SetGoalScreen";
+import SetHabitScreen from "./screens/SetHabitScreen";
 import SignUpScreen from "./screens/SignUpScreen";
 import * as Font from "expo-font";
 import { AppLoading } from "expo";
@@ -23,6 +24,7 @@ export default function App() {
     // return <SetGoalScreen />;
     //return <SignUpScreen />;
     return <LoginScreen/>;
+    // return <SetHabitScreen />;
     // return (
     //   <NavigationContainer>
     //     <InitialAppNav />

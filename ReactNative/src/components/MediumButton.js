@@ -4,7 +4,7 @@ import { TouchableOpacity, StyleSheet } from "react-native";
 
 function MediumButton(props) {
   return (
-    <TouchableOpacity style={styles.container}>
+    <TouchableOpacity style={styles.container} onPress={props.onPress}>
       <View backgroundColor={props.color}>
         <Text>{props.text}</Text>
       </View>
