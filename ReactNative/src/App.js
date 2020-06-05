@@ -8,7 +8,17 @@ import * as Font from "expo-font";
 import { AppLoading } from "expo";
 import { NavigationContainer } from "@react-navigation/native";
 import InitialAppNav from "./navigator/InitialAppNav";
-import LoginScreen from "./screens/LoginScreen";
+import { decode, encode } from "base-64";
+import { Provider } from "react-redux";
+import { store } from "./redux/app-redux";
+import LoginScreen from "./screens/LoginScreen"
+
+if (!global.btoa) {
+  global.btoa = encode;
+}
+if (!global.atob) {
+  global.atob = decode;
+}
 
 const getFont = () =>
   Font.loadAsync({
@@ -25,12 +35,16 @@ export default function App() {
     //return <SignUpScreen />;
     // return <LoginScreen/>;
     // return <SetHabitScreen />;
-    // return <SignUpScreen />;
     return (
-      <NavigationContainer>
-        <InitialAppNav />
-      </NavigationContainer>
+      <Provider store={store}>
+        <LoginScreen/>
+      </Provider>
     );
+    // return (
+    //   <NavigationContainer>
+    //     <InitialAppNav />
+    //   </NavigationContainer>
+    // );
   } else {
     return (
       <AppLoading startAsync={getFont} onFinish={() => setFontsLoaded(true)} />
