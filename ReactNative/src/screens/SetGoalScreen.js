@@ -9,6 +9,10 @@ import BigTextInput from "../components/BigTextInput";
 import TextLabel from "../components/TextLabel";
 import DatePicker from "../components/DatePicker";
 import { TouchableOpacity } from "react-native";
+import {
+  heightPercentageToDP as hp,
+  widthPercentageToDP as wp,
+} from "react-native-responsive-screen";
 
 function SetGoalScreen(props) {
   const [goal, setGoal] = useState("");
@@ -71,7 +75,7 @@ function SetGoalScreen(props) {
       <Divider />
       <TextLabel label="Daily Habits to Achieve your Goal" />
       {habits.map((habit, index) => (
-        <Container>
+        <Container key={index}>
           <TouchableOpacity style={{ flex: 1 }}>
             <Label>{habit !== "" ? habit : "-"}</Label>
           </TouchableOpacity>
@@ -96,7 +100,7 @@ const View = styled.View`
 `;
 
 const StartingDate = styled.Text`
-  font-size: 18px;
+  font-size: ${wp("5%")};
   color: white;
   margin: 0 auto;
   padding: 20px;
@@ -105,7 +109,7 @@ const StartingDate = styled.Text`
 
 const DaysToCompletion = styled.Text`
   color: ${COLORS.appYelow};
-  font-size: 18px;
+  font-size: ${wp("4%")};
   font-weight: bold;
   margin: 5px auto;
   font-family: "PTSans-Regular";
@@ -114,14 +118,14 @@ const DaysToCompletion = styled.Text`
 const Container = styled.View`
   background: white;
   border-radius: 25px;
-  width: 350px;
-  height: 40px;
+  width: ${wp("85%")};
+  height: ${hp("4%")};
   margin: 10px auto;
 `;
 
 const Label = styled.Text`
   color: ${COLORS.appBlue};
-  font-size: 16px;
+  font-size: ${wp("4%")};
   font-weight: bold;
   margin: auto auto;
   font-family: "PTSans-Regular";
