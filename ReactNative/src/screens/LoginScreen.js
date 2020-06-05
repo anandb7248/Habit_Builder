@@ -16,14 +16,14 @@ import COLORS from "../styles/Colors";
 const HeaderText = styled.Text`
   color: ${COLORS.appYelow};
   margin: 0 auto;
-  font-size: ${hp("5%")};
+  font-size: ${hp("5%")}px;
   font-family: "PTSans-Regular";
 `
 
 const LoginView = styled.View`
     background-color: ${COLORS.appBlue};
-    margin-top: ${hp('6.5%')};
-    height: ${hp('100%')};
+    margin-top: ${hp('6.5%')}px;
+    height: ${hp('100%')}px;
     align-items: center;
     justify-content: center;
 `
