@@ -4,7 +4,7 @@ import { TouchableOpacity, StyleSheet } from "react-native";
 
 function ReminderButton(props) {
   return (
-    <TouchableOpacity style={styles.container}>
+    <TouchableOpacity style={styles.container} onPress={props.onPress}>
       <View>
         <Text>{props.text}</Text>
       </View>

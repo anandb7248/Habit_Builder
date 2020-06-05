@@ -2,26 +2,22 @@ import React, { useState, useRef, useEffect } from "react";
 import styled from "styled-components";
 import DateTimePicker from "@react-native-community/datetimepicker";
 import { Animated } from "react-native";
-import COLORS from "../styles/Colors";
-import {
-  heightPercentageToDP as hp,
-  widthPercentageToDP as wp,
-} from "react-native-responsive-screen";
 
-function DatePicker(props) {
-  const topDatePicker = useRef(new Animated.Value(0)).current;
+function TimePicker(props) {
+  const topTimePicker = useRef(new Animated.Value(0)).current;
+  const [date, setDate] = useState(new Date());
 
   const show = () => {
-    Animated.spring(topDatePicker, { toValue: -250 }).start();
+    Animated.spring(topTimePicker, { toValue: -250 }).start();
   };
-
   const hide = () => {
-    Animated.spring(topDatePicker, { toValue: 100 }).start();
+    Animated.spring(topTimePicker, { toValue: 100 }).start();
   };
 
-  const dateChange = (event, selectedDate) => {
-    const currentDate = selectedDate || date;
-    props.onChange(currentDate);
+  const setTime = (event, date) => {
+    if (date !== undefined) {
+      // Use the hour and minute from the date object
+    }
   };
 
   useEffect(() => {
@@ -35,7 +31,7 @@ function DatePicker(props) {
   }
 
   return (
-    <AnimatedView style={{ transform: [{ translateY: topDatePicker }] }}>
+    <AnimatedView style={{ transform: [{ translateY: topTimePicker }] }}>
       <DoneButton
         title="Done"
         onPress={() => {
@@ -44,20 +40,21 @@ function DatePicker(props) {
       ></DoneButton>
       <DateTimePicker
         modalTransparent={true}
-        value={props.date}
-        onChange={dateChange}
+        value={date}
+        mode={"time"}
+        onChange={setTime}
       />
     </AnimatedView>
   );
 }
 
-export default DatePicker;
+export default TimePicker;
 
 const View = styled.View`
   background: white;
   border-radius: 25px;
   width: 95%;
-  height: ${hp("25%")};
+  height: 300px;
   margin: 15px auto;
   z-index: 10;
 `;

@@ -1,10 +1,14 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import COLORS from "../styles/Colors";
+import {
+  widthPercentageToDP as wp,
+  heightPercentageToDP as hp,
+} from "react-native-responsive-screen";
 
 function LargeTextInput(props) {
   return (
-    <View>
+    <View width={props.width} height={props.height}>
       <Icon>{props.children}</Icon>
       <TextInput
         placeholder={props.placeholder}
@@ -19,8 +23,8 @@ export default LargeTextInput;
 
 const View = styled.View`
   background: white;
-  height: 60px;
-  width: 350px;
+  height: ${props => props.height ? hp(props.height) :'60'}px;
+  width: ${props => props.width ? wp(props.width) :'350'}px;
   border-radius: 25px;
   margin: 0px auto 10px;
 `;
