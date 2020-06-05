@@ -9,7 +9,7 @@ import TextLabel from "../components/TextLabel";
 import MediumButton from "../components/MediumButton";
 import SmallButton from "../components/SmallButton";
 import LongButton from "../components/LongButton";
-import Bell from "../components/Bell";
+import BellIcon from "../assets/images/Bell.svg";
 import ReminderButton from "../components/ReminderButton";
 import TimePicker from "../components/TimePicker";
 
@@ -116,10 +116,9 @@ function SetHabitScreen(props) {
         />
       </Container>
       <Padding />
-      <Padding />
       <TextLabel label="Give me a reminder at" />
       <ViewHorizontal>
-        <Bell size={50} />
+        <BellIcon width="20%" />
         <ReminderButton
           text="10 am"
           onPress={() => {

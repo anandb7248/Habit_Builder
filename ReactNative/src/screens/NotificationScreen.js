@@ -3,8 +3,12 @@ import styled from "styled-components";
 import PageHeader from "../components/PageHeader";
 import COLORS from "../styles/Colors";
 import Divider from "../components/Divider";
-import Bell from "../components/Bell";
+import BellIcon from "../assets/images/Bell.svg";
 import BigButton from "../components/BigButton";
+import {
+  widthPercentageToDP as wp,
+  heightPercentageToDP as hp,
+} from "react-native-responsive-screen";
 
 function NotificationScreen() {
   return (
@@ -13,7 +17,7 @@ function NotificationScreen() {
       <Divider />
       <Subtitle>Allow notifications to help you achieve your goals!</Subtitle>
       <Padding>
-        <Bell size={200} />
+        <BellIcon />
       </Padding>
       <BigButton text="Allow Notification" />
     </View>
@@ -34,8 +38,8 @@ const Padding = styled.View`
 
 const Subtitle = styled.Text`
   color: white;
-  font-size: 18px;
-  width: 360px;
-  margin: 20px auto;
+  font-size: ${hp("2%")};
+  width: ${wp("75%")};
+  margin: 10px auto;
   text-align: center;
 `;

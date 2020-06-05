@@ -1,8 +1,12 @@
 import React, { useState, useRef, useEffect } from "react";
 import styled from "styled-components";
 import DateTimePicker from "@react-native-community/datetimepicker";
-import { TouchableOpacity, Animated, Button } from "react-native";
+import { Animated } from "react-native";
 import COLORS from "../styles/Colors";
+import {
+  heightPercentageToDP as hp,
+  widthPercentageToDP as wp,
+} from "react-native-responsive-screen";
 
 function DatePicker(props) {
   const topDatePicker = useRef(new Animated.Value(0)).current;
@@ -53,7 +57,7 @@ const View = styled.View`
   background: white;
   border-radius: 25px;
   width: 95%;
-  height: 300px;
+  height: ${hp("25%")};
   margin: 15px auto;
   z-index: 10;
 `;
@@ -63,11 +67,3 @@ const DoneButton = styled.Button`
 `;
 
 const AnimatedView = Animated.createAnimatedComponent(View);
-
-const DateText = styled.Text`
-  color: ${COLORS.appBlue};
-  font-size: 16px;
-  font-weight: bold;
-  margin: auto auto;
-  font-family: "PTSans-Regular";
-`;
