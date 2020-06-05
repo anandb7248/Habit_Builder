@@ -1,14 +1,21 @@
 import React from "react";
 import styled from "styled-components";
+import {
+  widthPercentageToDP as wp,
+  heightPercentageToDP as hp,
+} from "react-native-responsive-screen";
 
 function AppLogo(props) {
-  return <Logo source={require("../assets/images/AppIcon.png")} />;
+  return <Logo width={props.width} height={props.height} source={require("../assets/images/AppIcon.png")}/>;
 }
 
 export default AppLogo;
 
 const Logo = styled.Image`
-  width: 300px;
-  height: 348px;
-  margin: 75px auto;
+  width: ${props => props.width ? wp(props.width) : "300px"};
+  height: ${props => props.height ? hp(props.height) : "348px"};
+  ${props => props.width || props.height ? "resizeMode: contain;" : "margin: 75px auto;"}
 `;
+
+
+
