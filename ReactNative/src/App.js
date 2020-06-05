@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { Text } from "react-native";
 import OnboardingScreen from "./screens/OnboardingScreen";
 import NotificationScreen from "./screens/NotificationScreen";
 import SetGoalScreen from "./screens/SetGoalScreen";
@@ -11,7 +12,7 @@ import InitialAppNav from "./navigator/InitialAppNav";
 import { decode, encode } from "base-64";
 import { Provider } from "react-redux";
 import configureStore from "./redux/configureStore";
-import LoginScreen from "./screens/LoginScreen"
+import LoginScreen from "./screens/LoginScreen";
 
 if (!global.btoa) {
   global.btoa = encode;
@@ -29,17 +30,16 @@ const store = configureStore();
 
 export default function App() {
   const [fontsLoaded, setFontsLoaded] = useState(false);
-
   if (fontsLoaded) {
     // return <OnboardingScreen />;
     // return <NotificationScreen />;
     // return <SetGoalScreen />;
-    //return <SignUpScreen />;
-    // return <LoginScreen/>;
+    // return <SignUpScreen />;
+    // return <LoginScreen />;
     // return <SetHabitScreen />;
     return (
       <Provider store={store}>
-        <LoginScreen/>
+        <LoginScreen />
       </Provider>
     );
     // return (

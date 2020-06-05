@@ -5,7 +5,7 @@ import PasswordIcon from "../assets/images/Password.svg";
 import ModButton from "../components/ModButton";
 import styled from "styled-components";
 import Divider from "../components/Divider";
-import PageHeader from "../components/PageHeader"
+import PageHeader from "../components/PageHeader";
 
 import {
   widthPercentageToDP as wp,
@@ -20,64 +20,63 @@ const HeaderText = styled.Text`
   padding-top: 20px;
   font-size: ${hp("7%")}px;
   font-family: "PTSans-Regular";
-`
+`;
 
 const LoginView = styled.View`
-    background-color: ${COLORS.appBlue};
-    flex: 1;
-    align-items: center;
-    justify-content: center;
-`
+  background-color: ${COLORS.appBlue};
+  flex: 1;
+  align-items: center;
+  justify-content: center;
+`;
 const LogoContainer = styled.View`
-    align-items: center;
-    justify-content: center;
-    padding: 10px;
-`
+  align-items: center;
+  justify-content: center;
+  padding: 10px;
+`;
 function LoginScreen(props) {
-    const [userEmail, setUserEmail] = useState("");
-    const [password, setPassword] = useState("");
-    
-    return (
-        <LoginView>
-            <HeaderText>Habit Builder</HeaderText>
-            <Divider/>
-            <LogoContainer>
-             <AppLogo
-                width={"100%"}
-                height={"35%"}/>
-            </LogoContainer >
-            <LargeTextInput 
-                inputText={userEmail}
-                setInputText={setUserEmail}
-                placeholder={"Email"}
-                width={"85%"}> 
-                <UserIcon/>
-            </LargeTextInput>
-            <LargeTextInput 
-                inputText={password}
-                setInputText={setPassword}
-                placeholder="Password"
-                width={"85%"}>
-                    <PasswordIcon/>
-            </LargeTextInput>
-            <ModButton
-                text="Sign In"
-                spacing={'30px'}
-                width={"85%"}/>
-            <ModButton
-                height={'5%'}
-                width={"85%"}
-                fontSize={'3%'}
-                spacing={'5px'}
-                text="Sign In with Facebook"/>
-            <ModButton
-                height={'5%'}
-                width={"85%"}
-                fontSize={'3%'}
-                spacing={'5px'}
-                text="Sign In with Google"/>
-        </LoginView>
-    )
+  const [userEmail, setUserEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const test = () => console.log("testing");
+  return (
+    <LoginView>
+      <HeaderText>Habit Builder</HeaderText>
+      <Divider />
+      <LogoContainer>
+        <AppLogo width={"100%"} height={"35%"} />
+      </LogoContainer>
+      <LargeTextInput
+        inputText={userEmail}
+        setInputText={setUserEmail}
+        placeholder={"Email"}
+        width={"85%"}
+      >
+        <UserIcon />
+      </LargeTextInput>
+      <LargeTextInput
+        inputText={password}
+        setInputText={setPassword}
+        placeholder="Password"
+        width={"85%"}
+      >
+        <PasswordIcon />
+      </LargeTextInput>
+      <ModButton text="Sign In" spacing={"30px"} width={"85%"} />
+      <ModButton
+        height={"5%"}
+        width={"85%"}
+        fontSize={"3%"}
+        spacing={"5px"}
+        text="Sign In with Facebook"
+      />
+      <ModButton
+        height={"5%"}
+        width={"85%"}
+        fontSize={"3%"}
+        spacing={"5px"}
+        text="Sign In with Google"
+      />
+    </LoginView>
+  );
 }
 
 export default LoginScreen;
