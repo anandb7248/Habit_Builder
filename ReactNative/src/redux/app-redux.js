@@ -1,35 +1,14 @@
 import { createStore, applyMiddleware } from "redux";
 import thunkMiddleware from "redux-thunk";
 import { db } from "../utils/firebase";
+import { rootReducer } from "./reducers"
 
-//initial state
-const initialState = {
-  personData: {},
-};
 
-//reducer
-const reducer = (state = initialState, action) => {
-  switch (action.type) {
-    case "setPersonData":
-      return { ...state, personData: action.value };
-    default:
-      return state;
-  }
-};
+
 
 //store
-const store = createStore(reducer, applyMiddleware(thunkMiddleware));
+const store = createStore(rootReducer, applyMiddleware(thunkMiddleware));
 export { store };
-
-//Action creators
-const setPersonData = (personData) => {
-  return {
-    type: "setPersonData",
-    value: personData,
-  };
-};
-
-export { setPersonData };
 
 //Action creator for async, using thunk
 const watchPersonData = () => {

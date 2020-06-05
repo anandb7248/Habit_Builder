@@ -11,6 +11,7 @@ import InitialAppNav from "./navigator/InitialAppNav";
 import { decode, encode } from "base-64";
 import { Provider } from "react-redux";
 import { store } from "./redux/app-redux";
+import LoginScreen from "./screens/LoginScreen"
 
 if (!global.btoa) {
   global.btoa = encode;
@@ -36,7 +37,7 @@ export default function App() {
     // return <SetHabitScreen />;
     return (
       <Provider store={store}>
-        <SignUpScreen />
+        <LoginScreen/>
       </Provider>
     );
     // return (
