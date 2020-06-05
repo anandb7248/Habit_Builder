@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Image, StyleSheet } from "react-native";
+import { Image, StyleSheet, Button, Text } from "react-native";
 import AppLogo from "../components/AppLogo";
 import UserIcon from "../assets/images/User.svg";
 import PasswordIcon from "../assets/images/Password.svg";
@@ -14,6 +14,7 @@ import {
 } from "react-native-responsive-screen";
 import LargeTextInput from "../components/LargeTextInput";
 import COLORS from "../styles/Colors";
+import { db } from "../utils/firebase";
 
 const styles = StyleSheet.create({
   container: {
@@ -38,8 +39,16 @@ const SignUpScreen = () => {
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
 
+  const test = () => {
+    db.collection("users").add({
+      firstName: "The",
+      lastName: "Quickster",
+    });
+  };
+
   return (
     <View>
+      <Button title="Press" onPress={test} />
       <HeaderText>Habit Builder</HeaderText>
       <View style={styles.horizontalRule} />
       <AppLogo />
