@@ -1,6 +1,5 @@
-import firebase from "firebase/app";
-import "firebase/firestore";
-// import "firebase/auth";
+import firebase from '@react-native-firebase/app'
+
 // import "firebase/analytics";
 
 const firebaseConfig = {

@@ -1,4 +1,4 @@
-import { auth } from '../../utils/firebase';
+import firebase from '@react-native-firebase/app'
 import {
   LOGIN_REQUEST, 
   LOGIN_SUCCESS, 
@@ -73,7 +73,7 @@ const verifySuccess = () => {
 export const loginUser = (email, password) => dispatch => {
   /* alerts our store that a user is logging in */
   dispatch(requestLogin());
-  auth.signInWithEmailAndPassword(email, password)
+  firebase.auth().signInWithEmailAndPassword(email, password)
   .then(user => {
     dispatch(receiveLogin(user));
   })
@@ -88,7 +88,7 @@ export const loginUser = (email, password) => dispatch => {
 export const logoutUser = () => dispatch => {
   /* Notify store of logout request */
   dispatch(requestLogout());
-  auth.signOut()
+  firebase.auth().signOut()
   .then(() => {
     dispatch(receiveLogout());
   })
@@ -106,7 +106,7 @@ export const logoutUser = () => dispatch => {
 
 export const verifyAuth = () => dispatch => {
   dispatch(verifyRequest());
-  myFirebase.auth().onAuthStateChanged(user => {
+  firebase.auth().onAuthStateChanged(user => {
     if (user !== null) {
       /*
         We check if user is null because we only want to log 

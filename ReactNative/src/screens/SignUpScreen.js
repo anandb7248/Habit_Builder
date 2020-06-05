@@ -15,20 +15,6 @@ import {
 import LargeTextInput from "../components/LargeTextInput";
 import COLORS from "../styles/Colors";
 import { db } from "../utils/firebase";
-import { connect } from "react-redux";
-import { watchPersonData } from "./../redux/app-redux";
-
-const mapStateToProps = (state) => {
-  return {
-    personData: state.personData,
-  };
-};
-
-const mapDispatchToProps = (dispatch) => {
-  return {
-    watchPersonData: () => dispatch(watchPersonData()),
-  };
-};
 
 const styles = StyleSheet.create({
   container: {
@@ -139,4 +125,4 @@ const HeaderText = styled.Text`
   font-family: "PTSans-Regular";
 `;
 
-export default connect(mapStateToProps, mapDispatchToProps)(SignUpScreen);
+export default SignUpScreen;
