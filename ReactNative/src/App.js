@@ -13,7 +13,6 @@ import { decode, encode } from "base-64";
 import { Provider } from "react-redux";
 import configureStore from "./redux/configureStore";
 import LoginScreen from "./screens/LoginScreen";
-import LoginTest from "./screens/LoginTest";
 
 if (!global.btoa) {
   global.btoa = encode;
@@ -40,8 +39,7 @@ export default function App() {
     // return <SetHabitScreen />;
     return (
       <Provider store={store}>
-        <LoginTest />
-        {/* <LoginScreen /> */}
+        <LoginScreen />
       </Provider>
     );
     // return (
