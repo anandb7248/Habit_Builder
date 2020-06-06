@@ -77,7 +77,8 @@ class LoginScreen extends Component {
         >
           <PasswordIcon />
         </LargeTextInput>
-        <ModButton text="Sign In" spacing={"30px"} width={"85%"} />
+        <ModButton text="Sign In" spacing={"30px"} width={"85%"} 
+        onPress={this.handleSignIn}/>
         <ModButton
           height={"5%"}
           width={"85%"}

@@ -8,7 +8,7 @@ import {
 
 function ModButton(props) {
   return (
-    <TouchableOpacity onPress={props.onPress}>
+    <TouchableOpacity onPress={props.onPress()}>
       <View width={props.width} height={props.height} spacing={props.spacing}>
         <Text fontSize={props.fontSize}>{props.text}</Text>
       </View>
