@@ -6,7 +6,7 @@ import ModButton from "../components/ModButton";
 import styled from "styled-components";
 import Divider from "../components/Divider";
 import { connect } from "react-redux";
-import { loginUser } from "../redux/actions/Auth"
+import { loginUser } from "../redux/actions/AuthActions"
 import PageHeader from "../components/PageHeader";
 
 import {
@@ -36,7 +36,7 @@ const LogoContainer = styled.View`
   padding: 10px;
 `;
 class LoginScreen extends Component {
-  state = { email: "", pasword: ""}
+  state = { email: "", password: ""}
 
   handleEmailInput = (text) => {
     this.setState({email: text})
@@ -49,11 +49,15 @@ class LoginScreen extends Component {
   handleSignIn = () => {
     const { dispatch } = this.props;
     const { email, password } = this.state;
-
-    dispatch(loginUser(email, password));
+    if(email !== null && password !== null) {
+      dispatch(loginUser(email, password));
+    }
   }
 
   render() {
+    /* props from mapStateToProps to be used in jsx rendering */
+    const { loginError, isAuthenticated } = this.props;
+
     return (
       <LoginView>
         <HeaderText>Habit Builder</HeaderText>
@@ -62,7 +66,6 @@ class LoginScreen extends Component {
           <AppLogo width={"100%"} height={"35%"} />
         </LogoContainer>
         <LargeTextInput
-          inputText={userEmail}
           setInputText={this.handleEmailInput}
           placeholder={"Email"}
           width={"85%"}
@@ -70,7 +73,6 @@ class LoginScreen extends Component {
           <UserIcon />
         </LargeTextInput>
         <LargeTextInput
-          inputText={password}
           setInputText={this.handlePasswordInput}
           placeholder="Password"
           width={"85%"}
@@ -78,7 +80,7 @@ class LoginScreen extends Component {
           <PasswordIcon />
         </LargeTextInput>
         <ModButton text="Sign In" spacing={"30px"} width={"85%"} 
-        onPress={this.handleSignIn}/>
+        onClick={this.handleSignIn}/>
         <ModButton
           height={"5%"}
           width={"85%"}
@@ -101,9 +103,9 @@ class LoginScreen extends Component {
 
 function mapStateToProps(state) {
   return {
-    isLoggingIn: state.AuthReducer.isLoggingIn,
-    loginError: state.AuthReducer.loginError,
-    isAuthenticated: state.AuthReducer.isAuthenticated
+    isLoggingIn: state.auth.isLoggingIn,
+    loginError: state.auth.loginError,
+    isAuthenticated: state.auth.isAuthenticated
   };
 }
 

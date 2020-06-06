@@ -1,6 +1,6 @@
 import { createStore, applyMiddleware } from "redux";
 import thunkMiddleware from "redux-thunk";
-import { verifyAuth } from "./actions/Auth";
+import { verifyAuth } from "./actions/AuthActions";
 import RootReducer from "./reducers/RootReducer";
 import thunk from "redux-thunk";
 

@@ -77,9 +77,11 @@ export const loginUser = (email, password) => (dispatch) => {
   auth
     .signInWithEmailAndPassword(email, password)
     .then((user) => {
+      console.log("LOGIN SUCCESS")
       dispatch(receiveLogin(user));
     })
     .catch((error) => {
+      console.log("LOGIN FAILURE")
       dispatch(loginError());
     });
 };
