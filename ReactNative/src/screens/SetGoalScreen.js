@@ -14,7 +14,7 @@ import {
   widthPercentageToDP as wp,
 } from "react-native-responsive-screen";
 
-function SetGoalScreen(props) {
+function SetGoalScreen({ navigation }) {
   const [goal, setGoal] = useState("");
   const [habits, setHabits] = useState(["", "", "", "", ""]);
   const defaultDaysToComplete = 21;
@@ -76,12 +76,18 @@ function SetGoalScreen(props) {
       <TextLabel label="Daily Habits to Achieve your Goal" />
       {habits.map((habit, index) => (
         <Container key={index}>
-          <TouchableOpacity style={{ flex: 1 }}>
+          <TouchableOpacity
+            style={{ flex: 1 }}
+            onPress={() => navigation.navigate("SetHabit")}
+          >
             <Label>{habit !== "" ? habit : "-"}</Label>
           </TouchableOpacity>
         </Container>
       ))}
-      <BigButton text="Set Goal" />
+      <BigButton
+        text="Set Goal"
+        onPress={() => navigation.navigate("Notification")}
+      />
       <DatePicker
         show={showDatePicker}
         toggle={toggleDatePicker}
