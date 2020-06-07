@@ -3,9 +3,6 @@ import { Image, StyleSheet, Button, Text } from "react-native";
 import AppLogo from "../components/AppLogo";
 import UserIcon from "../assets/images/User.svg";
 import PasswordIcon from "../assets/images/Password.svg";
-import BigButton from "../components/BigButton";
-import LongButton from "../components/LongButton";
-import MediumButton from "../components/MediumButton";
 import styled from "styled-components";
 import TextLabel from "../components/TextLabel";
 import Divider from "../components/Divider" 
@@ -18,24 +15,6 @@ import COLORS from "../styles/Colors";
 import { db } from "../utils/firebase";
 import PageHeader from "../components/PageHeader";
 import ModButton from "../components/ModButton";
-
-const styles = StyleSheet.create({
-  container: {
-    display: "flex",
-    marginTop: "10%",
-    marginBottom: "10%",
-    width: wp("75%"),
-    height: hp("25%"),
-  },
-  header: {
-    color: `${COLORS.appYelow}`,
-  },
-  horizontalRule: {
-    color: "black",
-    backgroundColor: "#FFFFFF",
-    height: 1,
-  },
-});
 
 const SignUpScreen = (props) => {
   const [userEmail, setUserEmail] = useState("");
@@ -109,10 +88,10 @@ const SignUpScreen = (props) => {
       height={"5%"}
       width={"85%"}
       fontSize={"3%"}/>
-      <LoginContainer>
+      <View>
         <TextLabel label="Already have an account?" />
         <ModButton text="Login" fontSize={'2%'} height={'5%'} width={'20%'} />
-      </LoginContainer>
+      </View>
     </View>
   );
 };
