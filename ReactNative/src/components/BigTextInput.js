@@ -22,10 +22,10 @@ export default BigTextInput;
 
 const View = styled.View`
   background: white;
-  height: 60px;
-  width: 350px;
-  border-radius: 25px;
-  margin: 0px auto 10px;
+  height: ${hp("7.5%")};
+  width: ${wp("85%")};
+  border-radius: ${wp("7%")}px;
+  margin: 0px auto ${hp("1%")}px;
 `;
 
 const TextInput = styled.TextInput`

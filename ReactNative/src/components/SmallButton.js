@@ -1,11 +1,15 @@
 import React from "react";
 import styled from "styled-components";
-import { TouchableOpacity, StyleSheet } from "react-native";
+import { TouchableOpacity, StyleSheet, View } from "react-native";
+import {
+  heightPercentageToDP as hp,
+  widthPercentageToDP as wp,
+} from "react-native-responsive-screen";
 
 function SmallButton(props) {
   return (
     <TouchableOpacity style={styles.container} onPress={props.onPress}>
-      <View backgroundColor={props.color}>
+      <View backgroundColor={props.color} style={styles.container}>
         <Text>{props.text}</Text>
       </View>
     </TouchableOpacity>
@@ -16,22 +20,15 @@ export default SmallButton;
 
 const styles = StyleSheet.create({
   container: {
-    height: 35,
-    width: 35,
+    height: wp("8%"),
+    width: wp("8%"),
     borderRadius: 5,
   },
 });
 
-const View = styled.View`
-  height: 35px;
-  width: 35px;
-  margin: 20px auto;
-  border-radius: 5px;
-`;
-
 const Text = styled.Text`
   margin: auto auto;
   color: #ffffff;
-  font-size: 22px;
+  font-size: ${wp("5%")}px;
   font-family: PTSans-Regular;
 `;

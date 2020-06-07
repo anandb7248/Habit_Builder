@@ -12,6 +12,10 @@ import LongButton from "../components/LongButton";
 import BellIcon from "../assets/images/Bell.svg";
 import ReminderButton from "../components/ReminderButton";
 import TimePicker from "../components/TimePicker";
+import {
+  heightPercentageToDP as hp,
+  widthPercentageToDP as wp,
+} from "react-native-responsive-screen";
 
 function SetHabitScreen(props) {
   const [status, setStatus] = useState("Daily");
@@ -92,6 +96,7 @@ function SetHabitScreen(props) {
           onPress={() => setStatus("Weekly")}
         />
       </ViewHorizontal>
+      <Padding />
       <ViewHorizontal>
         {daysText.map((day, index) => {
           return (
@@ -106,6 +111,7 @@ function SetHabitScreen(props) {
           );
         })}
       </ViewHorizontal>
+      <Padding />
       <Container>
         <LongButton
           text="Everyday"
@@ -116,9 +122,11 @@ function SetHabitScreen(props) {
         />
       </Container>
       <Padding />
-      <TextLabel label="Give me a reminder at" />
+      <TextView>
+        <TextLabel label="Give me a reminder at" />
+      </TextView>
       <ViewHorizontal>
-        <BellIcon width="20%" />
+        <BellIcon width="20%" height="100%" />
         <ReminderButton
           text="10 am"
           onPress={() => {
@@ -140,8 +148,12 @@ function SetHabitScreen(props) {
 
 export default SetHabitScreen;
 
+const TextView = styled.View`
+  padding-top: ${hp("5%")}px;
+`;
+
 const Padding = styled.View`
-  padding-vertical: 20px;
+  padding-vertical: ${hp("2%")}px;
 `;
 
 const View = styled.View`
@@ -153,7 +165,7 @@ const ViewHorizontal = styled.View`
   flex-direction: row;
   justify-content: space-evenly;
   align-items: center;
-  padding-vertical: 20px;
+  padding-vertical: ${hp("1%")}px;
 `;
 
 const Container = styled.View`
