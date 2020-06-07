@@ -24,8 +24,6 @@ const View = styled.View`
   background: white;
   height: ${hp("7.5%")};
   width: ${wp("85%")};
-  /*height: 60px;
-  width: 350px;*/
   border-radius: ${wp("7%")}px;
   margin: 0px auto ${hp("1%")}px;
 `;
