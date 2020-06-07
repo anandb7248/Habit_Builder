@@ -8,6 +8,7 @@ import LongButton from "../components/LongButton";
 import MediumButton from "../components/MediumButton";
 import styled from "styled-components";
 import TextLabel from "../components/TextLabel";
+import Divider from "../components/Divider" 
 import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
@@ -15,6 +16,8 @@ import {
 import LargeTextInput from "../components/LargeTextInput";
 import COLORS from "../styles/Colors";
 import { db } from "../utils/firebase";
+import PageHeader from "../components/PageHeader";
+import ModButton from "../components/ModButton";
 
 const styles = StyleSheet.create({
   container: {
@@ -70,14 +73,9 @@ const SignUpScreen = (props) => {
 
   return (
     <View>
-      <Button title="Post Data" onPress={postData} />
-      <Button title="Get Data" onPress={getData} />
-      {/* <HeaderText>Habit Builder</HeaderText> */}
-      <HeaderText>
-        {props.personData ? props.personData.name : "nothing"}
-      </HeaderText>
-      <View style={styles.horizontalRule} />
-      <AppLogo />
+      <PageHeader text={'Habit Builder'}/>
+      <Divider/>
+      <AppLogo width={"100%"} height={"20%"}/>
       <LargeTextInput
         inputText={userEmail}
         setInputText={setUserEmail}
@@ -97,12 +95,23 @@ const SignUpScreen = (props) => {
         setInputText={setConfirmPassword}
         placeholder="Confirm Password"
       />
-      <BigButton text="Sign Up" />
-      <LongButton text="Sign Up with Facebook" />
-      <LongButton text="Sign Up with Gmail" />
+      <ModButton 
+      text="Sign Up" 
+      width={'85%'}
+      height={'10%'}
+      spacing={'3%'}/>
+      <ModButton text="Sign Up with Facebook" 
+      height={"5%"}
+      width={"85%"}
+      fontSize={"3%"}/>
+      <ModButton 
+      text="Sign Up with Gmail" 
+      height={"5%"}
+      width={"85%"}
+      fontSize={"3%"}/>
       <LoginContainer>
         <TextLabel label="Already have an account?" />
-        <MediumButton text="Login" />
+        <ModButton text="Login" fontSize={'2%'} height={'5%'} width={'20%'} />
       </LoginContainer>
     </View>
   );
@@ -110,19 +119,10 @@ const SignUpScreen = (props) => {
 
 const View = styled.View`
   background-color: ${COLORS.appBlue};
+  flex: 1;
   width: ${wp("100%")};
-  position: relative;
-`;
-
-const LoginContainer = styled.View`
-  position: relative;
-`;
-
-const HeaderText = styled.Text`
-  color: ${COLORS.appYelow};
-  margin: 0 auto;
-  font-size: ${hp("5%")};
-  font-family: "PTSans-Regular";
+  align-items: center;
+  justify-content: center;
 `;
 
 export default SignUpScreen;

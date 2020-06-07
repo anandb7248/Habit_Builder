@@ -4,7 +4,7 @@ import PageHeader from "../components/PageHeader";
 import COLORS from "../styles/Colors";
 import Divider from "../components/Divider";
 import BellIcon from "../assets/images/Bell.svg";
-import BigButton from "../components/BigButton";
+import ModButton from "../components/ModButton";
 import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
@@ -19,7 +19,7 @@ function NotificationScreen() {
       <Padding>
         <BellIcon />
       </Padding>
-      <BigButton text="Allow Notification" />
+      <ModButton text="Allow Notification" width={'85%'} height={'10%'}/>
     </View>
   );
 }
