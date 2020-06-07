@@ -47,7 +47,7 @@ const LoginScreen = () => {
 
   return (
     <LoginView>
-      <HeaderText>Habit Builder</HeaderText>
+      <PageHeader text={'Habit Builder'}/>
       <Divider />
       <LogoContainer>
         <AppLogo width={"100%"} height={"35%"} />
@@ -91,13 +91,6 @@ const LoginScreen = () => {
   );
 };
 
-const HeaderText = styled.Text`
-  color: ${COLORS.appYelow};
-  margin: 0 auto;
-  padding-top: 20px;
-  font-size: ${hp("7%")}px;
-  font-family: "PTSans-Regular";
-`;
 
 const LoginView = styled.View`
   background-color: ${COLORS.appBlue};

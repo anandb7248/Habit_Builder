@@ -3,7 +3,7 @@ import styled from "styled-components";
 import COLORS from "../styles/Colors";
 import PageHeader from "../components/PageHeader";
 import Divider from "../components/Divider";
-import ModButton from "../components/BigButton";
+import ModButton from "../components/ModButton";
 import moment from "moment";
 import BigTextInput from "../components/BigTextInput";
 import TextLabel from "../components/TextLabel";
@@ -89,6 +89,7 @@ function SetGoalScreen({ navigation }) {
         onPress={() => navigation.navigate("Notification")}
         width={"85%"}
         height={'10%'}
+        spacing={'3%'}
       />
       <DatePicker
         show={showDatePicker}
