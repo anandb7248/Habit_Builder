@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Image, StyleSheet } from "react-native";
+import { Image, StyleSheet, Button, Text } from "react-native";
 import AppLogo from "../components/AppLogo";
 import UserIcon from "../assets/images/User.svg";
 import PasswordIcon from "../assets/images/Password.svg";
@@ -14,6 +14,7 @@ import {
 } from "react-native-responsive-screen";
 import LargeTextInput from "../components/LargeTextInput";
 import COLORS from "../styles/Colors";
+import { db } from "../utils/firebase";
 
 const styles = StyleSheet.create({
   container: {
@@ -33,14 +34,48 @@ const styles = StyleSheet.create({
   },
 });
 
-const SignUpScreen = () => {
+const SignUpScreen = (props) => {
   const [userEmail, setUserEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
+  const [data, setData] = useState([]);
+
+  const postData = () => {
+    db.collection("users")
+      .doc("squidward")
+      .set({
+        name: "The Quickster",
+      })
+      .then(() => {
+        console.log("Data was sent");
+      })
+      .catch((err) => {
+        console.log(`Failed: ${err}`);
+      });
+  };
+
+  const getData = () => {
+    db.collection("users")
+      .doc("squidward")
+      .get()
+      .then((doc) => {
+        console.log("data was retrieved");
+        console.log(doc.data());
+        console.log(props.personData);
+      })
+      .catch((err) => {
+        console.log(`Failed: ${err}`);
+      });
+  };
 
   return (
     <View>
-      <HeaderText>Habit Builder</HeaderText>
+      <Button title="Post Data" onPress={postData} />
+      <Button title="Get Data" onPress={getData} />
+      {/* <HeaderText>Habit Builder</HeaderText> */}
+      <HeaderText>
+        {props.personData ? props.personData.name : "nothing"}
+      </HeaderText>
       <View style={styles.horizontalRule} />
       <AppLogo />
       <LargeTextInput
