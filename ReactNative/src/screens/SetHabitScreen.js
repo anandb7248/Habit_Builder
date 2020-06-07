@@ -4,7 +4,7 @@ import COLORS from "../styles/Colors";
 import PageHeader from "../components/PageHeader";
 import Divider from "../components/Divider";
 import ModButton from "../components/ModButton"
-import BigTextInput from "../components/BigTextInput";
+import ModTextInput from "../components/ModTextInput";
 import TextLabel from "../components/TextLabel";
 import BellIcon from "../assets/images/Bell.svg";
 import TimePicker from "../components/TimePicker";
@@ -77,7 +77,9 @@ function SetHabitScreen(props) {
       <PageHeader text="Set a Habit"></PageHeader>
       <Divider />
       <Padding>
-        <BigTextInput placeholder="What is the name of your habit?"></BigTextInput>
+        <ModTextInput placeholder="What is the name of your habit?"
+        width={"85%"}
+        height={'8%'}/>
       </Padding>
       <TextLabel label="I want to repeat this..." />
       <ViewHorizontal>

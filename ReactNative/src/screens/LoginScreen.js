@@ -14,7 +14,7 @@ import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
 } from "react-native-responsive-screen";
-import LargeTextInput from "../components/LargeTextInput";
+import ModTextInput from "../components/ModTextInput";
 import COLORS from "../styles/Colors";
 
 //hooks give state control to stateless functions, which replaced classes in react
@@ -52,22 +52,22 @@ const LoginScreen = () => {
       <LogoContainer>
         <AppLogo width={"100%"} height={"35%"} />
       </LogoContainer>
-      <LargeTextInput
+      <ModTextInput
         setInputText={handleEmailInput}
         placeholder={"Email"}
         width={"85%"}
         height={'8%'}
       >
         <UserIcon />
-      </LargeTextInput>
-      <LargeTextInput
+      </ModTextInput>
+      <ModTextInput
         setInputText={handlePasswordInput}
         placeholder="Password"
         width={"85%"}
         height={'8%'}
       >
         <PasswordIcon />
-      </LargeTextInput>
+      </ModTextInput>
       <ModButton
         text="Sign In"
         spacing={"3"}

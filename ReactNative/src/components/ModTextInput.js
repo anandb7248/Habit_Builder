@@ -6,7 +6,7 @@ import {
   heightPercentageToDP as hp,
 } from "react-native-responsive-screen";
 
-function LargeTextInput(props) {
+function ModTextInput(props) {
   return (
     <View width={props.width} height={props.height}>
       <Icon>{props.children}</Icon>
@@ -19,7 +19,7 @@ function LargeTextInput(props) {
   );
 }
 
-export default LargeTextInput;
+export default ModTextInput;
 
 const View = styled.View`
   background: white;

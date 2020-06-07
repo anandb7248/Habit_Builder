@@ -10,7 +10,7 @@ import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
 } from "react-native-responsive-screen";
-import LargeTextInput from "../components/LargeTextInput";
+import ModTextInput from "../components/ModTextInput";
 import COLORS from "../styles/Colors";
 import { db } from "../utils/firebase";
 import PageHeader from "../components/PageHeader";
@@ -55,21 +55,21 @@ const SignUpScreen = (props) => {
       <PageHeader text={'Habit Builder'}/>
       <Divider/>
       <AppLogo width={"100%"} height={"20%"}/>
-      <LargeTextInput
+      <ModTextInput
         inputText={userEmail}
         setInputText={setUserEmail}
         placeholder="Email"
       >
         <UserIcon />
-      </LargeTextInput>
-      <LargeTextInput
+      </ModTextInput>
+      <ModTextInput
         inputText={password}
         setInputText={setPassword}
         placeholder="Password"
       >
         <PasswordIcon />
-      </LargeTextInput>
-      <LargeTextInput
+      </ModTextInput>
+      <ModTextInput
         inputText={confirmPassword}
         setInputText={setConfirmPassword}
         placeholder="Confirm Password"
