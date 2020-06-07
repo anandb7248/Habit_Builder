@@ -26,13 +26,6 @@ const styles = StyleSheet.create({
   },
 });
 
-// const View = styled.View`
-//   height: ${hp("2%")}px;
-//   width: ${wp("2%")}px;
-//   margin: 20px auto;
-//   border-radius: 5px;
-// `;
-
 const Text = styled.Text`
   margin: auto auto;
   color: #ffffff;

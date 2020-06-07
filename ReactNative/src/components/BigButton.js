@@ -8,10 +8,7 @@ import {
 
 function BigButton(props) {
   return (
-    <TouchableOpacity
-      onPress={props.onPress}
-      style={{ backgroundColor: "white" }}
-    >
+    <TouchableOpacity onPress={props.onPress}>
       <View style={{ height: hp("10%"), width: wp("75%") }}>
         <Text>{props.text}</Text>
       </View>

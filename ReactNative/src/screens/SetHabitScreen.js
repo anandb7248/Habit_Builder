@@ -122,9 +122,6 @@ function SetHabitScreen(props) {
         />
       </Container>
       <Padding />
-      {/* <Padding /> */}
-      {/* <Padding />
-      <Padding /> */}
       <TextView>
         <TextLabel label="Give me a reminder at" />
       </TextView>

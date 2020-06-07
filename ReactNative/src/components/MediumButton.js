@@ -28,18 +28,9 @@ const styles = StyleSheet.create({
   },
 });
 
-// const View = styled.View`
-//   /*height: 40px;
-//   width: 100px;*/
-//   height: ${hp("5%")};
-//   width: ${wp("30%")};
-//   border-radius: 5px;
-// `;
-
 const Text = styled.Text`
   margin: auto auto;
   color: #ffffff;
-  /*font-size: 12px;*/
   font-size: ${wp("3%")}px;
   font-family: PTSans-Regular;
 `;

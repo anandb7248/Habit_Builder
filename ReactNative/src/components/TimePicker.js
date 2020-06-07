@@ -55,7 +55,7 @@ const View = styled.View`
   border-radius: 25px;
   width: 95%;
   height: 300px;
-  /* margin: 15px auto; /*
+  margin: 15px auto;
   z-index: 10;
 `;
 
