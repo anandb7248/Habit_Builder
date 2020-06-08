@@ -3,6 +3,7 @@ node_modules
 ./ReactNative/.expo
 ./ReactNative/.expo/*
 ReactNative/.expo/packager-info.json
+ReactNative/.expo/settings.json
 
 # Xcode
 #
