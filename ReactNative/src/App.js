@@ -34,14 +34,14 @@ export default function App() {
     //return <OnboardingScreen />;
     //return <NotificationScreen />;
     //return <SetGoalScreen />;
-    return <SignUpScreen />;
+    // return <SignUpScreen />;
     // return <LoginScreen />;
     //return <SetHabitScreen />;
-    // return (
-    //   <Provider store={store}>
-    //     <LoginScreen />
-    //   </Provider>
-    // );
+    return (
+      <Provider store={store}>
+        <LoginScreen />
+      </Provider>
+    );
     // return (
     //   <NavigationContainer>
     //     <InitialAppNav />

@@ -9,11 +9,6 @@ import { connect } from "react-redux";
 import { loginUser } from "../redux/actions/AuthActions";
 import PageHeader from "../components/PageHeader";
 import { useDispatch, useSelector } from "react-redux";
-
-import {
-  widthPercentageToDP as wp,
-  heightPercentageToDP as hp,
-} from "react-native-responsive-screen";
 import ModTextInput from "../components/ModTextInput";
 import COLORS from "../styles/Colors";
 
@@ -47,50 +42,49 @@ const LoginScreen = () => {
 
   return (
     <LoginView>
-      <PageHeader text={'Habit Builder'}/>
+      <PageHeader text="Habit Builder" />
       <Divider />
       <LogoContainer>
-        <AppLogo width={"100%"} height={"35%"} />
+        <AppLogo width="100%" height="35%" />
       </LogoContainer>
       <ModTextInput
         setInputText={handleEmailInput}
-        placeholder={"Email"}
-        width={"85%"}
-        height={'8%'}
+        placeholder="Email"
+        width="85%"
+        height="8%"
       >
         <UserIcon />
       </ModTextInput>
       <ModTextInput
         setInputText={handlePasswordInput}
         placeholder="Password"
-        width={"85%"}
-        height={'8%'}
+        width="85%"
+        height="8%"
       >
         <PasswordIcon />
       </ModTextInput>
       <ModButton
         text="Sign In"
-        spacing={"3"}
-        width={"85%"}
-        height={'10%'}
+        spacing="3"
+        width="85%"
+        height="10%"
         onPress={handleSignIn}
       />
       <ModButton
-        height={"5%"}
-        width={"85%"}
-        fontSize={"3%"}
+        height="5%"
+        width="85%"
+        fontSize="3%"
         text="Sign In with Facebook"
       />
       <ModButton
-        height={"5%"}
-        width={"85%"}
-        fontSize={"3%"}
+        height="5%"
+        width="85%"
+        fontSize="3%"
         text="Sign In with Google"
       />
     </LoginView>
   );
 };
-
 
 const LoginView = styled.View`
   background-color: ${COLORS.appBlue};

@@ -3,7 +3,7 @@ import styled from "styled-components";
 import COLORS from "../styles/Colors";
 import PageHeader from "../components/PageHeader";
 import Divider from "../components/Divider";
-import ModButton from "../components/ModButton"
+import ModButton from "../components/ModButton";
 import ModTextInput from "../components/ModTextInput";
 import TextLabel from "../components/TextLabel";
 import BellIcon from "../assets/images/Bell.svg";
@@ -77,9 +77,11 @@ function SetHabitScreen(props) {
       <PageHeader text="Set a Habit"></PageHeader>
       <Divider />
       <Padding>
-        <ModTextInput placeholder="What is the name of your habit?"
-        width={"85%"}
-        height={'8%'}/>
+        <ModTextInput
+          placeholder="What is the name of your habit?"
+          width="85%"
+          height="8%"
+        />
       </Padding>
       <TextLabel label="I want to repeat this..." />
       <ViewHorizontal>
@@ -87,21 +89,21 @@ function SetHabitScreen(props) {
           text="Daily"
           color={status === "Daily" ? COLORS.appYelow : COLORS.appGray}
           onPress={() => setStatus("Daily")}
-          width={'35%'}
-          height={'5%'}
-          fontColor={'white'}
-          fontSize={'2%'}
-          cornerRadius={'5px'}
+          width="35%"
+          height="5%"
+          fontColor="white"
+          fontSize="2%"
+          cornerRadius="5px"
         />
         <ModButton
           text="Weekly"
           color={status === "Weekly" ? COLORS.appYelow : COLORS.appGray}
           onPress={() => setStatus("Weekly")}
-          width={'35%'}
-          height={'5%'}
-          fontColor={'white'}
-          fontSize={'2%'}
-          cornerRadius={'5px'}
+          width="35%"
+          height="5%"
+          fontColor="white"
+          fontSize="2%"
+          cornerRadius="5px"
         />
       </ViewHorizontal>
       <Padding />
@@ -115,12 +117,12 @@ function SetHabitScreen(props) {
               onPress={() => {
                 handleDayClick(index);
               }}
-              width={'10%'}
-              height={'5%'}
-              fontSize={'2%'}
-              cornerRadius={'5px'}
-              spacing={'1%'}
-              fontColor={'white'}
+              width="10%"
+              height="5%"
+              fontSize="2%"
+              cornerRadius="5px"
+              spacing="1%"
+              fontColor="white"
             />
           );
         })}
@@ -133,11 +135,11 @@ function SetHabitScreen(props) {
           onPress={() => {
             handleEverydayClick();
           }}
-          cornerRadius={'5px'}
-          height={'5%'}
-          width={'85%'}
-          fontSize={'3%'}
-          fontColor={'white'}
+          cornerRadius="5px"
+          height="5%"
+          width="85%"
+          fontSize="3%"
+          fontColor="white"
         />
       </Container>
       <Padding />
@@ -148,19 +150,16 @@ function SetHabitScreen(props) {
         <BellIcon width="20%" height="100%" />
         <ModButton
           text="10 am"
-          width={'50%'}
-          height={'5%'}
-          fontSize={'3%'}
+          width="50%"
+          height="5%"
+          fontSize="3%"
           onPress={() => {
             toggleTimePicker((prev) => !prev);
           }}
         />
       </ViewHorizontal>
       <Container>
-        <ModButton 
-        text="Set Goal"
-        width={"85%"}
-        height={'10%'} />
+        <ModButton text="Set Habit" width="85%" height="10%" />
       </Container>
       <TimePicker
         show={showTimePicker}

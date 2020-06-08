@@ -58,7 +58,7 @@ function SetGoalScreen({ navigation }) {
         setInputText={setGoal}
         placeholder="What would you like to achieve?"
         width={"85%"}
-        height={'8%'}
+        height={"8%"}
       ></ModTextInput>
       <TextLabel label="When do you want to achieve your goal?" />
       <Container>
@@ -89,9 +89,9 @@ function SetGoalScreen({ navigation }) {
       <ModButton
         text="Set Goal"
         onPress={() => navigation.navigate("Notification")}
-        width={"85%"}
-        height={'10%'}
-        spacing={'3%'}
+        width="85%"
+        height="10%"
+        spacing="3%"
       />
       <DatePicker
         show={showDatePicker}
