@@ -4,6 +4,9 @@ import OnboardingScreen from "../screens/OnboardingScreen";
 import SetGoalScreen from "../screens/SetGoalScreen";
 import SetHabitScreen from "../screens/SetHabitScreen";
 import NotificationScreen from "../screens/NotificationScreen";
+import Platform from "react-native";
+import SignUpScreen from "../screens/SignUpScreen";
+import LoginScreen from "../screens/LoginScreen";
 
 const Stack = createStackNavigator();
 
@@ -11,24 +14,40 @@ function InitialAppNav() {
   return (
     <Stack.Navigator>
       <Stack.Screen
-        name="Onboarding"
+        name="OnboardingScreen"
         component={OnboardingScreen}
         options={{ headerShown: false }}
       />
       <Stack.Screen
-        name="SetGoal"
+        name="SetGoalScreen"
         component={SetGoalScreen}
-        options={{ headerShown: false }}
+        options={{ headerShown: false, title: "Set Goal" }}
       />
       <Stack.Screen
-        name="SetHabit"
+        name="SetHabitScreen"
         component={SetHabitScreen}
-        options={{ headerShown: false }}
+        options={{
+          headerShown: Platform.OS == "android" ? false : true,
+          title: "",
+        }}
       />
       <Stack.Screen
-        name="Notification"
+        name="NotificationScreen"
         component={NotificationScreen}
         options={{ headerShown: false }}
+      />
+      <Stack.Screen
+        name="SignUpScreen"
+        component={SignUpScreen}
+        options={{ headerShown: false, title: "Sign Up" }}
+      />
+      <Stack.Screen
+        name="LoginScreen"
+        component={LoginScreen}
+        options={{
+          headerShown: Platform.OS == "android" ? false : true,
+          title: "",
+        }}
       />
     </Stack.Navigator>
   );

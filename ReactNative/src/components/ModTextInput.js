@@ -23,8 +23,8 @@ export default ModTextInput;
 
 const View = styled.View`
   background: white;
-  height: ${props => props.height ? hp(props.height) :'60'}px;
-  width: ${props => props.width ? wp(props.width) :'350'}px;
+  height: ${(props) => (props.height ? hp(props.height) : "60")}px;
+  width: ${(props) => (props.width ? wp(props.width) : "350")}px;
   border-radius: 25px;
   margin: 0px auto 10px;
 `;

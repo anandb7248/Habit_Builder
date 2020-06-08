@@ -16,7 +16,7 @@ import { db } from "../utils/firebase";
 import PageHeader from "../components/PageHeader";
 import ModButton from "../components/ModButton";
 
-const SignUpScreen = (props) => {
+const SignUpScreen = ({ props, navigation }) => {
   const [userEmail, setUserEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
@@ -52,7 +52,7 @@ const SignUpScreen = (props) => {
 
   return (
     <View>
-      <PageHeader text={"Habit Builder"} />
+      <PageHeader text={"Habit Builder"} hasHeader={false} />
       <Divider />
       <AppLogo width={"100%"} height={"20%"} />
       <ModTextInput
@@ -74,7 +74,7 @@ const SignUpScreen = (props) => {
         setInputText={setConfirmPassword}
         placeholder="Confirm Password"
       />
-      <ModButton text="Sign Up" width="85%" height="10%" spacing="3%" />
+      <ModButton text="Sign Up" width={"85%"} height={"10%"} spacing={"3%"} />
       <ModButton
         text="Sign Up with Facebook"
         height="5%"
@@ -89,7 +89,15 @@ const SignUpScreen = (props) => {
       />
       <View>
         <TextLabel label="Already have an account?" />
-        <ModButton text="Login" fontSize="2%" height="5%" width="20%" />
+        <ModButton
+          text="Login"
+          fontSize="2%"
+          height="5%"
+          width="20%"
+          onPress={() => {
+            navigation.navigate("LoginScreen");
+          }}
+        />
       </View>
     </View>
   );

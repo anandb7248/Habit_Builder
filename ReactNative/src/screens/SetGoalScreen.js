@@ -48,7 +48,7 @@ function SetGoalScreen({ navigation }) {
 
   return (
     <View>
-      <PageHeader text="Set a Goal"></PageHeader>
+      <PageHeader text="Set a Goal" hasHeader={false}></PageHeader>
       <Divider />
       <StartingDate>
         From Today: {moment(startDate).format("MMM D, YYYY")}
@@ -80,7 +80,7 @@ function SetGoalScreen({ navigation }) {
         <Container key={index}>
           <TouchableOpacity
             style={{ flex: 1 }}
-            onPress={() => navigation.navigate("SetHabit")}
+            onPress={() => navigation.navigate("SetHabitScreen")}
           >
             <Label>{habit !== "" ? habit : "-"}</Label>
           </TouchableOpacity>
@@ -88,7 +88,7 @@ function SetGoalScreen({ navigation }) {
       ))}
       <ModButton
         text="Set Goal"
-        onPress={() => navigation.navigate("Notification")}
+        onPress={() => navigation.navigate("NotificationScreen")}
         width="85%"
         height="10%"
         spacing="3%"

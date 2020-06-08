@@ -12,8 +12,9 @@ import {
   heightPercentageToDP as hp,
   widthPercentageToDP as wp,
 } from "react-native-responsive-screen";
+import Platform from "react-native";
 
-function SetHabitScreen(props) {
+function SetHabitScreen({ navigation }) {
   const [status, setStatus] = useState("Daily");
   const daysText = ["Su", "M", "Tu", "W", "Th", "F", "Sa"];
   const [days, setDays] = useState([
@@ -74,7 +75,10 @@ function SetHabitScreen(props) {
 
   return (
     <View>
-      <PageHeader text="Set a Habit"></PageHeader>
+      <PageHeader
+        text="Set a Habit"
+        hasHeader={Platform.OS == "android" ? false : true}
+      ></PageHeader>
       <Divider />
       <Padding>
         <ModTextInput
@@ -106,7 +110,6 @@ function SetHabitScreen(props) {
           cornerRadius="5px"
         />
       </ViewHorizontal>
-      <Padding />
       <ViewHorizontal>
         {daysText.map((day, index) => {
           return (
@@ -127,7 +130,6 @@ function SetHabitScreen(props) {
           );
         })}
       </ViewHorizontal>
-      <Padding />
       <Container>
         <ModButton
           text="Everyday"
@@ -142,7 +144,6 @@ function SetHabitScreen(props) {
           fontColor="white"
         />
       </Container>
-      <Padding />
       <TextView>
         <TextLabel label="Give me a reminder at" />
       </TextView>
@@ -158,8 +159,16 @@ function SetHabitScreen(props) {
           }}
         />
       </ViewHorizontal>
+      <Padding />
       <Container>
-        <ModButton text="Set Habit" width="85%" height="10%" />
+        <ModButton
+          text="Set Habit"
+          width="85%"
+          height="10%"
+          onPress={() => {
+            navigation.goBack();
+          }}
+        />
       </Container>
       <TimePicker
         show={showTimePicker}
