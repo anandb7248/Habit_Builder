@@ -5,12 +5,12 @@ import UserIcon from "../assets/images/User.svg";
 import PasswordIcon from "../assets/images/Password.svg";
 import styled from "styled-components";
 import TextLabel from "../components/TextLabel";
-import Divider from "../components/Divider" 
+import Divider from "../components/Divider";
 import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
 } from "react-native-responsive-screen";
-import LargeTextInput from "../components/LargeTextInput";
+import ModTextInput from "../components/ModTextInput";
 import COLORS from "../styles/Colors";
 import { db } from "../utils/firebase";
 import PageHeader from "../components/PageHeader";
@@ -52,45 +52,44 @@ const SignUpScreen = (props) => {
 
   return (
     <View>
-      <PageHeader text={'Habit Builder'}/>
-      <Divider/>
-      <AppLogo width={"100%"} height={"20%"}/>
-      <LargeTextInput
+      <PageHeader text={"Habit Builder"} />
+      <Divider />
+      <AppLogo width={"100%"} height={"20%"} />
+      <ModTextInput
         inputText={userEmail}
         setInputText={setUserEmail}
         placeholder="Email"
       >
         <UserIcon />
-      </LargeTextInput>
-      <LargeTextInput
+      </ModTextInput>
+      <ModTextInput
         inputText={password}
         setInputText={setPassword}
         placeholder="Password"
       >
         <PasswordIcon />
-      </LargeTextInput>
-      <LargeTextInput
+      </ModTextInput>
+      <ModTextInput
         inputText={confirmPassword}
         setInputText={setConfirmPassword}
         placeholder="Confirm Password"
       />
-      <ModButton 
-      text="Sign Up" 
-      width={'85%'}
-      height={'10%'}
-      spacing={'3%'}/>
-      <ModButton text="Sign Up with Facebook" 
-      height={"5%"}
-      width={"85%"}
-      fontSize={"3%"}/>
-      <ModButton 
-      text="Sign Up with Gmail" 
-      height={"5%"}
-      width={"85%"}
-      fontSize={"3%"}/>
+      <ModButton text="Sign Up" width="85%" height="10%" spacing="3%" />
+      <ModButton
+        text="Sign Up with Facebook"
+        height="5%"
+        width="85%"
+        fontSize="3%"
+      />
+      <ModButton
+        text="Sign Up with Gmail"
+        height="5%"
+        width="85%"
+        fontSize="3%"
+      />
       <View>
         <TextLabel label="Already have an account?" />
-        <ModButton text="Login" fontSize={'2%'} height={'5%'} width={'20%'} />
+        <ModButton text="Login" fontSize="2%" height="5%" width="20%" />
       </View>
     </View>
   );
