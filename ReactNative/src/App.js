@@ -33,7 +33,7 @@ export default function App() {
   if (fontsLoaded) {
     //return <OnboardingScreen />;
     //return <NotificationScreen />;
-    return <SetGoalScreen />;
+    // return <SetGoalScreen />;
     //return <SignUpScreen />;
     // return <LoginScreen />;
     //return <SetHabitScreen />;
@@ -42,11 +42,13 @@ export default function App() {
     //     <LoginScreen />
     //   </Provider>
     // );
-    // return (
-    //   <NavigationContainer>
-    //     <InitialAppNav />
-    //   </NavigationContainer>
-    // );
+    return (
+      <Provider store={store}>
+        <NavigationContainer>
+          <InitialAppNav />
+        </NavigationContainer>
+      </Provider>
+    );
   } else {
     return (
       <AppLoading startAsync={getFont} onFinish={() => setFontsLoaded(true)} />

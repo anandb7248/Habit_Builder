@@ -9,12 +9,7 @@ import { connect } from "react-redux";
 import { loginUser } from "../redux/actions/AuthActions";
 import PageHeader from "../components/PageHeader";
 import { useDispatch, useSelector } from "react-redux";
-
-import {
-  widthPercentageToDP as wp,
-  heightPercentageToDP as hp,
-} from "react-native-responsive-screen";
-import LargeTextInput from "../components/LargeTextInput";
+import ModTextInput from "../components/ModTextInput";
 import COLORS from "../styles/Colors";
 
 //hooks give state control to stateless functions, which replaced classes in react
@@ -47,50 +42,52 @@ const LoginScreen = () => {
 
   return (
     <LoginView>
-      <PageHeader text={'Habit Builder'}/>
+      <PageHeader
+        text="Habit Builder"
+        hasHeader={Platform.OS == "android" ? false : true}
+      />
       <Divider />
       <LogoContainer>
-        <AppLogo width={"100%"} height={"35%"} />
+        <AppLogo width="100%" height="30%" />
       </LogoContainer>
-      <LargeTextInput
+      <ModTextInput
         setInputText={handleEmailInput}
-        placeholder={"Email"}
-        width={"85%"}
-        height={'8%'}
+        placeholder="Email"
+        width="85%"
+        height="8%"
       >
         <UserIcon />
-      </LargeTextInput>
-      <LargeTextInput
+      </ModTextInput>
+      <ModTextInput
         setInputText={handlePasswordInput}
         placeholder="Password"
-        width={"85%"}
-        height={'8%'}
+        width="85%"
+        height="8%"
       >
         <PasswordIcon />
-      </LargeTextInput>
+      </ModTextInput>
       <ModButton
         text="Sign In"
-        spacing={"3"}
-        width={"85%"}
-        height={'10%'}
+        spacing="3"
+        width="85%"
+        height="10%"
         onPress={handleSignIn}
       />
       <ModButton
-        height={"5%"}
-        width={"85%"}
-        fontSize={"3%"}
+        height="5%"
+        width="85%"
+        fontSize="3%"
         text="Sign In with Facebook"
       />
       <ModButton
-        height={"5%"}
-        width={"85%"}
-        fontSize={"3%"}
+        height="5%"
+        width="85%"
+        fontSize="3%"
         text="Sign In with Google"
       />
     </LoginView>
   );
 };
-
 
 const LoginView = styled.View`
   background-color: ${COLORS.appBlue};

@@ -4,7 +4,7 @@ import COLORS from "../styles/Colors";
 import PageHeader from "../components/PageHeader";
 import Divider from "../components/Divider";
 import ModButton from "../components/ModButton";
-import BigTextInput from "../components/BigTextInput";
+import ModTextInput from "../components/ModTextInput";
 import TextLabel from "../components/TextLabel";
 import BellIcon from "../assets/images/Bell.svg";
 import TimePicker from "../components/TimePicker";
@@ -13,8 +13,9 @@ import {
   widthPercentageToDP as wp,
 } from "react-native-responsive-screen";
 import moment from "moment";
+import Platform from "react-native";
 
-function SetHabitScreen(props) {
+function SetHabitScreen({ navigation }) {
   const [status, setStatus] = useState("Daily");
   const daysText = ["Su", "M", "Tu", "W", "Th", "F", "Sa"];
   const [days, setDays] = useState([
@@ -79,10 +80,17 @@ function SetHabitScreen(props) {
 
   return (
     <View>
-      <PageHeader text="Set a Habit"></PageHeader>
+      <PageHeader
+        text="Set a Habit"
+        hasHeader={Platform.OS == "android" ? false : true}
+      ></PageHeader>
       <Divider />
       <Padding>
-        <BigTextInput placeholder="What is the name of your habit?"></BigTextInput>
+        <ModTextInput
+          placeholder="What is the name of your habit?"
+          width="85%"
+          height="8%"
+        />
       </Padding>
       <TextLabel label="I want to repeat this..." />
       <ViewHorizontal>
@@ -95,12 +103,12 @@ function SetHabitScreen(props) {
               onPress={() => {
                 handleDayClick(index);
               }}
-              width={"10%"}
-              height={"5%"}
-              fontSize={"2%"}
-              cornerRadius={"5px"}
-              spacing={"1%"}
-              fontColor={"white"}
+              width="10%"
+              height="5%"
+              fontSize="2%"
+              cornerRadius="5px"
+              spacing="1%"
+              fontColor="white"
             />
           );
         })}
@@ -146,7 +154,14 @@ function SetHabitScreen(props) {
       </ViewHorizontal>
       <Padding />
       <Container>
-        <ModButton text="Set Habit" width={"85%"} height={"10%"} />
+        <ModButton
+          text="Set Habit"
+          width="85%"
+          height="10%"
+          onPress={() => {
+            navigation.goBack();
+          }}
+        />
       </Container>
       <TimePicker
         show={showTimePicker}
