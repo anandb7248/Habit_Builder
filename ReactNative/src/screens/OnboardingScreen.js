@@ -4,7 +4,7 @@ import PageHeader from "../components/PageHeader";
 import COLORS from "../styles/Colors";
 import Divider from "../components/Divider";
 import AppLogo from "../components/AppLogo";
-import BigButton from "../components/BigButton";
+import ModButton from "../components/ModButton";
 import {
   heightPercentageToDP as hp,
   widthPercentageToDP as wp,
@@ -19,9 +19,11 @@ function OnboardingScreen({ navigation }) {
         Achieve your goals with the consistent completion of daily habits!
       </Subtitle>
       <AppLogo />
-      <BigButton
+      <ModButton
         text="Get Started"
         onPress={() => navigation.navigate("SetGoal")}
+        height={'10%'}
+        width={'85%'}
       />
     </View>
   );

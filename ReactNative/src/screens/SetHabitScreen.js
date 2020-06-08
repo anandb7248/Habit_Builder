@@ -3,14 +3,10 @@ import styled from "styled-components";
 import COLORS from "../styles/Colors";
 import PageHeader from "../components/PageHeader";
 import Divider from "../components/Divider";
-import BigButton from "../components/BigButton";
+import ModButton from "../components/ModButton"
 import BigTextInput from "../components/BigTextInput";
 import TextLabel from "../components/TextLabel";
-import MediumButton from "../components/MediumButton";
-import SmallButton from "../components/SmallButton";
-import LongButton from "../components/LongButton";
 import BellIcon from "../assets/images/Bell.svg";
-import ReminderButton from "../components/ReminderButton";
 import TimePicker from "../components/TimePicker";
 import {
   heightPercentageToDP as hp,
@@ -85,40 +81,61 @@ function SetHabitScreen(props) {
       </Padding>
       <TextLabel label="I want to repeat this..." />
       <ViewHorizontal>
-        <MediumButton
+        <ModButton
           text="Daily"
           color={status === "Daily" ? COLORS.appYelow : COLORS.appGray}
           onPress={() => setStatus("Daily")}
+          width={'35%'}
+          height={'5%'}
+          fontColor={'white'}
+          fontSize={'2%'}
+          cornerRadius={'5px'}
         />
-        <MediumButton
+        <ModButton
           text="Weekly"
           color={status === "Weekly" ? COLORS.appYelow : COLORS.appGray}
           onPress={() => setStatus("Weekly")}
+          width={'35%'}
+          height={'5%'}
+          fontColor={'white'}
+          fontSize={'2%'}
+          cornerRadius={'5px'}
         />
       </ViewHorizontal>
       <Padding />
       <ViewHorizontal>
         {daysText.map((day, index) => {
           return (
-            <SmallButton
+            <ModButton
               key={index}
               text={day}
               color={days[index] === true ? COLORS.appYelow : COLORS.appGray}
               onPress={() => {
                 handleDayClick(index);
               }}
+              width={'10%'}
+              height={'5%'}
+              fontSize={'2%'}
+              cornerRadius={'5px'}
+              spacing={'1%'}
+              fontColor={'white'}
             />
           );
         })}
       </ViewHorizontal>
       <Padding />
       <Container>
-        <LongButton
+        <ModButton
           text="Everyday"
           color={everyday === true ? COLORS.appYelow : COLORS.appGray}
           onPress={() => {
             handleEverydayClick();
           }}
+          cornerRadius={'5px'}
+          height={'5%'}
+          width={'85%'}
+          fontSize={'3%'}
+          fontColor={'white'}
         />
       </Container>
       <Padding />
@@ -127,15 +144,21 @@ function SetHabitScreen(props) {
       </TextView>
       <ViewHorizontal>
         <BellIcon width="20%" height="100%" />
-        <ReminderButton
+        <ModButton
           text="10 am"
+          width={'50%'}
+          height={'5%'}
+          fontSize={'3%'}
           onPress={() => {
             toggleTimePicker((prev) => !prev);
           }}
         />
       </ViewHorizontal>
       <Container>
-        <BigButton text="Set Goal" />
+        <ModButton 
+        text="Set Goal"
+        width={"85%"}
+        height={'10%'} />
       </Container>
       <TimePicker
         show={showTimePicker}

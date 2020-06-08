@@ -47,7 +47,7 @@ const LoginScreen = () => {
 
   return (
     <LoginView>
-      <HeaderText>Habit Builder</HeaderText>
+      <PageHeader text={'Habit Builder'}/>
       <Divider />
       <LogoContainer>
         <AppLogo width={"100%"} height={"35%"} />
@@ -56,6 +56,7 @@ const LoginScreen = () => {
         setInputText={handleEmailInput}
         placeholder={"Email"}
         width={"85%"}
+        height={'8%'}
       >
         <UserIcon />
       </LargeTextInput>
@@ -63,40 +64,33 @@ const LoginScreen = () => {
         setInputText={handlePasswordInput}
         placeholder="Password"
         width={"85%"}
+        height={'8%'}
       >
         <PasswordIcon />
       </LargeTextInput>
       <ModButton
         text="Sign In"
-        spacing={"30px"}
+        spacing={"3"}
         width={"85%"}
-        onClick={handleSignIn}
+        height={'10%'}
+        onPress={handleSignIn}
       />
       <ModButton
         height={"5%"}
         width={"85%"}
         fontSize={"3%"}
-        spacing={"5px"}
         text="Sign In with Facebook"
       />
       <ModButton
         height={"5%"}
         width={"85%"}
         fontSize={"3%"}
-        spacing={"5px"}
         text="Sign In with Google"
       />
     </LoginView>
   );
 };
 
-const HeaderText = styled.Text`
-  color: ${COLORS.appYelow};
-  margin: 0 auto;
-  padding-top: 20px;
-  font-size: ${hp("7%")}px;
-  font-family: "PTSans-Regular";
-`;
 
 const LoginView = styled.View`
   background-color: ${COLORS.appBlue};
