@@ -16,7 +16,7 @@ export default PageHeader;
 const HeaderText = styled.Text`
   font-size: ${hp("6%")};
   color: ${COLORS.appYelow};
-  padding: ${(props) => (props.hasHeader ? hp("2%") : hp("5px"))}px 26px 0px;
+  padding: ${(props) => (props.hasHeader ? hp("1%") : hp("5px"))}px 26px 0px;
   margin: 0 auto;
   font-family: "PTSans-Regular";
 `;

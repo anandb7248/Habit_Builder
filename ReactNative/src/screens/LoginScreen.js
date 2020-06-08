@@ -48,7 +48,7 @@ const LoginScreen = () => {
       />
       <Divider />
       <LogoContainer>
-        <AppLogo width="100%" height="35%" />
+        <AppLogo width="100%" height="30%" />
       </LogoContainer>
       <ModTextInput
         setInputText={handleEmailInput}
