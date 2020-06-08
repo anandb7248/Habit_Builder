@@ -78,7 +78,7 @@ function SetGoalScreen({ navigation }) {
         <Container key={index}>
           <TouchableOpacity
             style={{ flex: 1 }}
-            onPress={() => navigation.navigate("SetHabit")}
+            onPress={() => navigation.navigate("SetHabitScreen")}
           >
             <Label>{habit !== "" ? habit : "-"}</Label>
           </TouchableOpacity>
@@ -86,10 +86,10 @@ function SetGoalScreen({ navigation }) {
       ))}
       <ModButton
         text="Set Goal"
-        onPress={() => navigation.navigate("Notification")}
+        onPress={() => navigation.navigate("NotificationScreen")}
         width={"85%"}
-        height={'10%'}
-        spacing={'3%'}
+        height={"10%"}
+        spacing={"3%"}
       />
       <DatePicker
         show={showDatePicker}

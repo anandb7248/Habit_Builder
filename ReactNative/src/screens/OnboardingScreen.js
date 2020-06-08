@@ -21,9 +21,9 @@ function OnboardingScreen({ navigation }) {
       <AppLogo />
       <ModButton
         text="Get Started"
-        onPress={() => navigation.navigate("SetGoal")}
-        height={'10%'}
-        width={'85%'}
+        onPress={() => navigation.navigate("SetGoalScreen")}
+        height={"10%"}
+        width={"85%"}
       />
     </View>
   );

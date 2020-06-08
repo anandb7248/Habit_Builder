@@ -10,7 +10,7 @@ import {
   heightPercentageToDP as hp,
 } from "react-native-responsive-screen";
 
-function NotificationScreen() {
+function NotificationScreen({ navigation }) {
   return (
     <View>
       <PageHeader text="Notification" />
@@ -19,7 +19,14 @@ function NotificationScreen() {
       <Padding>
         <BellIcon />
       </Padding>
-      <ModButton text="Allow Notification" width={'85%'} height={'10%'}/>
+      <ModButton
+        text="Allow Notification"
+        width={"85%"}
+        height={"10%"}
+        onPress={() => {
+          navigation.navigate("SignUpScreen");
+        }}
+      />
     </View>
   );
 }
