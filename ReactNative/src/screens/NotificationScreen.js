@@ -13,7 +13,7 @@ import {
 function NotificationScreen({ navigation }) {
   return (
     <View>
-      <PageHeader text="Notification" />
+      <PageHeader text="Notification" hasHeader={false} />
       <Divider />
       <Subtitle>Allow notifications to help you achieve your goals!</Subtitle>
       <Padding>

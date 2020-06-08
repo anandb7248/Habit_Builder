@@ -12,6 +12,7 @@ import {
   heightPercentageToDP as hp,
   widthPercentageToDP as wp,
 } from "react-native-responsive-screen";
+import Platform from "react-native";
 
 function SetHabitScreen({ navigation }) {
   const [status, setStatus] = useState("Daily");
@@ -74,7 +75,10 @@ function SetHabitScreen({ navigation }) {
 
   return (
     <View>
-      <PageHeader text="Set a Habit"></PageHeader>
+      <PageHeader
+        text="Set a Habit"
+        hasHeader={Platform.OS == "android" ? false : true}
+      ></PageHeader>
       <Divider />
       <Padding>
         <ModTextInput
@@ -106,7 +110,6 @@ function SetHabitScreen({ navigation }) {
           cornerRadius="5px"
         />
       </ViewHorizontal>
-      <Padding />
       <ViewHorizontal>
         {daysText.map((day, index) => {
           return (
@@ -127,7 +130,6 @@ function SetHabitScreen({ navigation }) {
           );
         })}
       </ViewHorizontal>
-      <Padding />
       <Container>
         <ModButton
           text="Everyday"
@@ -142,7 +144,6 @@ function SetHabitScreen({ navigation }) {
           fontColor="white"
         />
       </Container>
-      <Padding />
       <TextView>
         <TextLabel label="Give me a reminder at" />
       </TextView>
@@ -158,6 +159,7 @@ function SetHabitScreen({ navigation }) {
           }}
         />
       </ViewHorizontal>
+      <Padding />
       <Container>
         <ModButton
           text="Set Habit"

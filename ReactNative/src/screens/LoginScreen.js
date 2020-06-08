@@ -42,7 +42,10 @@ const LoginScreen = () => {
 
   return (
     <LoginView>
-      <PageHeader text="Habit Builder" />
+      <PageHeader
+        text="Habit Builder"
+        hasHeader={Platform.OS == "android" ? false : true}
+      />
       <Divider />
       <LogoContainer>
         <AppLogo width="100%" height="35%" />

@@ -9,11 +9,12 @@ import {
   heightPercentageToDP as hp,
   widthPercentageToDP as wp,
 } from "react-native-responsive-screen";
+import Platform from "react-native";
 
 function OnboardingScreen({ navigation }) {
   return (
     <View>
-      <PageHeader text="Habit Builder" />
+      <PageHeader text="Habit Builder" hasHeader={false} />
       <Divider />
       <Subtitle style={{ width: wp("80%") }}>
         Achieve your goals with the consistent completion of daily habits!
@@ -22,8 +23,8 @@ function OnboardingScreen({ navigation }) {
       <ModButton
         text="Get Started"
         onPress={() => navigation.navigate("SetGoalScreen")}
-        height={"10%"}
-        width={"85%"}
+        height="10%"
+        width="85%"
       />
     </View>
   );

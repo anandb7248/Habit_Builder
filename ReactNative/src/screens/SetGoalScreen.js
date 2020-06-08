@@ -48,7 +48,7 @@ function SetGoalScreen({ navigation }) {
 
   return (
     <View>
-      <PageHeader text="Set a Goal"></PageHeader>
+      <PageHeader text="Set a Goal" hasHeader={false}></PageHeader>
       <Divider />
       <StartingDate>
         From Today: {moment(startDate).format("MMM D, YYYY")}

@@ -52,7 +52,7 @@ const SignUpScreen = ({ props, navigation }) => {
 
   return (
     <View>
-      <PageHeader text={"Habit Builder"} />
+      <PageHeader text={"Habit Builder"} hasHeader={false} />
       <Divider />
       <AppLogo width={"100%"} height={"20%"} />
       <ModTextInput
