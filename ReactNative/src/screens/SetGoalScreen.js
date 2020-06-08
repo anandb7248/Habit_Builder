@@ -5,7 +5,7 @@ import PageHeader from "../components/PageHeader";
 import Divider from "../components/Divider";
 import ModButton from "../components/ModButton";
 import moment from "moment";
-import BigTextInput from "../components/BigTextInput";
+import ModTextInput from "../components/ModTextInput";
 import TextLabel from "../components/TextLabel";
 import DatePicker from "../components/DatePicker";
 import { TouchableOpacity } from "react-native";
@@ -53,11 +53,13 @@ function SetGoalScreen({ navigation }) {
       <StartingDate>
         From Today: {moment(startDate).format("MMM D, YYYY")}
       </StartingDate>
-      <BigTextInput
+      <ModTextInput
         inputText={goal}
         setInputText={setGoal}
         placeholder="What would you like to achieve?"
-      ></BigTextInput>
+        width={"85%"}
+        height={"8%"}
+      ></ModTextInput>
       <TextLabel label="When do you want to achieve your goal?" />
       <Container>
         <TouchableOpacity
@@ -87,9 +89,9 @@ function SetGoalScreen({ navigation }) {
       <ModButton
         text="Set Goal"
         onPress={() => navigation.navigate("NotificationScreen")}
-        width={"85%"}
-        height={"10%"}
-        spacing={"3%"}
+        width="85%"
+        height="10%"
+        spacing="3%"
       />
       <DatePicker
         show={showDatePicker}

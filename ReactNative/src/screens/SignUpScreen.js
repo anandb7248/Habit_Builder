@@ -10,7 +10,7 @@ import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
 } from "react-native-responsive-screen";
-import LargeTextInput from "../components/LargeTextInput";
+import ModTextInput from "../components/ModTextInput";
 import COLORS from "../styles/Colors";
 import { db } from "../utils/firebase";
 import PageHeader from "../components/PageHeader";
@@ -55,21 +55,21 @@ const SignUpScreen = ({ props, navigation }) => {
       <PageHeader text={"Habit Builder"} />
       <Divider />
       <AppLogo width={"100%"} height={"20%"} />
-      <LargeTextInput
+      <ModTextInput
         inputText={userEmail}
         setInputText={setUserEmail}
         placeholder="Email"
       >
         <UserIcon />
-      </LargeTextInput>
-      <LargeTextInput
+      </ModTextInput>
+      <ModTextInput
         inputText={password}
         setInputText={setPassword}
         placeholder="Password"
       >
         <PasswordIcon />
-      </LargeTextInput>
-      <LargeTextInput
+      </ModTextInput>
+      <ModTextInput
         inputText={confirmPassword}
         setInputText={setConfirmPassword}
         placeholder="Confirm Password"
@@ -77,23 +77,23 @@ const SignUpScreen = ({ props, navigation }) => {
       <ModButton text="Sign Up" width={"85%"} height={"10%"} spacing={"3%"} />
       <ModButton
         text="Sign Up with Facebook"
-        height={"5%"}
-        width={"85%"}
-        fontSize={"3%"}
+        height="5%"
+        width="85%"
+        fontSize="3%"
       />
       <ModButton
         text="Sign Up with Gmail"
-        height={"5%"}
-        width={"85%"}
-        fontSize={"3%"}
+        height="5%"
+        width="85%"
+        fontSize="3%"
       />
       <View>
         <TextLabel label="Already have an account?" />
         <ModButton
           text="Login"
-          fontSize={"2%"}
-          height={"5%"}
-          width={"20%"}
+          fontSize="2%"
+          height="5%"
+          width="20%"
           onPress={() => {
             navigation.navigate("LoginScreen");
           }}
