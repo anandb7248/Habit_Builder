@@ -3,7 +3,7 @@ import styled from "styled-components";
 import COLORS from "../styles/Colors";
 import PageHeader from "../components/PageHeader";
 import Divider from "../components/Divider";
-import ModButton from "../components/ModButton"
+import ModButton from "../components/ModButton";
 import BigTextInput from "../components/BigTextInput";
 import TextLabel from "../components/TextLabel";
 import BellIcon from "../assets/images/Bell.svg";
@@ -12,6 +12,7 @@ import {
   heightPercentageToDP as hp,
   widthPercentageToDP as wp,
 } from "react-native-responsive-screen";
+import moment from "moment";
 
 function SetHabitScreen(props) {
   const [status, setStatus] = useState("Daily");
@@ -26,10 +27,10 @@ function SetHabitScreen(props) {
     false,
   ]);
 
-  const [everyday, everydayStatus] = useState(true);
+  const [everyday, everydayStatus] = useState(false);
   const [show, setShow] = useState(false);
   const [mode, setMode] = useState("date");
-  const [date, setDate] = useState(new Date(1598051730000));
+  const [date, setDate] = useState(new Date());
   const [showTimePicker, toggleTimePicker] = useState(false);
 
   const handleDayClick = (index) => {
@@ -42,7 +43,6 @@ function SetHabitScreen(props) {
     }).length;
 
     if (countOn === 7) {
-      setDays([false, false, false, false, false, false, false]);
       everydayStatus(true);
     } else {
       everydayStatus(false);
@@ -53,8 +53,13 @@ function SetHabitScreen(props) {
     everydayStatus(!everyday);
 
     if (!everyday) {
-      setDays([false, false, false, false, false, false, false]);
+      setDays([true, true, true, true, true, true, true]);
     }
+  };
+
+  const handleClearClick = () => {
+    everydayStatus(false);
+    setDays([false, false, false, false, false, false, false]);
   };
 
   const onChange = (event, selectedDate) => {
@@ -81,29 +86,6 @@ function SetHabitScreen(props) {
       </Padding>
       <TextLabel label="I want to repeat this..." />
       <ViewHorizontal>
-        <ModButton
-          text="Daily"
-          color={status === "Daily" ? COLORS.appYelow : COLORS.appGray}
-          onPress={() => setStatus("Daily")}
-          width={'35%'}
-          height={'5%'}
-          fontColor={'white'}
-          fontSize={'2%'}
-          cornerRadius={'5px'}
-        />
-        <ModButton
-          text="Weekly"
-          color={status === "Weekly" ? COLORS.appYelow : COLORS.appGray}
-          onPress={() => setStatus("Weekly")}
-          width={'35%'}
-          height={'5%'}
-          fontColor={'white'}
-          fontSize={'2%'}
-          cornerRadius={'5px'}
-        />
-      </ViewHorizontal>
-      <Padding />
-      <ViewHorizontal>
         {daysText.map((day, index) => {
           return (
             <ModButton
@@ -113,31 +95,39 @@ function SetHabitScreen(props) {
               onPress={() => {
                 handleDayClick(index);
               }}
-              width={'10%'}
-              height={'5%'}
-              fontSize={'2%'}
-              cornerRadius={'5px'}
-              spacing={'1%'}
-              fontColor={'white'}
+              width={"10%"}
+              height={"5%"}
+              fontSize={"2%"}
+              cornerRadius={"5px"}
+              spacing={"1%"}
+              fontColor={"white"}
             />
           );
         })}
       </ViewHorizontal>
-      <Padding />
-      <Container>
+      <ViewHorizontal>
         <ModButton
           text="Everyday"
           color={everyday === true ? COLORS.appYelow : COLORS.appGray}
-          onPress={() => {
-            handleEverydayClick();
-          }}
-          cornerRadius={'5px'}
-          height={'5%'}
-          width={'85%'}
-          fontSize={'3%'}
-          fontColor={'white'}
+          onPress={() => handleEverydayClick()}
+          width={"35%"}
+          height={"5%"}
+          fontColor={"white"}
+          fontSize={"2%"}
+          cornerRadius={"5px"}
         />
-      </Container>
+        <ModButton
+          text="Clear"
+          color={COLORS.appGray}
+          onPress={() => handleClearClick()}
+          width={"35%"}
+          height={"5%"}
+          fontColor={"white"}
+          fontSize={"2%"}
+          cornerRadius={"5px"}
+        />
+      </ViewHorizontal>
+      <Padding />
       <Padding />
       <TextView>
         <TextLabel label="Give me a reminder at" />
@@ -145,25 +135,24 @@ function SetHabitScreen(props) {
       <ViewHorizontal>
         <BellIcon width="20%" height="100%" />
         <ModButton
-          text="10 am"
-          width={'50%'}
-          height={'5%'}
-          fontSize={'3%'}
+          text={moment(date).format("hh:mm a")}
+          width={"50%"}
+          height={"5%"}
+          fontSize={"3%"}
           onPress={() => {
             toggleTimePicker((prev) => !prev);
           }}
         />
       </ViewHorizontal>
+      <Padding />
       <Container>
-        <ModButton 
-        text="Set Goal"
-        width={"85%"}
-        height={'10%'} />
+        <ModButton text="Set Habit" width={"85%"} height={"10%"} />
       </Container>
       <TimePicker
         show={showTimePicker}
         toggle={toggleTimePicker}
         onChange={onChange}
+        date={date}
       />
     </View>
   );
