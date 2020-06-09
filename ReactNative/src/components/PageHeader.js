@@ -7,7 +7,6 @@ import {
 } from "react-native-responsive-screen";
 
 function PageHeader(props) {
-  console.log(props.hasHeader);
   return <HeaderText hasHeader={props.hasHeader}>{props.text}</HeaderText>;
 }
 
