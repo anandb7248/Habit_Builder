@@ -40,7 +40,7 @@ const View = styled.View`
 
 const Padding = styled.View`
   align-items: center;
-  padding-vertical: ${hp("15%")};
+  padding-vertical: ${hp("16%")};
 `;
 
 const Subtitle = styled.Text`

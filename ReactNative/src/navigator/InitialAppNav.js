@@ -27,7 +27,7 @@ function InitialAppNav() {
         name="SetHabitScreen"
         component={SetHabitScreen}
         options={{
-          headerShown: Platform.OS == "android" ? false : true,
+          headerShown: Platform.OS === "android" ? false : true,
           title: "",
         }}
       />
@@ -45,7 +45,7 @@ function InitialAppNav() {
         name="LoginScreen"
         component={LoginScreen}
         options={{
-          headerShown: Platform.OS == "android" ? false : true,
+          headerShown: Platform.OS === "android" ? false : true,
           title: "",
         }}
       />
