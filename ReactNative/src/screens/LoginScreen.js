@@ -53,7 +53,7 @@ const LoginScreen = () => {
       <ModTextInput
         setInputText={handleEmailInput}
         placeholder="Email"
-        width="85%"
+        width="90%"
         height="8%"
       >
         <UserIcon />
@@ -61,7 +61,7 @@ const LoginScreen = () => {
       <ModTextInput
         setInputText={handlePasswordInput}
         placeholder="Password"
-        width="85%"
+        width="90%"
         height="8%"
       >
         <PasswordIcon />
@@ -69,19 +69,19 @@ const LoginScreen = () => {
       <ModButton
         text="Sign In"
         spacing="3"
-        width="85%"
+        width="90%"
         height="10%"
         onPress={handleSignIn}
       />
       <ModButton
         height="5%"
-        width="85%"
+        width="90%"
         fontSize="3%"
         text="Sign In with Facebook"
       />
       <ModButton
         height="5%"
-        width="85%"
+        width="90%"
         fontSize="3%"
         text="Sign In with Google"
       />
