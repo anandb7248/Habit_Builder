@@ -40,7 +40,7 @@ function TimePicker(props) {
       ></DoneButton>
       <DateTimePicker
         modalTransparent={true}
-        value={date}
+        value={props.date}
         mode={"time"}
         onChange={setTime}
       />
