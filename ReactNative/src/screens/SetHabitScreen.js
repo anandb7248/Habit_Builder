@@ -12,8 +12,9 @@ import {
   heightPercentageToDP as hp,
   widthPercentageToDP as wp,
 } from "react-native-responsive-screen";
+import { Platform } from "react-native";
 import moment from "moment";
-import Platform from "react-native";
+
 
 function SetHabitScreen({ navigation }) {
   const [status, setStatus] = useState("Daily");
@@ -82,7 +83,7 @@ function SetHabitScreen({ navigation }) {
     <View>
       <PageHeader
         text="Set a Habit"
-        hasHeader={Platform.OS == "android" ? false : true}
+        hasHeader={Platform.OS === "android" ? false : true}
       ></PageHeader>
       <Divider />
       <Padding>

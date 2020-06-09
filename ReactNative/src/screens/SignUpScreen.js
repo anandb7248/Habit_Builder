@@ -59,6 +59,8 @@ const SignUpScreen = ({ props, navigation }) => {
         inputText={userEmail}
         setInputText={setUserEmail}
         placeholder="Email"
+        width="90%"
+        height="8%"
       >
         <UserIcon />
       </ModTextInput>
@@ -66,6 +68,8 @@ const SignUpScreen = ({ props, navigation }) => {
         inputText={password}
         setInputText={setPassword}
         placeholder="Password"
+        width="90%"
+        height="8%"
       >
         <PasswordIcon />
       </ModTextInput>
@@ -73,18 +77,27 @@ const SignUpScreen = ({ props, navigation }) => {
         inputText={confirmPassword}
         setInputText={setConfirmPassword}
         placeholder="Confirm Password"
+        width="90%"
+        height="8%"
       />
-      <ModButton text="Sign Up" width={"85%"} height={"10%"} spacing={"3%"} />
+      <ModButton
+        text="Sign Up"
+        width="90%"
+        height="7%"
+        spacing="3%"
+        fontSize="4%"
+        spacing="2%"
+      />
       <ModButton
         text="Sign Up with Facebook"
         height="5%"
-        width="85%"
+        width="90%"
         fontSize="3%"
       />
       <ModButton
         text="Sign Up with Gmail"
         height="5%"
-        width="85%"
+        width="90%"
         fontSize="3%"
       />
       <View>

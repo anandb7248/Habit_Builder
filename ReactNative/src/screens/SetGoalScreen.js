@@ -57,8 +57,8 @@ function SetGoalScreen({ navigation }) {
         inputText={goal}
         setInputText={setGoal}
         placeholder="What would you like to achieve?"
-        width={"85%"}
-        height={"8%"}
+        width="85%"
+        height="6%"
       ></ModTextInput>
       <TextLabel label="When do you want to achieve your goal?" />
       <Container>
@@ -114,7 +114,7 @@ const StartingDate = styled.Text`
   font-size: ${wp("5%")};
   color: white;
   margin: 0 auto;
-  padding: 20px;
+  padding: ${hp("1%")}px;
   font-family: "PTSans-Regular";
 `;
 
@@ -130,8 +130,8 @@ const Container = styled.View`
   background: white;
   border-radius: 25px;
   width: ${wp("85%")};
-  height: ${hp("4%")};
-  margin: 10px auto;
+  height: ${hp("4.1%")};
+  margin: ${hp("1.3%")}px auto;
 `;
 
 const Label = styled.Text`

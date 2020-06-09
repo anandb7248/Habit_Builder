@@ -4,7 +4,7 @@ import OnboardingScreen from "../screens/OnboardingScreen";
 import SetGoalScreen from "../screens/SetGoalScreen";
 import SetHabitScreen from "../screens/SetHabitScreen";
 import NotificationScreen from "../screens/NotificationScreen";
-import Platform from "react-native";
+import { Platform } from "react-native";
 import SignUpScreen from "../screens/SignUpScreen";
 import LoginScreen from "../screens/LoginScreen";
 
@@ -27,7 +27,7 @@ function InitialAppNav() {
         name="SetHabitScreen"
         component={SetHabitScreen}
         options={{
-          headerShown: Platform.OS == "android" ? false : true,
+          headerShown: Platform.OS === "android" ? false : true,
           title: "",
         }}
       />
@@ -45,7 +45,7 @@ function InitialAppNav() {
         name="LoginScreen"
         component={LoginScreen}
         options={{
-          headerShown: Platform.OS == "android" ? false : true,
+          headerShown: Platform.OS === "android" ? false : true,
           title: "",
         }}
       />

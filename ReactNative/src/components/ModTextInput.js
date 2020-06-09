@@ -31,7 +31,7 @@ const View = styled.View`
 
 const TextInput = styled.TextInput`
   color: ${COLORS.appBlue};
-  font-size: 22px;
+  font-size: ${wp("5%")};
   font-weight: bold;
   margin: auto auto;
   font-family: "PTSans-Regular";

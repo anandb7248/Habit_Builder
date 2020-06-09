@@ -7,7 +7,6 @@ import {
 } from "react-native-responsive-screen";
 
 function PageHeader(props) {
-  console.log(props.hasHeader);
   return <HeaderText hasHeader={props.hasHeader}>{props.text}</HeaderText>;
 }
 
@@ -16,7 +15,7 @@ export default PageHeader;
 const HeaderText = styled.Text`
   font-size: ${hp("6%")};
   color: ${COLORS.appYelow};
-  padding: ${(props) => (props.hasHeader ? hp("1%") : hp("5px"))}px 26px 0px;
+  padding: ${(props) => (props.hasHeader ? hp("0%") : hp("5px"))}px 26px 0px;
   margin: 0 auto;
   font-family: "PTSans-Regular";
 `;
