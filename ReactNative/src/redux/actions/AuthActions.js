@@ -10,6 +10,8 @@ import {
   LOGOUT_FAILURE,
   VERIFY_SUCCESS,
   VERIFY_REQUEST,
+  SIGNUP_SUCCESS,
+  SIGNUP_FAILURE,
 } from "./Types";
 
 /*
@@ -77,11 +79,11 @@ export const loginUser = (email, password) => (dispatch) => {
   auth
     .signInWithEmailAndPassword(email, password)
     .then((user) => {
-      console.log("LOGIN SUCCESS")
+      console.log("LOGIN SUCCESS");
       dispatch(receiveLogin(user));
     })
     .catch((error) => {
-      console.log("LOGIN FAILURE")
+      console.log("LOGIN FAILURE");
       dispatch(loginError());
     });
 };
@@ -121,4 +123,14 @@ export const verifyAuth = () => (dispatch) => {
     }
     dispatch(verifySuccess());
   });
+};
+
+export const signUp = (email, password) => (dispatch) => {
+  auth
+    .createUserWithEmailAndPassword(email, password)
+    .then(dispatch({ type: SIGNUP_SUCCESS }))
+    .catch((err) => {
+      console.log(err);
+      dispatch({ type: SIGNUP_FAILURE });
+    });
 };

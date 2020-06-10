@@ -6,6 +6,7 @@ import PasswordIcon from "../assets/images/Password.svg";
 import styled from "styled-components";
 import TextLabel from "../components/TextLabel";
 import Divider from "../components/Divider";
+import { signUp } from "../redux/actions/AuthActions";
 import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
@@ -15,39 +16,21 @@ import COLORS from "../styles/Colors";
 import { db } from "../utils/firebase";
 import PageHeader from "../components/PageHeader";
 import ModButton from "../components/ModButton";
+import { useDispatch, useSelector } from "react-redux";
 
 const SignUpScreen = ({ props, navigation }) => {
   const [userEmail, setUserEmail] = useState("");
+  const dispatch = useDispatch();
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [data, setData] = useState([]);
+  const signedUp = useSelector((state) => state.auth.signedUp);
 
-  const postData = () => {
-    db.collection("users")
-      .doc("squidward")
-      .set({
-        name: "The Quickster",
-      })
-      .then(() => {
-        console.log("Data was sent");
-      })
-      .catch((err) => {
-        console.log(`Failed: ${err}`);
-      });
-  };
-
-  const getData = () => {
-    db.collection("users")
-      .doc("squidward")
-      .get()
-      .then((doc) => {
-        console.log("data was retrieved");
-        console.log(doc.data());
-        console.log(props.personData);
-      })
-      .catch((err) => {
-        console.log(`Failed: ${err}`);
-      });
+  const handleSignUp = () => {
+    if (userEmail && password && password === confirmPassword) {
+      dispatch(signUp(userEmail, password));
+      console.log(signedUp);
+    }
   };
 
   return (
@@ -87,6 +70,7 @@ const SignUpScreen = ({ props, navigation }) => {
         spacing="3%"
         fontSize="4%"
         spacing="2%"
+        onPress={handleSignUp}
       />
       <ModButton
         text="Sign Up with Facebook"

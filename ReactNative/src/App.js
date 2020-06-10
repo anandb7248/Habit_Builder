@@ -34,21 +34,27 @@ export default function App() {
     //return <OnboardingScreen />;
     //return <NotificationScreen />;
     // return <SetGoalScreen />;
-    //return <SignUpScreen />;
-    // return <LoginScreen />;
     //return <SetHabitScreen />;
+
+    return (
+      <Provider store={store}>
+        <SignUpScreen />
+      </Provider>
+    );
+
     // return (
     //   <Provider store={store}>
     //     <LoginScreen />
     //   </Provider>
     // );
-    return (
-      <Provider store={store}>
-        <NavigationContainer>
-          <InitialAppNav />
-        </NavigationContainer>
-      </Provider>
-    );
+
+    // return (
+    //   <Provider store={store}>
+    //     <NavigationContainer>
+    //       <InitialAppNav />
+    //     </NavigationContainer>
+    //   </Provider>
+    // );
   } else {
     return (
       <AppLoading startAsync={getFont} onFinish={() => setFontsLoaded(true)} />

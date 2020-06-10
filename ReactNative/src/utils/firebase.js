@@ -1,13 +1,3 @@
-// import firebase from "@react-native-firebase/app";
-
-//React-native-firebase has more capabilities than regular firebase
-//Its used for Android and iOS apps
-//The project was created for a web application on the firebase console
-//react-native-firebase didn't work for the web app
-//If we want to use react-native-firebase, we might have to create a iOS or Andriod app in the firebase console, under the same project
-
-//Native module can't be null error, if web firebase isn't used
-//However, the error comes back when redux is reintroduced
 import firebase from "firebase/app";
 import "firebase/auth";
 import "firebase/firestore";
