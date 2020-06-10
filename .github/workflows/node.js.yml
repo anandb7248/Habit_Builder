@@ -32,6 +32,10 @@ jobs:
       - name: Install npm dependencies
         run: |
           npm install
+      - name: Make gradlew executable
+        run: chmod +x ./gradlew
+      - name: Test with gradle
+        run: ./gradlew test
       - name: Build Android Release
         run: |
           cd android && ./gradlew assembleRelease
