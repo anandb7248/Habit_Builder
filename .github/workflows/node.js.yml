@@ -22,7 +22,7 @@ jobs:
         node-version: ${{ matrix.node-version }}
     - uses: expo/expo-github-action@v5
       with:
-        expo-version: 3.x
+        expo-version: '3.x'
         expo-packager: npm
     - run: npm ci
     - run: npm run build --if-present
