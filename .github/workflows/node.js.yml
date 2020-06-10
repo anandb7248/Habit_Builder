@@ -20,30 +20,14 @@ jobs:
       uses: actions/setup-node@v1
       with:
         node-version: ${{ matrix.node-version }}
+    - uses: expo/expo-github-action@v5
+      with:
+        expo-version: 3.x
+        expo-packager: npm
     - run: npm ci
     - run: npm run build --if-present
     - run: npm test
-      
-  build-android:
-    needs: install-and-test
-    runs-on: ubuntu-latest
-    steps: 
-      - uses: actions/checkout@v2
-      - name: Install npm dependencies
-        run: |
-          npm install
-      - name: Make gradlew executable
-        run: chmod +x ./gradlew
-      - name: Test with gradle
-        run: ./gradlew test
-      - name: Build Android Release
-        run: |
-          cd android && ./gradlew assembleRelease
-      - name: Upload Artifact
-        uses: actions/upload-artifact@v1
-        with:
-          name: app-release.apk
-          path: android/app/build/outputs/apk/release/
+    - run: expo doctor
       
 
 defaults:
