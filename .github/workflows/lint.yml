@@ -29,3 +29,7 @@ jobs:
           github_token: ${{ secrets.github_token }}
           # Enable linters
           prettier: true
+          
+defaults:
+  run:
+    working-directory: ./ReactNative
