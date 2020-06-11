@@ -28,7 +28,7 @@ const getFont = () =>
 
 const store = configureStore();
 
-export default function App() {
+export default function App({ navigation }) {
   const [fontsLoaded, setFontsLoaded] = useState(false);
   if (fontsLoaded) {
     //return <OnboardingScreen />;

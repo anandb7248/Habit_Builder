@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Image, StyleSheet, Button, Text } from "react-native";
 import AppLogo from "../components/AppLogo";
 import UserIcon from "../assets/images/User.svg";
@@ -6,7 +6,7 @@ import PasswordIcon from "../assets/images/Password.svg";
 import styled from "styled-components";
 import TextLabel from "../components/TextLabel";
 import Divider from "../components/Divider";
-import { signUp } from "../redux/actions/AuthActions";
+import { signUp, facebookLogin } from "../redux/actions/AuthActions";
 import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
@@ -25,19 +25,36 @@ const SignUpScreen = ({ props, navigation }) => {
   const [confirmPassword, setConfirmPassword] = useState("");
   const [data, setData] = useState([]);
   const signedUp = useSelector((state) => state.auth.signedUp);
+  const isAuthenticated = useSelector((state) => state.isAuthenticated);
+  const test = useSelector((state) => state);
 
   const handleSignUp = () => {
     if (userEmail && password && password === confirmPassword) {
+      console.log(`signedUp value before signUp: ${signedUp}`);
       dispatch(signUp(userEmail, password));
-      console.log(signedUp);
     }
   };
+
+  const handleFacebook = () => {
+    //Facebook needs https connection for web app
+    // dispatch(facebookLogin());
+    // console.log(isAuthenticated);
+  };
+
+  useEffect(() => {
+    if (signedUp) {
+      console.log(
+        `signedUp value from redux store has changed to: ${signedUp}`
+      );
+      // navigation.navigate("LoginScreen");
+    }
+  }, [signedUp]);
 
   return (
     <View>
       <PageHeader text={"Habit Builder"} hasHeader={false} />
       <Divider />
-      <AppLogo width={"100%"} height={"20%"} />
+      {/* <AppLogo width={"100%"} height={"20%"} /> */}
       <ModTextInput
         inputText={userEmail}
         setInputText={setUserEmail}
@@ -77,6 +94,7 @@ const SignUpScreen = ({ props, navigation }) => {
         height="5%"
         width="90%"
         fontSize="3%"
+        onPress={handleFacebook}
       />
       <ModButton
         text="Sign Up with Gmail"

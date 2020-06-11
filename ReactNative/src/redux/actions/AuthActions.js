@@ -1,5 +1,5 @@
 // import firebase from "@react-native-firebase/app";
-import { auth } from "../../utils/firebase";
+import { auth, fbProvider } from "../../utils/firebase";
 
 import {
   LOGIN_REQUEST,
@@ -88,6 +88,19 @@ export const loginUser = (email, password) => (dispatch) => {
     });
 };
 
+export const facebookLogin = () => (dispatch) => {
+  auth
+    .signInWithPopup(fbProvider)
+    .then((results) => {
+      const token = results.credential.accesssToken;
+      var user = result.user;
+      dispatch(receiveLogin(user));
+    })
+    .catch((err) => {
+      dispatch(loginError());
+      console.log(err);
+    });
+};
 /*
   Logout thunk -> logs auth user out of firebase
 */
@@ -128,9 +141,12 @@ export const verifyAuth = () => (dispatch) => {
 export const signUp = (email, password) => (dispatch) => {
   auth
     .createUserWithEmailAndPassword(email, password)
-    .then(dispatch({ type: SIGNUP_SUCCESS }))
+    .then(() => {
+      console.log("sign up successful");
+      dispatch({ type: SIGNUP_SUCCESS });
+    })
     .catch((err) => {
-      console.log(err);
+      console.log(`sign up failed\n${err}`);
       dispatch({ type: SIGNUP_FAILURE });
     });
 };
