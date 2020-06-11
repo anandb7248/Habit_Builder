@@ -1,5 +1,5 @@
 // import firebase from "@react-native-firebase/app";
-import { auth } from "../../utils/firebase";
+import { auth, fbProvider } from "../../utils/firebase";
 
 import {
   LOGIN_REQUEST,
@@ -10,6 +10,8 @@ import {
   LOGOUT_FAILURE,
   VERIFY_SUCCESS,
   VERIFY_REQUEST,
+  SIGNUP_SUCCESS,
+  SIGNUP_FAILURE,
 } from "./Types";
 
 /*
@@ -77,15 +79,28 @@ export const loginUser = (email, password) => (dispatch) => {
   auth
     .signInWithEmailAndPassword(email, password)
     .then((user) => {
-      console.log("LOGIN SUCCESS")
+      console.log("LOGIN SUCCESS");
       dispatch(receiveLogin(user));
     })
     .catch((error) => {
-      console.log("LOGIN FAILURE")
+      console.log("LOGIN FAILURE");
       dispatch(loginError());
     });
 };
 
+export const facebookLogin = () => (dispatch) => {
+  auth
+    .signInWithPopup(fbProvider)
+    .then((results) => {
+      const token = results.credential.accesssToken;
+      var user = result.user;
+      dispatch(receiveLogin(user));
+    })
+    .catch((err) => {
+      dispatch(loginError());
+      console.log(err);
+    });
+};
 /*
   Logout thunk -> logs auth user out of firebase
 */
@@ -121,4 +136,17 @@ export const verifyAuth = () => (dispatch) => {
     }
     dispatch(verifySuccess());
   });
+};
+
+export const signUp = (email, password) => (dispatch) => {
+  auth
+    .createUserWithEmailAndPassword(email, password)
+    .then(() => {
+      console.log("sign up successful");
+      dispatch({ type: SIGNUP_SUCCESS });
+    })
+    .catch((err) => {
+      console.log(`sign up failed\n${err}`);
+      dispatch({ type: SIGNUP_FAILURE });
+    });
 };
