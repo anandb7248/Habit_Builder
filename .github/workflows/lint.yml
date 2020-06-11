@@ -5,16 +5,34 @@ on:
     branches: [ ActionsTest ]
 
 jobs:
-  run-linters:
-    name: Run linters
-    runs-on: ubuntu-latest
+    lint:
+      name: Lint
+      runs-on: ubuntu-latest
+      steps:
+        - name: Checkout
+          uses: actions/checkout@v2
+          with:
+            fetch-depth: 1
 
-    steps:
-    - uses: actions/checkout@v2
-    - name: Install modules
-      run: yarn
-    - name: Run ESLint
-      run: eslint . --ext .js,.jsx,.ts,.tsx
+        - name: Setup Node.js
+          uses: actions/setup-node@v1
+          with:
+            node-version: "14"
+
+        - name: Install Dependencies
+          run: yarn install --frozen-lockfile
+
+        - name: Check Dependencies
+          run: yarn lint:deps
+
+        - name: Check JSDoc Types
+          run: yarn lint:typecheck
+
+        - name: Lint ESLint
+          run: yarn lint:eslint
+
+        - name: Lint Prettier
+          run: yarn lint:prettier
     
 defaults:
   run:
