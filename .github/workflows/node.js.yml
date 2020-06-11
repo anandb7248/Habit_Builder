@@ -38,13 +38,6 @@ jobs:
       - uses: actions/setup-node@v1
         with:
           node-version: '10.x'
-      - uses: actions/setup-ruby@v1
-        with:
-          ruby-version: '2.x'
-#       - name: Install Fastlane
-#         run: bundle install
-      - name: Install packages
-        run: yarn install
       
 
 defaults:
