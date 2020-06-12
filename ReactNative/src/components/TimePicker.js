@@ -1,7 +1,7 @@
 import React, { useState, useRef, useEffect } from "react";
 import styled from "styled-components";
 import DateTimePicker from "@react-native-community/datetimepicker";
-import { Animated } from "react-native";
+import { Animated, Platform } from "react-native";
 
 function TimePicker(props) {
   const topTimePicker = useRef(new Animated.Value(0)).current;
@@ -30,22 +30,31 @@ function TimePicker(props) {
     hide();
   }
 
-  return (
-    <AnimatedView style={{ transform: [{ translateY: topTimePicker }] }}>
-      <DoneButton
-        title="Done"
-        onPress={() => {
-          props.toggle();
-        }}
-      ></DoneButton>
-      <DateTimePicker
-        modalTransparent={true}
-        value={props.date}
-        mode={"time"}
-        onChange={setTime}
-      />
-    </AnimatedView>
-  );
+  if (Platform.OS === "ios") {
+    return (
+      <AnimatedView style={{ transform: [{ translateY: topTimePicker }] }}>
+        <DoneButton
+          title="Done"
+          onPress={() => {
+            props.toggle();
+          }}
+        ></DoneButton>
+        <DateTimePicker
+          modalTransparent={true}
+          value={props.date}
+          mode={"time"}
+          onChange={setTime}
+        />
+      </AnimatedView>
+    );
+  } else {
+    <DateTimePicker
+      modalTransparent={true}
+      value={props.date}
+      mode={"time"}
+      onChange={setTime}
+    />;
+  }
 }
 
 export default TimePicker;
