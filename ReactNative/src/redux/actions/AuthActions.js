@@ -1,6 +1,6 @@
 // import firebase from "@react-native-firebase/app";
 import { auth } from "../../utils/firebase";
-
+import * as GoogleSignIn from "expo-google-sign-in";
 import {
   LOGIN_REQUEST,
   LOGIN_SUCCESS,
@@ -66,6 +66,51 @@ const verifySuccess = () => {
 };
 
 /*
+  Google Login Thunk -> uses expo google sign in to open
+  a modal screen with options to sign in to user's
+  google account. User object is fetched from 
+  async call.
+*/
+
+const initAsync = async () => {
+  /* 
+    Dont need config options here because we configured
+    googleServicesFile for android and iOS in app.json
+  */
+
+  await GoogleSignIn.initAsync();
+};
+
+const signInAsync = async () => {
+  try {
+    await GoogleSignIn.askForPlayServicesAsync();
+    const { type, user } = await GoogleSignIn.signInAsync();
+    alert("user: " + user);
+    if (type === "success") {
+      return user;
+    }
+  } catch ({ message }) {
+    alert("login: Error:" + message);
+  }
+};
+
+export const googleLoginUser = () => async (dispatch) => {
+  try {
+    dispatch(requestLogin());
+    await initAsync;
+    const user = await signInAsync();
+    dispatch(
+      receiveLogin({
+        ...user,
+        signedInWithGoogle: true,
+      })
+    );
+  } catch ({ message }) {
+    alert(message);
+  }
+};
+
+/*
   Login thunk -> takes in credentials from login component as well
   as the dispatch function that is passed to all our actions we init
   from components.
@@ -77,11 +122,16 @@ export const loginUser = (email, password) => (dispatch) => {
   auth
     .signInWithEmailAndPassword(email, password)
     .then((user) => {
-      console.log("LOGIN SUCCESS")
-      dispatch(receiveLogin(user));
+      console.log("LOGIN SUCCESS");
+      dispatch(
+        receiveLogin({
+          ...user,
+          signedInWithGoogle: false,
+        })
+      );
     })
     .catch((error) => {
-      console.log("LOGIN FAILURE")
+      console.log("LOGIN FAILURE");
       dispatch(loginError());
     });
 };
