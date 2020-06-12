@@ -5,7 +5,7 @@ import { Animated, Platform } from "react-native";
 
 function TimePicker(props) {
   const topTimePicker = useRef(new Animated.Value(0)).current;
-  const [date, setDate] = useState(new Date());
+  // const [date, setDate] = useState(new Date());
 
   const show = () => {
     Animated.spring(topTimePicker, { toValue: -250 }).start();
@@ -14,19 +14,15 @@ function TimePicker(props) {
     Animated.spring(topTimePicker, { toValue: 100 }).start();
   };
 
-  const setTime = (event, date) => {
-    if (date !== undefined) {
-      // Use the hour and minute from the date object
-    }
-  };
+  // useEffect(() => {
+  //   hide();
+  // }, []);
 
-  useEffect(() => {
-    hide();
-  }, []);
-
-  if (props.show) {
+  if (props.showIOS) {
+    console.log(`props.showIOS: ${props.showIOS}`);
     show();
   } else {
+    console.log(`props.showIOS: ${props.showIOS}`);
     hide();
   }
 
@@ -43,17 +39,19 @@ function TimePicker(props) {
           modalTransparent={true}
           value={props.date}
           mode={"time"}
-          onChange={setTime}
+          onChange={props.onChange}
         />
       </AnimatedView>
     );
   } else {
-    <DateTimePicker
-      modalTransparent={true}
-      value={props.date}
-      mode={"time"}
-      onChange={setTime}
-    />;
+    // android
+    return (
+      <DateTimePicker
+        value={props.date}
+        mode={"time"}
+        onChange={props.onChange}
+      />
+    );
   }
 }
 
