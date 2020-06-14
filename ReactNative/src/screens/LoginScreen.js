@@ -11,6 +11,7 @@ import PageHeader from "../components/PageHeader";
 import { useDispatch, useSelector } from "react-redux";
 import ModTextInput from "../components/ModTextInput";
 import COLORS from "../styles/Colors";
+import { Platform } from "react-native";
 
 //hooks give state control to stateless functions, which replaced classes in react
 //Normally classes use the componentDidMount and componentDidUpdate
@@ -19,7 +20,7 @@ import COLORS from "../styles/Colors";
 //useSelector allows direct access to a state on the store
 //useSelector and useDispatch is the new alternative to replace the connect
 
-const LoginScreen = () => {
+const LoginScreen = ({ navigation }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const dispatch = useDispatch();
@@ -44,16 +45,16 @@ const LoginScreen = () => {
     <LoginView>
       <PageHeader
         text="Habit Builder"
-        hasHeader={Platform.OS == "android" ? false : true}
+        hasHeader={Platform.OS === "android" ? false : true}
       />
       <Divider />
       <LogoContainer>
-        <AppLogo width="100%" height="30%" />
+        <AppLogo width="100%" height="33%" />
       </LogoContainer>
       <ModTextInput
         setInputText={handleEmailInput}
         placeholder="Email"
-        width="85%"
+        width="90%"
         height="8%"
       >
         <UserIcon />
@@ -61,7 +62,7 @@ const LoginScreen = () => {
       <ModTextInput
         setInputText={handlePasswordInput}
         placeholder="Password"
-        width="85%"
+        width="90%"
         height="8%"
       >
         <PasswordIcon />
@@ -69,19 +70,20 @@ const LoginScreen = () => {
       <ModButton
         text="Sign In"
         spacing="3"
-        width="85%"
-        height="10%"
+        width="90%"
+        height="7%"
+        fontSize="4%"
         onPress={handleSignIn}
       />
       <ModButton
         height="5%"
-        width="85%"
+        width="90%"
         fontSize="3%"
         text="Sign In with Facebook"
       />
       <ModButton
         height="5%"
-        width="85%"
+        width="90%"
         fontSize="3%"
         text="Sign In with Google"
       />
@@ -93,7 +95,7 @@ const LoginView = styled.View`
   background-color: ${COLORS.appBlue};
   flex: 1;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
 `;
 
 const LogoContainer = styled.View`

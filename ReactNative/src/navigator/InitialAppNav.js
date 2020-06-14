@@ -4,9 +4,10 @@ import OnboardingScreen from "../screens/OnboardingScreen";
 import SetGoalScreen from "../screens/SetGoalScreen";
 import SetHabitScreen from "../screens/SetHabitScreen";
 import NotificationScreen from "../screens/NotificationScreen";
-import Platform from "react-native";
+import { Platform } from "react-native";
 import SignUpScreen from "../screens/SignUpScreen";
 import LoginScreen from "../screens/LoginScreen";
+import COLORS from "../styles/Colors";
 
 const Stack = createStackNavigator();
 
@@ -27,8 +28,12 @@ function InitialAppNav() {
         name="SetHabitScreen"
         component={SetHabitScreen}
         options={{
-          headerShown: Platform.OS == "android" ? false : true,
           title: "",
+          headerShown: Platform.OS === "android" ? false : true,
+          headerStyle: {
+            backgroundColor: COLORS.appBlue,
+          },
+          headerTintColor: COLORS.appYelow,
         }}
       />
       <Stack.Screen
@@ -45,8 +50,12 @@ function InitialAppNav() {
         name="LoginScreen"
         component={LoginScreen}
         options={{
-          headerShown: Platform.OS == "android" ? false : true,
           title: "",
+          headerShown: Platform.OS === "android" ? false : true,
+          headerStyle: {
+            backgroundColor: COLORS.appBlue,
+          },
+          headerTintColor: COLORS.appYelow,
         }}
       />
     </Stack.Navigator>

@@ -1,9 +1,8 @@
-import { createStore, applyMiddleware } from "redux";
+import { createStore, applyMiddleware, compose } from "redux";
 import thunkMiddleware from "redux-thunk";
 import { verifyAuth } from "./actions/AuthActions";
 import RootReducer from "./reducers/RootReducer";
 import thunk from "redux-thunk";
-
 /*
   This function will init our store, setup our thunk middleware
   and call our verifyAuth() action function to create our Auth State

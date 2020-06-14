@@ -10,6 +10,8 @@ function AppLogo(props) {
     <Logo
       width={props.width}
       height={props.height}
+      marginTop={props.marginTop}
+      marginBottom={props.marginBottom}
       source={require("../assets/images/AppIcon.png")}
     />
   );
@@ -22,4 +24,7 @@ const Logo = styled.Image`
   height: ${(props) => (props.height ? hp(props.height) : "348")}px;
   ${(props) =>
     props.width || props.height ? "resizeMode: contain;" : "margin: 75px auto;"}
+  margin-top: ${(props) => (props.marginTop ? hp(props.marginTop) : "0")}px;
+  margin-bottom: ${(props) =>
+    props.marginBottom ? hp(props.marginBottom) : "0"}px;
 `;

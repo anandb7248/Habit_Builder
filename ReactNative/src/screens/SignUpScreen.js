@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Image, StyleSheet, Button, Text } from "react-native";
 import AppLogo from "../components/AppLogo";
 import UserIcon from "../assets/images/User.svg";
@@ -6,6 +6,7 @@ import PasswordIcon from "../assets/images/Password.svg";
 import styled from "styled-components";
 import TextLabel from "../components/TextLabel";
 import Divider from "../components/Divider";
+import { signUp, facebookLogin } from "../redux/actions/AuthActions";
 import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
@@ -15,50 +16,51 @@ import COLORS from "../styles/Colors";
 import { db } from "../utils/firebase";
 import PageHeader from "../components/PageHeader";
 import ModButton from "../components/ModButton";
+import { useDispatch, useSelector } from "react-redux";
 
 const SignUpScreen = ({ props, navigation }) => {
   const [userEmail, setUserEmail] = useState("");
+  const dispatch = useDispatch();
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [data, setData] = useState([]);
+  const signedUp = useSelector((state) => state.auth.signedUp);
+  const isAuthenticated = useSelector((state) => state.isAuthenticated);
+  const test = useSelector((state) => state);
 
-  const postData = () => {
-    db.collection("users")
-      .doc("squidward")
-      .set({
-        name: "The Quickster",
-      })
-      .then(() => {
-        console.log("Data was sent");
-      })
-      .catch((err) => {
-        console.log(`Failed: ${err}`);
-      });
+  const handleSignUp = () => {
+    if (userEmail && password && password === confirmPassword) {
+      console.log(`signedUp value before signUp: ${signedUp}`);
+      dispatch(signUp(userEmail, password));
+    }
   };
 
-  const getData = () => {
-    db.collection("users")
-      .doc("squidward")
-      .get()
-      .then((doc) => {
-        console.log("data was retrieved");
-        console.log(doc.data());
-        console.log(props.personData);
-      })
-      .catch((err) => {
-        console.log(`Failed: ${err}`);
-      });
+  const handleFacebook = () => {
+    //Facebook needs https connection for web app
+    // dispatch(facebookLogin());
+    // console.log(isAuthenticated);
   };
+
+  useEffect(() => {
+    if (signedUp) {
+      console.log(
+        `signedUp value from redux store has changed to: ${signedUp}`
+      );
+      // navigation.navigate("LoginScreen");
+    }
+  }, [signedUp]);
 
   return (
     <View>
       <PageHeader text={"Habit Builder"} hasHeader={false} />
       <Divider />
-      <AppLogo width={"100%"} height={"20%"} />
+      {/* <AppLogo width={"100%"} height={"20%"} /> */}
       <ModTextInput
         inputText={userEmail}
         setInputText={setUserEmail}
         placeholder="Email"
+        width="90%"
+        height="8%"
       >
         <UserIcon />
       </ModTextInput>
@@ -66,6 +68,8 @@ const SignUpScreen = ({ props, navigation }) => {
         inputText={password}
         setInputText={setPassword}
         placeholder="Password"
+        width="90%"
+        height="8%"
       >
         <PasswordIcon />
       </ModTextInput>
@@ -73,18 +77,29 @@ const SignUpScreen = ({ props, navigation }) => {
         inputText={confirmPassword}
         setInputText={setConfirmPassword}
         placeholder="Confirm Password"
+        width="90%"
+        height="8%"
       />
-      <ModButton text="Sign Up" width={"85%"} height={"10%"} spacing={"3%"} />
+      <ModButton
+        text="Sign Up"
+        width="90%"
+        height="7%"
+        spacing="3%"
+        fontSize="4%"
+        spacing="2%"
+        onPress={handleSignUp}
+      />
       <ModButton
         text="Sign Up with Facebook"
         height="5%"
-        width="85%"
+        width="90%"
         fontSize="3%"
+        onPress={handleFacebook}
       />
       <ModButton
         text="Sign Up with Gmail"
         height="5%"
-        width="85%"
+        width="90%"
         fontSize="3%"
       />
       <View>

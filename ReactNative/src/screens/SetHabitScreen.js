@@ -12,7 +12,9 @@ import {
   heightPercentageToDP as hp,
   widthPercentageToDP as wp,
 } from "react-native-responsive-screen";
-import Platform from "react-native";
+import { Platform } from "react-native";
+import moment from "moment";
+
 
 function SetHabitScreen({ navigation }) {
   const [status, setStatus] = useState("Daily");
@@ -27,10 +29,10 @@ function SetHabitScreen({ navigation }) {
     false,
   ]);
 
-  const [everyday, everydayStatus] = useState(true);
+  const [everyday, everydayStatus] = useState(false);
   const [show, setShow] = useState(false);
   const [mode, setMode] = useState("date");
-  const [date, setDate] = useState(new Date(1598051730000));
+  const [date, setDate] = useState(new Date());
   const [showTimePicker, toggleTimePicker] = useState(false);
 
   const handleDayClick = (index) => {
@@ -43,7 +45,6 @@ function SetHabitScreen({ navigation }) {
     }).length;
 
     if (countOn === 7) {
-      setDays([false, false, false, false, false, false, false]);
       everydayStatus(true);
     } else {
       everydayStatus(false);
@@ -54,8 +55,13 @@ function SetHabitScreen({ navigation }) {
     everydayStatus(!everyday);
 
     if (!everyday) {
-      setDays([false, false, false, false, false, false, false]);
+      setDays([true, true, true, true, true, true, true]);
     }
+  };
+
+  const handleClearClick = () => {
+    everydayStatus(false);
+    setDays([false, false, false, false, false, false, false]);
   };
 
   const onChange = (event, selectedDate) => {
@@ -77,7 +83,7 @@ function SetHabitScreen({ navigation }) {
     <View>
       <PageHeader
         text="Set a Habit"
-        hasHeader={Platform.OS == "android" ? false : true}
+        hasHeader={Platform.OS === "android" ? false : true}
       ></PageHeader>
       <Divider />
       <Padding>
@@ -88,28 +94,6 @@ function SetHabitScreen({ navigation }) {
         />
       </Padding>
       <TextLabel label="I want to repeat this..." />
-      <ViewHorizontal>
-        <ModButton
-          text="Daily"
-          color={status === "Daily" ? COLORS.appYelow : COLORS.appGray}
-          onPress={() => setStatus("Daily")}
-          width="35%"
-          height="5%"
-          fontColor="white"
-          fontSize="2%"
-          cornerRadius="5px"
-        />
-        <ModButton
-          text="Weekly"
-          color={status === "Weekly" ? COLORS.appYelow : COLORS.appGray}
-          onPress={() => setStatus("Weekly")}
-          width="35%"
-          height="5%"
-          fontColor="white"
-          fontSize="2%"
-          cornerRadius="5px"
-        />
-      </ViewHorizontal>
       <ViewHorizontal>
         {daysText.map((day, index) => {
           return (
@@ -130,30 +114,40 @@ function SetHabitScreen({ navigation }) {
           );
         })}
       </ViewHorizontal>
-      <Container>
+      <ViewHorizontal>
         <ModButton
           text="Everyday"
           color={everyday === true ? COLORS.appYelow : COLORS.appGray}
-          onPress={() => {
-            handleEverydayClick();
-          }}
-          cornerRadius="5px"
-          height="5%"
-          width="85%"
-          fontSize="3%"
-          fontColor="white"
+          onPress={() => handleEverydayClick()}
+          width={"35%"}
+          height={"5%"}
+          fontColor={"white"}
+          fontSize={"2%"}
+          cornerRadius={"5px"}
         />
-      </Container>
+        <ModButton
+          text="Clear"
+          color={COLORS.appGray}
+          onPress={() => handleClearClick()}
+          width={"35%"}
+          height={"5%"}
+          fontColor={"white"}
+          fontSize={"2%"}
+          cornerRadius={"5px"}
+        />
+      </ViewHorizontal>
+      <Padding />
+      <Padding />
       <TextView>
         <TextLabel label="Give me a reminder at" />
       </TextView>
       <ViewHorizontal>
         <BellIcon width="20%" height="100%" />
         <ModButton
-          text="10 am"
-          width="50%"
-          height="5%"
-          fontSize="3%"
+          text={moment(date).format("hh:mm a")}
+          width={"50%"}
+          height={"5%"}
+          fontSize={"3%"}
           onPress={() => {
             toggleTimePicker((prev) => !prev);
           }}
@@ -174,6 +168,7 @@ function SetHabitScreen({ navigation }) {
         show={showTimePicker}
         toggle={toggleTimePicker}
         onChange={onChange}
+        date={date}
       />
     </View>
   );

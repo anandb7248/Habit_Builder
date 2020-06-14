@@ -9,7 +9,6 @@ import {
   heightPercentageToDP as hp,
   widthPercentageToDP as wp,
 } from "react-native-responsive-screen";
-import Platform from "react-native";
 
 function OnboardingScreen({ navigation }) {
   return (
@@ -19,7 +18,7 @@ function OnboardingScreen({ navigation }) {
       <Subtitle style={{ width: wp("80%") }}>
         Achieve your goals with the consistent completion of daily habits!
       </Subtitle>
-      <AppLogo />
+      <AppLogo width="100%" height="45%" marginTop="7%" marginBottom="7%" />
       <ModButton
         text="Get Started"
         onPress={() => navigation.navigate("SetGoalScreen")}
