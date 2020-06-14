@@ -11,21 +11,16 @@ import PageHeader from "../components/PageHeader";
 import { useDispatch, useSelector } from "react-redux";
 import ModTextInput from "../components/ModTextInput";
 import COLORS from "../styles/Colors";
-import { Platform } from "react-native";
-
-//hooks give state control to stateless functions, which replaced classes in react
-//Normally classes use the componentDidMount and componentDidUpdate
-//useEffect is a hook that replaces the old school componentDidMount and componentDidUpdate
-//useDispatch is a hook that replaces the mapStateToProps in redux
-//useSelector allows direct access to a state on the store
-//useSelector and useDispatch is the new alternative to replace the connect
+import { Platform, Animated } from "react-native";
 
 const LoginScreen = ({ navigation }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const dispatch = useDispatch();
-  const loginError = useSelector((state) => state.loginError);
-  const isAuthenticated = useSelector((state) => state.isAuthenticated);
+  const states = useSelector((state) => state.auth);
+  const loginError = useSelector((state) => state.auth.loginError);
+  const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
+  const [authenticated, setAuthenticated] = useState(false);
 
   const handleEmailInput = (text) => {
     setEmail(text);
@@ -38,8 +33,18 @@ const LoginScreen = ({ navigation }) => {
   const handleSignIn = () => {
     if (email !== null && password !== null) {
       dispatch(loginUser(email, password));
+      setAuthenticated(isAuthenticated);
     }
   };
+
+  useEffect(() => {
+    if (authenticated) {
+      // navigation.navigate("OnboardingScreen");
+      console.log("It has been auth");
+    } else {
+      console.log("It has not been auth");
+    }
+  }, [authenticated]);
 
   return (
     <LoginView>
@@ -47,6 +52,13 @@ const LoginScreen = ({ navigation }) => {
         text="Habit Builder"
         hasHeader={Platform.OS === "android" ? false : true}
       />
+      <Animated.Text
+        style={{
+          opacity: authenticated ? 1 : 0,
+        }}
+      >
+        Authenticated
+      </Animated.Text>
       <Divider />
       <LogoContainer>
         <AppLogo width="100%" height="33%" />
@@ -105,13 +117,3 @@ const LogoContainer = styled.View`
 `;
 
 export default LoginScreen;
-
-// function mapStateToProps(state) {
-//   return {
-//     isLoggingIn: state.auth.isLoggingIn,
-//     loginError: state.auth.loginError,
-//     isAuthenticated: state.auth.isAuthenticated
-//   };
-// }
-
-// export default connect(mapStateToProps)(LoginScreen);
