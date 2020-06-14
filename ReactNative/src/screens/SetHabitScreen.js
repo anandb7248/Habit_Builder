@@ -15,7 +15,6 @@ import {
 import Platform from "react-native";
 
 function SetHabitScreen({ navigation }) {
-  const breakCode = asdfasdfasdfasdf!
   const [status, setStatus] = useState("Daily");
   const daysText = ["Su", "M", "Tu", "W", "Th", "F", "Sa"];
   const [days, setDays] = useState([
