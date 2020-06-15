@@ -15,7 +15,6 @@ import {
 import { Platform } from "react-native";
 import moment from "moment";
 
-
 function SetHabitScreen({ navigation }) {
   const [status, setStatus] = useState("Daily");
   const daysText = ["Su", "M", "Tu", "W", "Th", "F", "Sa"];
