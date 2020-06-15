@@ -14,7 +14,6 @@ import {
 } from "react-native-responsive-screen";
 import { Platform } from "react-native";
 import moment from "moment";
-import DateTimePicker from "@react-native-community/datetimepicker";
 
 function SetHabitScreen({ navigation }) {
   const daysText = ["Su", "M", "Tu", "W", "Th", "F", "Sa"];

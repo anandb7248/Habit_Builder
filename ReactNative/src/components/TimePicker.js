@@ -14,15 +14,9 @@ function TimePicker(props) {
     Animated.spring(topTimePicker, { toValue: 100 }).start();
   };
 
-  // useEffect(() => {
-  //   hide();
-  // }, []);
-
   if (props.showIOS) {
-    console.log(`props.showIOS: ${props.showIOS}`);
     show();
   } else {
-    console.log(`props.showIOS: ${props.showIOS}`);
     hide();
   }
 
