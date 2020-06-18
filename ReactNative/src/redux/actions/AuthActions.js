@@ -84,7 +84,20 @@ const initAsync = async () => {
 const signInAsync = async () => {
   try {
     await GoogleSignIn.askForPlayServicesAsync();
-    const { type, user } = await GoogleSignIn.signInAsync();
+    const { type, user } = await GoogleSignIn.signInAsync({
+      /*
+        Added more config options for android. At this point,
+        iOS seems to return a valid user object. 
+      */
+      //webClientId: "1:570242483391:web:d52c55ff7ffcf7d857b20a",
+      /*
+        If above doesn't work for android try checking platform and
+        adding client id platform specific
+      */
+      clientId:
+        "570242483391-gjujfhie5pg49nl84e8crhp62q6lipom.apps.googleusercontent.com",
+      scopes: ["profile", "email"],
+    });
     alert("user: " + user);
     if (type === "success") {
       return user;
@@ -97,7 +110,7 @@ const signInAsync = async () => {
 export const googleLoginUser = () => async (dispatch) => {
   try {
     dispatch(requestLogin());
-    await initAsync;
+    await initAsync();
     const user = await signInAsync();
     dispatch(
       receiveLogin({
