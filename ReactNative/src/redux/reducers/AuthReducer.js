@@ -7,6 +7,8 @@ import {
   LOGOUT_FAILURE,
   VERIFY_SUCCESS,
   VERIFY_REQUEST,
+  SIGNUP_SUCCESS,
+  SIGNUP_FAILURE,
 } from "../actions/Types";
 
 /* Initial Login state to build from */
@@ -17,6 +19,7 @@ const InitAuthState = {
   loginError: false,
   logoutError: false,
   isAuthenticated: false,
+  signedUp: false,
   user: {},
 };
 
@@ -77,6 +80,16 @@ const AuthReducer = (state = InitAuthState, action) => {
       return {
         ...state,
         isVerifying: false,
+      };
+    case SIGNUP_SUCCESS:
+      return {
+        ...state,
+        signedUp: true,
+      };
+    case SIGNUP_FAILURE:
+      return {
+        ...state,
+        signedUp: false,
       };
     default:
       return state;

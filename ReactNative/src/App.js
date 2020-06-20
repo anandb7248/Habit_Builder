@@ -28,7 +28,7 @@ const getFont = () =>
 
 const store = configureStore();
 
-export default function App() {
+export default function App({ navigation }) {
   const [fontsLoaded, setFontsLoaded] = useState(false);
   if (fontsLoaded) {
     //return <OnboardingScreen />;
@@ -37,18 +37,26 @@ export default function App() {
     //return <SignUpScreen />;
     //return <LoginScreen />;
     //return <SetHabitScreen />;
+
+    return (
+      <Provider store={store}>
+        <SignUpScreen />
+      </Provider>
+    );
+
     // return (
     //   <Provider store={store}>
     //     <LoginScreen />
     //   </Provider>
     // );
-    return (
-      <Provider store={store}>
-        <NavigationContainer>
-          <InitialAppNav />
-        </NavigationContainer>
-      </Provider>
-    );
+
+    // return (
+    //   <Provider store={store}>
+    //     <NavigationContainer>
+    //       <InitialAppNav />
+    //     </NavigationContainer>
+    //   </Provider>
+    // );
   } else {
     return (
       <AppLoading startAsync={getFont} onFinish={() => setFontsLoaded(true)} />
