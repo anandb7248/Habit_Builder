@@ -13,6 +13,7 @@ import { decode, encode } from "base-64";
 import { Provider } from "react-redux";
 import configureStore from "./redux/configureStore";
 import LoginScreen from "./screens/LoginScreen";
+import CalendarScreen from "./screens/CalendarScreen";
 
 if (!global.btoa) {
   global.btoa = encode;
@@ -35,12 +36,12 @@ export default function App({ navigation }) {
     //return <NotificationScreen />;
     // return <SetGoalScreen />;
     //return <SetHabitScreen />;
-
-    return (
-      <Provider store={store}>
-        <SignUpScreen />
-      </Provider>
-    );
+    return <CalendarScreen />;
+    // return (
+    //   <Provider store={store}>
+    //     <SignUpScreen />
+    //   </Provider>
+    // );
 
     // return (
     //   <Provider store={store}>
