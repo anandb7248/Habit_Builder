@@ -12,6 +12,7 @@ import { useDispatch, useSelector } from "react-redux";
 import ModTextInput from "../components/ModTextInput";
 import COLORS from "../styles/Colors";
 import { Platform, Animated } from "react-native";
+import LottieView from "lottie-react-native";
 
 const LoginScreen = ({ navigation }) => {
   const [email, setEmail] = useState("");
@@ -21,7 +22,9 @@ const LoginScreen = ({ navigation }) => {
   const loginError = useSelector((state) => state.auth.loginError);
   const isLoggingIn = useSelector((state) => state.auth.isLoggingIn);
   const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
+  const [requestMade, setRequestMade] = useState(false);
   const [authenticated, setAuthenticated] = useState(false);
+  const [loggingIn, setLogginIn] = useState(false);
 
   const handleEmailInput = (text) => {
     setEmail(text);
@@ -33,36 +36,37 @@ const LoginScreen = ({ navigation }) => {
 
   const handleSignIn = () => {
     if (email !== null && password !== null) {
+      setRequestMade(true);
       dispatch(loginUser(email, password));
-
-      setAuthenticated(isAuthenticated);
     }
   };
 
   useEffect(() => {
-    if (authenticated) {
-      // navigation.navigate("OnboardingScreen");
-      console.log("It has been auth");
-    } else {
-      console.log("It has not been auth");
+    if (requestMade && isAuthenticated) {
+      console.log("made changes");
+      setAuthenticated(true);
+      setRequestMade(false);
+      setTimeout(() => setAuthenticated(false), 1000);
     }
-  }, [authenticated]);
+  });
 
   return (
     <LoginView>
+      <LottieView
+        source={require("../assets/animations/loading.json")}
+        autoPlay
+        loop
+        style={{ opacity: isLoggingIn ? 1 : 0 }}
+      />
+      <LottieView
+        source={require("../assets/animations/checkmark.json")}
+        autoPlay
+        style={{ opacity: authenticated ? 1 : 0 }}
+      />
       <PageHeader
         text="Habit Builder"
         hasHeader={Platform.OS === "android" ? false : true}
       />
-      <Animated.Text
-        style={{
-          // opacity: authenticated ? 1 : 0,
-          opacity: isLoggingIn ? 1 : 0,
-        }}
-      >
-        {/* Authenticated */}
-        Is Logging In
-      </Animated.Text>
       <Divider />
       <LogoContainer>
         <AppLogo width="100%" height="33%" />
