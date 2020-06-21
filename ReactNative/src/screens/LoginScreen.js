@@ -19,6 +19,7 @@ const LoginScreen = ({ navigation }) => {
   const dispatch = useDispatch();
   const states = useSelector((state) => state.auth);
   const loginError = useSelector((state) => state.auth.loginError);
+  const isLoggingIn = useSelector((state) => state.auth.isLoggingIn);
   const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
   const [authenticated, setAuthenticated] = useState(false);
 
@@ -33,6 +34,7 @@ const LoginScreen = ({ navigation }) => {
   const handleSignIn = () => {
     if (email !== null && password !== null) {
       dispatch(loginUser(email, password));
+
       setAuthenticated(isAuthenticated);
     }
   };
@@ -54,10 +56,12 @@ const LoginScreen = ({ navigation }) => {
       />
       <Animated.Text
         style={{
-          opacity: authenticated ? 1 : 0,
+          // opacity: authenticated ? 1 : 0,
+          opacity: isLoggingIn ? 1 : 0,
         }}
       >
-        Authenticated
+        {/* Authenticated */}
+        Is Logging In
       </Animated.Text>
       <Divider />
       <LogoContainer>

@@ -32,7 +32,7 @@ const AuthReducer = (state = InitAuthState, action) => {
             a new state object. 
         */
 
-    case LOGOUT_REQUEST:
+    case LOGIN_REQUEST:
       return {
         ...state,
         isLoggingIn: true,
