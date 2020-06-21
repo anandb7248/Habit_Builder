@@ -19,6 +19,11 @@
       "fallbackToCacheTimeout": 0
     },
     "assetBundlePatterns": ["**/*"],
+
+    "android": {
+      "package": "com.IJLSA.HabitBuilder",
+      "googleServicesFile": "./google-services.json"
+    },
     "ios": {
       "supportsTablet": true,
       "bundleIdentifier": "com.IJLSA.HabitBuilder",
