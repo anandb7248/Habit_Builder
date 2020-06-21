@@ -9,7 +9,7 @@ import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
 } from "react-native-responsive-screen";
-import { Calendar, CalendarList, Agenda } from "react-native-calendars";
+import { Calendar, Agenda } from "react-native-calendars";
 import { StyleSheet } from "react-native";
 
 function CalendarScreen({ navigation }) {
@@ -20,22 +20,13 @@ function CalendarScreen({ navigation }) {
       <Padding />
       <Calendar
         style={styles.calendar}
-        // Specify theme properties to override specific styles for calendar parts. Default = {}
-        // theme={{
-        //   textDayFontSize: 16,
-        //   textMonthFontSize: 40,
-        //   textDayHeaderFontSize: 16,
-        // }}
-        // markedDates={{
-        //   "2020-06-16": {
-        //     selected: true,
-        //     marked: true,
-        //     selectedColor: "blue",
-        //   },
-        //   "2020-06-17": { marked: true },
-        //   "2020-06-18": { marked: true, dotColor: "red", activeOpacity: 0 },
-        //   "2020-06-19": { disabled: true, disableTouchEvent: true },
-        // }}
+        onDayPress={(day) => {
+          console.log("selected day", day);
+        }}
+        theme={{
+          backgroundColor: "#1A1410",
+          selectedDayBackgroundColor: "#00adf5",
+        }}
       />
     </View>
   );
@@ -47,7 +38,8 @@ const styles = StyleSheet.create({
   calendar: {
     borderRadius: 10,
     width: wp("90%"),
-    height: hp("70%"),
+    height: hp("60%"),
+    justifyContent: "space-evenly",
   },
 });
 
