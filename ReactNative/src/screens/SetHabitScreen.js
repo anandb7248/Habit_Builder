@@ -16,7 +16,6 @@ import { Platform } from "react-native";
 import moment from "moment";
 
 function SetHabitScreen({ navigation }) {
-  const [status, setStatus] = useState("Daily");
   const daysText = ["Su", "M", "Tu", "W", "Th", "F", "Sa"];
   const [days, setDays] = useState([
     false,
@@ -32,7 +31,7 @@ function SetHabitScreen({ navigation }) {
   const [show, setShow] = useState(false);
   const [mode, setMode] = useState("date");
   const [date, setDate] = useState(new Date());
-  const [showTimePicker, toggleTimePicker] = useState(false);
+  const [showIOSTime, toggleTimePicker] = useState(false);
 
   const handleDayClick = (index) => {
     let newDays = [...days];
@@ -65,7 +64,7 @@ function SetHabitScreen({ navigation }) {
 
   const onChange = (event, selectedDate) => {
     const currentDate = selectedDate || date;
-    setShow(!show);
+    setShow(Platform.OS === "ios");
     setDate(currentDate);
   };
 
@@ -76,6 +75,11 @@ function SetHabitScreen({ navigation }) {
 
   const showTimepicker = () => {
     showMode("time");
+  };
+
+  const time = () => {
+    showTimepicker();
+    toggleTimePicker((prev) => !prev);
   };
 
   return (
@@ -147,9 +151,7 @@ function SetHabitScreen({ navigation }) {
           width={"50%"}
           height={"5%"}
           fontSize={"3%"}
-          onPress={() => {
-            toggleTimePicker((prev) => !prev);
-          }}
+          onPress={time}
         />
       </ViewHorizontal>
       <Padding />
@@ -163,12 +165,15 @@ function SetHabitScreen({ navigation }) {
           }}
         />
       </Container>
-      <TimePicker
-        show={showTimePicker}
-        toggle={toggleTimePicker}
-        onChange={onChange}
-        date={date}
-      />
+      {show && (
+        <TimePicker
+          show={showTimepicker}
+          showIOS={showIOSTime}
+          toggle={toggleTimePicker}
+          onChange={onChange}
+          date={date}
+        />
+      )}
     </View>
   );
 }
