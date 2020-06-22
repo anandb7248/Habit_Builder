@@ -10,13 +10,12 @@ import InitialAppNav from "./InitialAppNav";
 function StartNav() {
   firebase.auth().onAuthStateChanged((user) => {
     if (user) {
-      console.log("user was found to be logged in");
+      console.log("user found");
       return LoggedInNav();
     } else {
-      console.log("user was not found");
+      console.log("user not found");
       return InitialAppNav();
     }
-    console.log("Hello");
   });
 
   return LoggedInNav();
