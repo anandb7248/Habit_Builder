@@ -34,6 +34,8 @@ export default function App({ navigation }) {
     //return <OnboardingScreen />;
     //return <NotificationScreen />;
     // return <SetGoalScreen />;
+    //return <SignUpScreen />;
+    //return <LoginScreen />;
     //return <SetHabitScreen />;
 
     return (

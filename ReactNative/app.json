@@ -19,8 +19,20 @@
       "fallbackToCacheTimeout": 0
     },
     "assetBundlePatterns": ["**/*"],
+
+    "android": {
+      "package": "com.IJLSA.HabitBuilder",
+      "googleServicesFile": "./google-services.json"
+    },
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.IJLSA.HabitBuilder",
+      "googleServicesFile": "./GoogleService-Info.plist",
+      "config": {
+        "googleSignIn": {
+          "reservedClientId": "com.googleusercontent.apps.570242483391-cs3krtm1r1vqufqekvf4t2j4n04omovb"
+        }
+      }
     }
   }
 }

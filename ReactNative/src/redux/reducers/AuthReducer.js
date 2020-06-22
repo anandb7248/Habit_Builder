@@ -31,7 +31,6 @@ const AuthReducer = (state = InitAuthState, action) => {
             state which we then append our corresponding changed state values to. Altogether returning
             a new state object. 
         */
-
     case LOGOUT_REQUEST:
       return {
         ...state,
