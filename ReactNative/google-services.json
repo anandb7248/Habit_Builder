@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "570242483391",
+    "firebase_url": "https://habitbuilder-d84f5.firebaseio.com",
+    "project_id": "habitbuilder-d84f5",
+    "storage_bucket": "habitbuilder-d84f5.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:570242483391:android:6f73eb56bf7d57f757b20a",
+        "android_client_info": {
+          "package_name": "com.IJLSA.HabitBuilder"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "570242483391-gjujfhie5pg49nl84e8crhp62q6lipom.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCBEovzK9--sUBQmRokRs-U3_vzx9CyfVQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "570242483391-gjujfhie5pg49nl84e8crhp62q6lipom.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "570242483391-cs3krtm1r1vqufqekvf4t2j4n04omovb.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.IJLSA.HabitBuilder"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

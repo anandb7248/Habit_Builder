@@ -6,13 +6,21 @@ import ModButton from "../components/ModButton";
 import styled from "styled-components";
 import Divider from "../components/Divider";
 import { connect } from "react-redux";
-import { loginUser } from "../redux/actions/AuthActions";
+import { loginUser, googleLoginUser } from "../redux/actions/AuthActions";
 import PageHeader from "../components/PageHeader";
 import { useDispatch, useSelector } from "react-redux";
 import ModTextInput from "../components/ModTextInput";
 import COLORS from "../styles/Colors";
 import { Platform, Animated } from "react-native";
 import LottieView from "lottie-react-native";
+import { app } from "firebase";
+
+//hooks give state control to stateless functions, which replaced classes in react
+//Normally classes use the componentDidMount and componentDidUpdate
+//useEffect is a hook that replaces the old school componentDidMount and componentDidUpdate
+//useDispatch is a hook that replaces the mapStateToProps in redux
+//useSelector allows direct access to a state on the store
+//useSelector and useDispatch is the new alternative to replace the connect
 
 const LoginScreen = ({ navigation }) => {
   const [email, setEmail] = useState("");
@@ -43,12 +51,15 @@ const LoginScreen = ({ navigation }) => {
 
   useEffect(() => {
     if (requestMade && isAuthenticated) {
-      console.log("made changes");
       setAuthenticated(true);
       setRequestMade(false);
       setTimeout(() => setAuthenticated(false), 1000);
     }
   });
+  const handleGoogleSignIn = async () => {
+    console.log("Google Sign In w/ expo started");
+    dispatch(googleLoginUser());
+  };
 
   return (
     <LoginView>
@@ -56,12 +67,15 @@ const LoginScreen = ({ navigation }) => {
         source={require("../assets/animations/loading.json")}
         autoPlay
         loop
-        style={{ opacity: isLoggingIn ? 1 : 0 }}
+        style={{ opacity: isLoggingIn ? 1 : 0, zIndex: isLoggingIn ? 2 : 0 }}
       />
       <LottieView
         source={require("../assets/animations/checkmark.json")}
         autoPlay
-        style={{ opacity: authenticated ? 1 : 0 }}
+        style={{
+          opacity: authenticated ? 1 : 0,
+          zIndex: authenticated ? 2 : 0,
+        }}
       />
       <PageHeader
         text="Habit Builder"
@@ -106,6 +120,7 @@ const LoginScreen = ({ navigation }) => {
         width="90%"
         fontSize="3%"
         text="Sign In with Google"
+        onPress={handleGoogleSignIn}
       />
     </LoginView>
   );
