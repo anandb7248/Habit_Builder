@@ -4,19 +4,19 @@ import Divider from "../components/Divider";
 import styled from "styled-components";
 import ModButton from "../components/ModButton";
 
-const TodayView = styled.View``;
+const GoalsView = styled.View``;
 
-const TodayScreen = () => {
+const GoalsScreen = () => {
   return (
-    <TodayView>
+    <GoalsView>
       <PageHeader
-        text="TODAY"
+        text="GOALS"
         hasHeader={Platform.OS === "android" ? false : true}
       />
       <Divider />
-      <ModButton height="5%" width="90%" fontSize="3%" text="TODAY SCREEN :)" />
-    </TodayView>
+      <ModButton height="5%" width="90%" fontSize="3%" text="GOALS SCREEN :)" />
+    </GoalsView>
   );
 };
 
-export default TodayScreen;
+export default GoalsScreen;
