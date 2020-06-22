@@ -5,17 +5,17 @@ import LoggedInNav from "./LoggedInNav";
 import InitialAppNav from "./InitialAppNav";
 
 function StartNav() {
-  firebase.auth().onAuthStateChanged((user) => {
-    if (user) {
-      console.log(`found user: ${user.displayName}`);
-      return LoggedInNav();
-    } else {
-      console.log("user not found");
-      return InitialAppNav();
-    }
-  });
+  console.log("startNav");
+  let user = firebase.auth().currentUser;
 
-  return LoggedInNav();
+  if (user != null) {
+    /* Note: placeholder screen in LoggedInNav for now */
+    console.log(`found user: ${user}`);
+    return LoggedInNav();
+  } else {
+    console.log("user not found");
+    return InitialAppNav();
+  }
 }
 
 export default StartNav;
