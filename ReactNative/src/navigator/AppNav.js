@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import TabLayout from "../components/TabLayout";
-import TodayScreen from "./TodayScreen";
-import GoalsScreen from "./GoalsScreen";
+import TodayScreen from "../screens/TodayScreen";
+import GoalsScreen from "../screens/GoalsScreen";
 
 const AppNav = () => {
   return (

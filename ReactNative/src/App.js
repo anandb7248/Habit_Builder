@@ -13,7 +13,7 @@ import { decode, encode } from "base-64";
 import { Provider } from "react-redux";
 import configureStore from "./redux/configureStore";
 import LoginScreen from "./screens/LoginScreen";
-import AppNav from "./screens/AppNav";
+import AppNav from "./navigator/AppNav";
 
 if (!global.btoa) {
   global.btoa = encode;
