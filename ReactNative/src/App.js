@@ -14,6 +14,7 @@ import { decode, encode } from "base-64";
 import { Provider } from "react-redux";
 import configureStore from "./redux/configureStore";
 import LoginScreen from "./screens/LoginScreen";
+import AppNav from "./navigator/AppNav";
 
 if (!global.btoa) {
   global.btoa = encode;
@@ -44,6 +45,16 @@ export default function App({ navigation }) {
     //     <SignUpScreen />
     //   </Provider>
     // );
+    // return (
+    //   <NavigationContainer>
+    //     <AppNav />
+    //   </NavigationContainer>
+    // );
+    // return (
+    //   <Provider store={store}>
+    //     <SignUpScreen />
+    //   </Provider>
+    // );
 
     // return (
     //   <Provider store={store}>
@@ -54,7 +65,6 @@ export default function App({ navigation }) {
     return (
       <Provider store={store}>
         <NavigationContainer>
-          {/* <InitialAppNav /> */}
           <StartNav />
         </NavigationContainer>
       </Provider>
