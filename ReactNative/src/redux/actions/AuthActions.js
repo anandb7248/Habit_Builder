@@ -1,6 +1,6 @@
 // import firebase from "@react-native-firebase/app";
+import * as GoogleSignIn from "expo-google-sign-in";
 import { auth, fbProvider } from "../../utils/firebase";
-
 import {
   LOGIN_REQUEST,
   LOGIN_SUCCESS,
@@ -68,6 +68,64 @@ const verifySuccess = () => {
 };
 
 /*
+  Google Login Thunk -> uses expo google sign in to open
+  a modal screen with options to sign in to user's
+  google account. User object is fetched from 
+  async call.
+*/
+
+const initAsync = async () => {
+  /* 
+    Dont need config options here because we configured
+    googleServicesFile for android and iOS in app.json
+  */
+
+  await GoogleSignIn.initAsync();
+};
+
+const signInAsync = async () => {
+  try {
+    await GoogleSignIn.askForPlayServicesAsync();
+    const { type, user } = await GoogleSignIn.signInAsync({
+      /*
+        Added more config options for android. At this point,
+        iOS seems to return a valid user object. 
+      */
+      //webClientId: "1:570242483391:web:d52c55ff7ffcf7d857b20a",
+      /*
+        If above doesn't work for android try checking platform and
+        adding client id platform specific
+      */
+      clientId:
+        "570242483391-gjujfhie5pg49nl84e8crhp62q6lipom.apps.googleusercontent.com",
+      scopes: ["profile", "email"],
+    });
+    alert("user: " + user);
+    if (type === "success") {
+      return user;
+    }
+  } catch ({ message }) {
+    alert("login: Error:" + message);
+  }
+};
+
+export const googleLoginUser = () => async (dispatch) => {
+  try {
+    dispatch(requestLogin());
+    await initAsync();
+    const user = await signInAsync();
+    dispatch(
+      receiveLogin({
+        ...user,
+        signedInWithGoogle: true,
+      })
+    );
+  } catch ({ message }) {
+    alert(message);
+  }
+};
+
+/*
   Login thunk -> takes in credentials from login component as well
   as the dispatch function that is passed to all our actions we init
   from components.
@@ -80,7 +138,12 @@ export const loginUser = (email, password) => (dispatch) => {
     .signInWithEmailAndPassword(email, password)
     .then((user) => {
       console.log("LOGIN SUCCESS");
-      dispatch(receiveLogin(user));
+      dispatch(
+        receiveLogin({
+          ...user,
+          signedInWithGoogle: false,
+        })
+      );
     })
     .catch((error) => {
       console.log("LOGIN FAILURE");
