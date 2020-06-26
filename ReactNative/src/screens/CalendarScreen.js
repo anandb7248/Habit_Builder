@@ -50,6 +50,7 @@ function CalendarScreen({ navigation }) {
             [selected]: {
               selected: true,
             },
+            "2020-06-17": { marked: true, selectedColor: COLORS.appYelow },
           }}
           theme={{
             arrowColor: COLORS.appBlue,
@@ -57,14 +58,14 @@ function CalendarScreen({ navigation }) {
             textMonthFontSize: wp("6%"),
             textDayHeaderFontSize: wp("3%"),
             "stylesheet.day.basic": {
-              base: {
-                height: hp("8"),
-              },
+              //   base: {
+              //     height: hp("8"),
+              //   },
               text: {
                 marginTop: Platform.OS === "android" ? hp("2%") : hp("3%"),
                 marginBottom: hp("3%"),
-                marginLeft: 10,
-                marginRight: 10,
+                // marginLeft: 10,
+                // marginRight: 10,
                 // fontSize: 18,
                 // justifyContent: "space-around",
               },
@@ -97,7 +98,7 @@ const styles = StyleSheet.create({
   calendar: {
     borderRadius: 10,
     width: wp("90%"),
-    height: hp("70%"),
+    // height: hp("70%"),
     // flexDirection: "row",
     // justifyContent: "space-around",
   },

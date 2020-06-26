@@ -39,7 +39,7 @@ export default function App({ navigation }) {
     //return <SignUpScreen />;
     //return <LoginScreen />;
     //return <SetHabitScreen />;
-    return <CalendarScreen />;
+    // return <CalendarScreen />;
     // return (
     //   <Provider store={store}>
     //     <SignUpScreen />

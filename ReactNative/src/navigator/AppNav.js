@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import TabLayout from "../components/TabLayout";
 import TodayScreen from "../screens/TodayScreen";
 import GoalsScreen from "../screens/GoalsScreen";
+import CalendarScreen from "../screens/CalendarScreen";
 import styled from "styled-components";
 
 const PLACEHOLDER = styled.View``;
@@ -24,7 +25,7 @@ const AppNav = () => {
         },
         {
           name: "Calendar",
-          component: PLACEHOLDER,
+          component: CalendarScreen,
           iconName: "calendar",
         },
         {
