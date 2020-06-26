@@ -25,8 +25,9 @@ const LoginScreen = ({ navigation }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const dispatch = useDispatch();
-  const loginError = useSelector((state) => state.loginError);
-  const isAuthenticated = useSelector((state) => state.isAuthenticated);
+  const auth_user = useSelector((state) => state.auth.user);
+  const loginError = useSelector((state) => state.auth.loginError);
+  const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
 
   const handleEmailInput = (text) => {
     setEmail(text);
