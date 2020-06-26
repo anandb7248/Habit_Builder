@@ -23,6 +23,14 @@ const InitAuthState = {
   user: {},
 };
 
+/* USER OBJECT SCHEMA -> from auth sign in
+  {
+    uid: ...,
+    email: ...,
+    createdAt: ...,
+  }
+*/
+
 const AuthReducer = (state = InitAuthState, action) => {
   switch (action.type) {
     /*

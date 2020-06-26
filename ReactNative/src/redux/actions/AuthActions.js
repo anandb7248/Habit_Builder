@@ -116,7 +116,7 @@ export const googleLoginUser = () => async (dispatch) => {
     const user = await signInAsync();
     dispatch(
       receiveLogin({
-        ...user,
+        user,
         signedInWithGoogle: true,
       })
     );
@@ -138,9 +138,15 @@ export const loginUser = (email, password) => (dispatch) => {
     .signInWithEmailAndPassword(email, password)
     .then((user) => {
       console.log("LOGIN SUCCESS");
+      console.log(user.user);
+      const new_user = {
+        uid: user.user.uid,
+        email: user.user.email,
+        createdAt: user.user.createdAt,
+      };
       dispatch(
         receiveLogin({
-          ...user,
+          new_user,
           signedInWithGoogle: false,
         })
       );
