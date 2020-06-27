@@ -46,7 +46,7 @@ const SignUpScreen = ({ props, navigation }) => {
       console.log(
         `signedUp value from redux store has changed to: ${signedUp}`
       );
-      // navigation.navigate("LoginScreen");
+      navigation.navigate("LoginScreen");
     }
   }, [signedUp]);
 
@@ -54,7 +54,7 @@ const SignUpScreen = ({ props, navigation }) => {
     <View>
       <PageHeader text={"Habit Builder"} hasHeader={false} />
       <Divider />
-      {/* <AppLogo width={"100%"} height={"20%"} /> */}
+      <AppLogo width={"100%"} height={"20%"} />
       <ModTextInput
         inputText={userEmail}
         setInputText={setUserEmail}

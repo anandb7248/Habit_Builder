@@ -11,7 +11,8 @@ import PageHeader from "../components/PageHeader";
 import { useDispatch, useSelector } from "react-redux";
 import ModTextInput from "../components/ModTextInput";
 import COLORS from "../styles/Colors";
-import { Platform } from "react-native";
+import { Platform, Animated } from "react-native";
+import LottieView from "lottie-react-native";
 import { app } from "firebase";
 
 //hooks give state control to stateless functions, which replaced classes in react
@@ -28,6 +29,12 @@ const LoginScreen = ({ navigation }) => {
   const auth_user = useSelector((state) => state.auth.user);
   const loginError = useSelector((state) => state.auth.loginError);
   const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
+  const states = useSelector((state) => state.auth);
+  const loginError = useSelector((state) => state.auth.loginError);
+  const isLoggingIn = useSelector((state) => state.auth.isLoggingIn);
+  const [requestMade, setRequestMade] = useState(false);
+  const [authenticated, setAuthenticated] = useState(false);
+  const [loggingIn, setLogginIn] = useState(false);
 
   const handleEmailInput = (text) => {
     setEmail(text);
@@ -39,10 +46,18 @@ const LoginScreen = ({ navigation }) => {
 
   const handleSignIn = () => {
     if (email !== null && password !== null) {
+      setRequestMade(true);
       dispatch(loginUser(email, password));
     }
   };
 
+  useEffect(() => {
+    if (requestMade && isAuthenticated) {
+      setAuthenticated(true);
+      setRequestMade(false);
+      setTimeout(() => setAuthenticated(false), 1000);
+    }
+  });
   const handleGoogleSignIn = async () => {
     console.log("Google Sign In w/ expo started");
     dispatch(googleLoginUser());
@@ -50,6 +65,20 @@ const LoginScreen = ({ navigation }) => {
 
   return (
     <LoginView>
+      <LottieView
+        source={require("../assets/animations/loading.json")}
+        autoPlay
+        loop
+        style={{ opacity: isLoggingIn ? 1 : 0, zIndex: isLoggingIn ? 2 : 0 }}
+      />
+      <LottieView
+        source={require("../assets/animations/checkmark.json")}
+        autoPlay
+        style={{
+          opacity: authenticated ? 1 : 0,
+          zIndex: authenticated ? 2 : 0,
+        }}
+      />
       <PageHeader
         text="Habit Builder"
         hasHeader={Platform.OS === "android" ? false : true}
@@ -113,13 +142,3 @@ const LogoContainer = styled.View`
 `;
 
 export default LoginScreen;
-
-// function mapStateToProps(state) {
-//   return {
-//     isLoggingIn: state.auth.isLoggingIn,
-//     loginError: state.auth.loginError,
-//     isAuthenticated: state.auth.isAuthenticated
-//   };
-// }
-
-// export default connect(mapStateToProps)(LoginScreen);
