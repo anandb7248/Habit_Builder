@@ -9,6 +9,7 @@ import * as Font from "expo-font";
 import { AppLoading } from "expo";
 import { NavigationContainer } from "@react-navigation/native";
 import InitialAppNav from "./navigator/InitialAppNav";
+import StartNav from "./navigator/StartNav";
 import { decode, encode } from "base-64";
 import { Provider } from "react-redux";
 import configureStore from "./redux/configureStore";
@@ -46,6 +47,7 @@ export default function App({ navigation }) {
     //     <SignUpScreen />
     //   </Provider>
     // );
+
     //return (
     //  <NavigationContainer>
     //    <AppNav />
@@ -56,14 +58,19 @@ export default function App({ navigation }) {
         <LoginScreen />
       </Provider>
     );
-
     // return (
     //   <Provider store={store}>
-    //     <NavigationContainer>
-    //       <InitialAppNav />
-    //     </NavigationContainer>
+    //     <LoginScreen />
     //   </Provider>
     // );
+
+    return (
+      <Provider store={store}>
+        <NavigationContainer>
+          <StartNav />
+        </NavigationContainer>
+      </Provider>
+    );
   } else {
     return (
       <AppLoading startAsync={getFont} onFinish={() => setFontsLoaded(true)} />
