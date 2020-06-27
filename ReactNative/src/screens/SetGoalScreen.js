@@ -22,6 +22,7 @@ function SetGoalScreen({ navigation }) {
   const [endDate, setEndDate] = useState(new Date());
   const [showDatePicker, toggleDatePicker] = useState(false);
   const [numberOfDays, setNumberOfDays] = useState(0);
+  const [showIOS, setShow] = useState(false);
 
   useEffect(() => {
     // Right initially, set the end date to 21 days from today
@@ -34,6 +35,8 @@ function SetGoalScreen({ navigation }) {
   }, []);
 
   const configureDates = (changedDate) => {
+    setShow(true);
+
     if (changedDate < startDate) {
       setEndDate(startDate);
       setNumberOfDays(0);
@@ -93,12 +96,15 @@ function SetGoalScreen({ navigation }) {
         height="10%"
         spacing="3%"
       />
-      <DatePicker
-        show={showDatePicker}
-        toggle={toggleDatePicker}
-        date={endDate}
-        onChange={configureDates}
-      />
+      {showIOS && (
+        <DatePicker
+          show={showDatePicker}
+          toggle={toggleDatePicker}
+          date={endDate}
+          onChange={configureDates}
+          setShow={showIOS}
+        />
+      )}
     </View>
   );
 }

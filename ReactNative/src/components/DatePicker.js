@@ -1,7 +1,7 @@
 import React, { useState, useRef, useEffect } from "react";
 import styled from "styled-components";
 import DateTimePicker from "@react-native-community/datetimepicker";
-import { Animated } from "react-native";
+import { Animated, Platform } from "react-native";
 import COLORS from "../styles/Colors";
 import {
   heightPercentageToDP as hp,
@@ -20,35 +20,46 @@ function DatePicker(props) {
   };
 
   const dateChange = (event, selectedDate) => {
+    // props.setShow(true);
     const currentDate = selectedDate || date;
     props.onChange(currentDate);
   };
 
-  useEffect(() => {
-    hide();
-  }, []);
+  // useEffect(() => {
+  //   hide();
+  // }, []);
 
-  if (props.show) {
+  if (props.showIOS) {
     show();
   } else {
     hide();
   }
 
-  return (
-    <AnimatedView style={{ transform: [{ translateY: topDatePicker }] }}>
-      <DoneButton
-        title="Done"
-        onPress={() => {
-          props.toggle();
-        }}
-      ></DoneButton>
+  if (Platform.OS === "ios") {
+    return (
+      <AnimatedView style={{ transform: [{ translateY: topDatePicker }] }}>
+        <DoneButton
+          title="Done"
+          onPress={() => {
+            props.toggle();
+          }}
+        ></DoneButton>
+        <DateTimePicker
+          modalTransparent={true}
+          value={props.date}
+          onChange={dateChange}
+        />
+      </AnimatedView>
+    );
+  } else {
+    return (
       <DateTimePicker
         modalTransparent={true}
         value={props.date}
         onChange={dateChange}
       />
-    </AnimatedView>
-  );
+    );
+  }
 }
 
 export default DatePicker;

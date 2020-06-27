@@ -44,16 +44,16 @@ export default function App({ navigation }) {
     //     <SignUpScreen />
     //   </Provider>
     // );
-    return (
-      <NavigationContainer>
-        <AppNav />
-      </NavigationContainer>
-    );
     // return (
-    //   <Provider store={store}>
-    //     <LoginScreen />
-    //   </Provider>
+    //   <NavigationContainer>
+    //     <AppNav />
+    //   </NavigationContainer>
     // );
+    return (
+      <Provider store={store}>
+        <SetGoalScreen />
+      </Provider>
+    );
 
     // return (
     //   <Provider store={store}>
