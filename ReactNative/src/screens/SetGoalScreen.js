@@ -10,8 +10,8 @@ import TextLabel from "../components/TextLabel";
 import DatePicker from "../components/DatePicker";
 import { TouchableOpacity } from "react-native";
 import {
-  heightPercentageToDP as hp,
-  widthPercentageToDP as wp,
+  heightpercentagetodp as hp,
+  widthpercentagetodp as wp,
 } from "react-native-responsive-screen";
 
 function SetGoalScreen({ navigation }) {

@@ -3,6 +3,7 @@ import TabLayout from "../components/TabLayout";
 import TodayScreen from "../screens/TodayScreen";
 import GoalsScreen from "../screens/GoalsScreen";
 import CalendarScreen from "../screens/CalendarScreen";
+import SettingScreen from "../screens/SettingScreen";
 import styled from "styled-components";
 
 const PLACEHOLDER = styled.View``;
@@ -35,6 +36,7 @@ const AppNav = () => {
         },
         {
           name: "Settings",
+          // component: SettingScreen,
           component: PLACEHOLDER,
           iconName: "tune",
         },
