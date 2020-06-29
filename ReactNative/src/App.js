@@ -34,33 +34,11 @@ const store = configureStore();
 export default function App({ navigation }) {
   const [fontsLoaded, setFontsLoaded] = useState(false);
   if (fontsLoaded) {
-    //return <OnboardingScreen />;
-    //return <NotificationScreen />;
-    // return <SetGoalScreen />;
-    //return <SignUpScreen />;
-    //return <LoginScreen />;
-    //return <SetHabitScreen />;
-    // return <CalendarScreen />;
-
     // return (
     //   <Provider store={store}>
-    //     <SignUpScreen />
-    //   </Provider>
-    // );
-
-    //return (
-    //  <NavigationContainer>
-    //    <AppNav />
-    //  </NavigationContainer>
-    //);
-    return (
-      <Provider store={store}>
-        <LoginScreen />
-      </Provider>
-    );
-    // return (
-    //   <Provider store={store}>
-    //     <LoginScreen />
+    //     <NavigationContainer>
+    //       <AppNav />
+    //     </NavigationContainer>
     //   </Provider>
     // );
 
