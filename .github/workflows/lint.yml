@@ -24,11 +24,59 @@ jobs:
       - name: Install prettier
         run: npm install --global prettier
 
-      - name: Run linters
+      - name: Run lint components 
         uses: samuelmeuli/lint-action@v1
         with:
           github_token: ${{ secrets.github_token }}
-          prettier_dir: ./ReactNative/componenets, ./ReactNative/src/navigator, ./ReactNative/src/redux, ./ReactNative/src/screens, ./ReactNative/src/styles, ./ReactNative/src/utils, ./ReactNative/src/App.js
+          prettier_dir: ./ReactNative/components
+          # Enable linters
+          prettier: true
+          
+      - name: Run lint navigator 
+        uses: samuelmeuli/lint-action@v1
+        with:
+          github_token: ${{ secrets.github_token }}
+          prettier_dir: ./ReactNative/src/navigator
+          # Enable linters
+          prettier: true
+          
+      - name: Run lint redux 
+        uses: samuelmeuli/lint-action@v1
+        with:
+          github_token: ${{ secrets.github_token }}
+          prettier_dir: ./ReactNative/src/redux
+          # Enable linters
+          prettier: true
+         
+      - name: Run lint screens 
+        uses: samuelmeuli/lint-action@v1
+        with:
+          github_token: ${{ secrets.github_token }}
+          prettier_dir:  ./ReactNative/src/screens
+          # Enable linters
+          prettier: true
+          
+      - name: Run lint styles 
+        uses: samuelmeuli/lint-action@v1
+        with:
+          github_token: ${{ secrets.github_token }}
+          prettier_dir: ./ReactNative/src/styles
+          # Enable linters
+          prettier: true
+      
+      - name: Run lint utils 
+        uses: samuelmeuli/lint-action@v1
+        with:
+          github_token: ${{ secrets.github_token }}
+          prettier_dir: ./ReactNative/src/utils
+          # Enable linters
+          prettier: true
+      
+      - name: Run lint App.js 
+        uses: samuelmeuli/lint-action@v1
+        with:
+          github_token: ${{ secrets.github_token }}
+          prettier_dir: ./ReactNative/src/App.js
           # Enable linters
           prettier: true
 
