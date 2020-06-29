@@ -2,7 +2,6 @@ import React, { useState, useRef, useEffect } from "react";
 import styled from "styled-components";
 import DateTimePicker from "@react-native-community/datetimepicker";
 import { Animated, Platform } from "react-native";
-import COLORS from "../styles/Colors";
 import {
   heightPercentageToDP as hp,
   widthPercentageToDP as wp,
@@ -20,14 +19,9 @@ function DatePicker(props) {
   };
 
   const dateChange = (event, selectedDate) => {
-    // props.setShow(true);
-    const currentDate = selectedDate || date;
+    const currentDate = selectedDate || new Date();
     props.onChange(currentDate);
   };
-
-  // useEffect(() => {
-  //   hide();
-  // }, []);
 
   if (props.showIOS) {
     show();
@@ -68,7 +62,7 @@ const View = styled.View`
   background: white;
   border-radius: 25px;
   width: 95%;
-  height: ${hp("25%")};
+  height: ${hp("25%")}px;
   margin: 15px auto;
   z-index: 10;
 `;

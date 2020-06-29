@@ -8,7 +8,7 @@ import moment from "moment";
 import ModTextInput from "../components/ModTextInput";
 import TextLabel from "../components/TextLabel";
 import DatePicker from "../components/DatePicker";
-import { TouchableOpacity } from "react-native";
+import { TouchableOpacity, Platform } from "react-native";
 import {
   heightPercentageToDP as hp,
   widthPercentageToDP as wp,
@@ -20,9 +20,10 @@ function SetGoalScreen({ navigation }) {
   const defaultDaysToComplete = 21;
   const startDate = new Date();
   const [endDate, setEndDate] = useState(new Date());
-  const [showDatePicker, toggleDatePicker] = useState(false);
+  const [showIOSDate, toggleDatePicker] = useState(false);
   const [numberOfDays, setNumberOfDays] = useState(0);
-  const [showIOS, setShow] = useState(false);
+  const [show, setShow] = useState(false);
+  const [mode, setMode] = useState("date");
 
   useEffect(() => {
     // Right initially, set the end date to 21 days from today
@@ -35,7 +36,8 @@ function SetGoalScreen({ navigation }) {
   }, []);
 
   const configureDates = (changedDate) => {
-    setShow(true);
+    setShow(Platform.OS === "ios");
+    // setShow(true);
 
     if (changedDate < startDate) {
       setEndDate(startDate);
@@ -47,6 +49,20 @@ function SetGoalScreen({ navigation }) {
       const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
       setNumberOfDays(diffDays);
     }
+  };
+
+  const showMode = (currentMode) => {
+    setShow(true);
+    setMode(currentMode);
+  };
+
+  const showDatePicker = () => {
+    showMode("date");
+  };
+
+  const date = () => {
+    showDatePicker();
+    toggleDatePicker((prev) => !prev);
   };
 
   return (
@@ -67,9 +83,10 @@ function SetGoalScreen({ navigation }) {
       <Container>
         <TouchableOpacity
           style={{ flex: 1 }}
-          onPress={() => {
-            toggleDatePicker((prev) => !prev);
-          }}
+          onPress={date}
+          // onPress={() => {
+          //   toggleDatePicker((prev) => !prev);
+          // }}
         >
           <Label>{moment(endDate).format("MMM D, YYYY")}</Label>
         </TouchableOpacity>
@@ -96,13 +113,13 @@ function SetGoalScreen({ navigation }) {
         height="10%"
         spacing="3%"
       />
-      {showIOS && (
+      {show && (
         <DatePicker
           show={showDatePicker}
+          showIOS={showIOSDate}
           toggle={toggleDatePicker}
-          date={endDate}
           onChange={configureDates}
-          setShow={showIOS}
+          date={endDate}
         />
       )}
     </View>
