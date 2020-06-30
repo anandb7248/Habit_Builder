@@ -40,13 +40,13 @@ const View = styled.View`
 
 const Padding = styled.View`
   align-items: center;
-  padding-vertical: ${hp("16%")};
+  padding-vertical: ${hp("16%")}px;
 `;
 
 const Subtitle = styled.Text`
   color: white;
-  font-size: ${hp("2%")};
-  width: ${wp("75%")};
+  font-size: ${hp("2%")}px;
+  width: ${wp("75%")}px;
   margin: 10px auto;
   text-align: center;
 `;

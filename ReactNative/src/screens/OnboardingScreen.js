@@ -40,6 +40,6 @@ const Subtitle = styled.Text`
   color: white;
   margin: 20px auto;
   text-align: center;
-  font-size: ${hp("2%")};
+  font-size: ${hp("2%")}px;
   font-family: "PTSans-Regular";
 `;
