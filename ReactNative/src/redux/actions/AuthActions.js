@@ -13,6 +13,7 @@ import {
   SIGNUP_SUCCESS,
   SIGNUP_FAILURE,
 } from "./Types";
+import { initUser } from "./UserActions";
 
 /*
   These functions return the action types that our reducers will read. 
@@ -138,12 +139,20 @@ export const loginUser = (email, password) => (dispatch) => {
     .signInWithEmailAndPassword(email, password)
     .then((user) => {
       console.log("LOGIN SUCCESS");
+      const new_user = {
+        uid: user.user.uid,
+        email: user.user.email,
+        createdAt: user.user.createdAt,
+      };
       dispatch(
         receiveLogin({
-          ...user,
+          ...new_user,
           signedInWithGoogle: false,
         })
       );
+
+      /* Also dispatch init User */
+      dispatch(initUser(new_user));
     })
     .catch((error) => {
       console.log("LOGIN FAILURE");

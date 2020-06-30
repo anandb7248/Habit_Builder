@@ -2,7 +2,9 @@ import React, { useState, useEffect } from "react";
 import TabLayout from "../components/TabLayout";
 import TodayScreen from "../screens/TodayScreen";
 import GoalsScreen from "../screens/GoalsScreen";
+import CalendarScreen from "../screens/CalendarScreen";
 import styled from "styled-components";
+import SettingScreen from "../screens/SettingScreen";
 
 const PLACEHOLDER = styled.View``;
 
@@ -24,7 +26,7 @@ const AppNav = () => {
         },
         {
           name: "Calendar",
-          component: PLACEHOLDER,
+          component: CalendarScreen,
           iconName: "calendar",
         },
         {
@@ -34,7 +36,7 @@ const AppNav = () => {
         },
         {
           name: "Settings",
-          component: PLACEHOLDER,
+          component: SettingScreen,
           iconName: "tune",
         },
       ]}

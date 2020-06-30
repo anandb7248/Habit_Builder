@@ -8,7 +8,6 @@ import { Platform } from "react-native";
 import SignUpScreen from "../screens/SignUpScreen";
 import LoginScreen from "../screens/LoginScreen";
 import COLORS from "../styles/Colors";
-
 const Stack = createStackNavigator();
 
 function InitialAppNav() {
