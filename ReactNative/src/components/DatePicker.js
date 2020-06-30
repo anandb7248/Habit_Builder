@@ -61,7 +61,7 @@ export default DatePicker;
 const View = styled.View`
   background: white;
   border-radius: 25px;
-  width: 95%;
+  width: ${hp("95%")}px;
   height: ${hp("25%")}px;
   margin: 15px auto;
   z-index: 10;

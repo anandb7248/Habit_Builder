@@ -81,13 +81,7 @@ function SetGoalScreen({ navigation }) {
       ></ModTextInput>
       <TextLabel label="When do you want to achieve your goal?" />
       <Container>
-        <TouchableOpacity
-          style={{ flex: 1 }}
-          onPress={date}
-          // onPress={() => {
-          //   toggleDatePicker((prev) => !prev);
-          // }}
-        >
+        <TouchableOpacity style={{ flex: 1 }} onPress={date}>
           <Label>{moment(endDate).format("MMM D, YYYY")}</Label>
         </TouchableOpacity>
       </Container>
@@ -134,7 +128,7 @@ const View = styled.View`
 `;
 
 const StartingDate = styled.Text`
-  font-size: ${wp("5%")};
+  font-size: ${wp("5%")}px;
   color: white;
   margin: 0 auto;
   padding: ${hp("1%")}px;
@@ -143,7 +137,7 @@ const StartingDate = styled.Text`
 
 const DaysToCompletion = styled.Text`
   color: ${COLORS.appYelow};
-  font-size: ${wp("4%")};
+  font-size: ${wp("4%")}px;
   font-weight: bold;
   margin: 5px auto;
   font-family: "PTSans-Regular";
@@ -152,14 +146,14 @@ const DaysToCompletion = styled.Text`
 const Container = styled.View`
   background: white;
   border-radius: 25px;
-  width: ${wp("85%")};
-  height: ${hp("4.1%")};
+  width: ${wp("85%")}px;
+  height: ${hp("4.1%")}px;
   margin: ${hp("1.3%")}px auto;
 `;
 
 const Label = styled.Text`
   color: ${COLORS.appBlue};
-  font-size: ${wp("4%")};
+  font-size: ${wp("4%")}px;
   font-weight: bold;
   margin: auto auto;
   font-family: "PTSans-Regular";
