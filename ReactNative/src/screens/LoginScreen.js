@@ -29,6 +29,10 @@ const LoginScreen = ({ navigation }) => {
   const loginError = useSelector((state) => state.auth.loginError);
   const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
 
+  if (isAuthenticated == true) {
+    navigation.navigate("MainScreen");
+  }
+
   const handleEmailInput = (text) => {
     setEmail(text);
   };

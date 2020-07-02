@@ -49,19 +49,19 @@ export default function App({ navigation }) {
     //    <AppNav />
     //  </NavigationContainer>
     //);
-    return (
-      <Provider store={store}>
-        <LoginScreen />
-      </Provider>
-    );
-
     // return (
     //   <Provider store={store}>
-    //     <NavigationContainer>
-    //       <InitialAppNav />
-    //     </NavigationContainer>
+    //     <LoginScreen />
     //   </Provider>
     // );
+
+    return (
+      <Provider store={store}>
+        <NavigationContainer>
+          <InitialAppNav />
+        </NavigationContainer>
+      </Provider>
+    );
   } else {
     return (
       <AppLoading startAsync={getFont} onFinish={() => setFontsLoaded(true)} />
