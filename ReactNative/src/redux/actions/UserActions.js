@@ -31,7 +31,12 @@ const startInit = (dispatch, new_user) => {
   console.log(new_user);
   db.collection(USER_COLLECTION)
     .doc(new_user.uid)
-    .set({ email: new_user.email })
+    .set(
+      {
+        email: new_user.email,
+      },
+      { merge: true }
+    )
     .then(() => {
       dispatch(initSuccess());
     })

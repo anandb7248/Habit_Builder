@@ -68,6 +68,7 @@ const SignUpScreen = ({ props, navigation }) => {
         inputText={password}
         setInputText={setPassword}
         placeholder="Password"
+        secure={true}
         width="90%"
         height="8%"
       >

@@ -27,7 +27,12 @@ const LoginScreen = ({ navigation }) => {
   const loginError = useSelector((state) => state.auth.loginError);
   const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
 
-  if (isAuthenticated == true) {
+  /* 
+    will skip login to main screen if already authenticated 
+    need main sign out button 
+  */
+  if (isAuthenticated === true) {
+    console.log("isAuthenticated " + isAuthenticated);
     navigation.navigate("MainScreen");
   }
 

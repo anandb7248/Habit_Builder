@@ -3,6 +3,7 @@ import TabLayout from "../components/TabLayout";
 import TodayScreen from "../screens/TodayScreen";
 import GoalsScreen from "../screens/GoalsScreen";
 import styled from "styled-components";
+import ModButton from "../components/ModButton";
 
 const PLACEHOLDER = styled.View``;
 
@@ -13,7 +14,7 @@ const PLACEHOLDER = styled.View``;
   seen below. 
 */
 
-const AppNav = () => {
+const AppNav = ({ navigation }) => {
   return (
     <TabLayout
       screens={[
@@ -26,6 +27,11 @@ const AppNav = () => {
           name: "Calendar",
           component: PLACEHOLDER,
           iconName: "calendar",
+        },
+        {
+          name: "Add",
+          component: PLACEHOLDER,
+          iconName: "plus",
         },
         {
           name: "Goals",
