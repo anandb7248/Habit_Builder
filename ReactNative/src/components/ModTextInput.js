@@ -11,6 +11,7 @@ function ModTextInput(props) {
     <View width={props.width} height={props.height}>
       <Icon>{props.children}</Icon>
       <TextInput
+        secureTextEntry={props.secure ? true : false}
         placeholder={props.placeholder}
         onChangeText={(text) => props.setInputText(text)}
         value={props.inputText}

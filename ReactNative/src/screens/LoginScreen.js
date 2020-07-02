@@ -72,6 +72,7 @@ const LoginScreen = ({ navigation }) => {
       </ModTextInput>
       <ModTextInput
         setInputText={handlePasswordInput}
+        secure={true}
         placeholder="Password"
         width="90%"
         height="8%"
