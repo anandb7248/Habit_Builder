@@ -5,14 +5,12 @@ import PasswordIcon from "../assets/images/Password.svg";
 import ModButton from "../components/ModButton";
 import styled from "styled-components";
 import Divider from "../components/Divider";
-import { connect } from "react-redux";
 import { loginUser, googleLoginUser } from "../redux/actions/AuthActions";
 import PageHeader from "../components/PageHeader";
 import { useDispatch, useSelector } from "react-redux";
 import ModTextInput from "../components/ModTextInput";
 import COLORS from "../styles/Colors";
 import { Platform } from "react-native";
-import { app } from "firebase";
 
 //hooks give state control to stateless functions, which replaced classes in react
 //Normally classes use the componentDidMount and componentDidUpdate

@@ -76,6 +76,7 @@ const SignUpScreen = ({ props, navigation }) => {
       <ModTextInput
         inputText={confirmPassword}
         setInputText={setConfirmPassword}
+        secure={true}
         placeholder="Confirm Password"
         width="90%"
         height="8%"
