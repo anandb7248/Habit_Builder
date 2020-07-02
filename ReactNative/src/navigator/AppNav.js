@@ -29,7 +29,7 @@ const AppNav = ({ navigation }) => {
           iconName: "calendar",
         },
         {
-          name: "Add",
+          name: " ",
           component: PLACEHOLDER,
           iconName: "plus",
         },
