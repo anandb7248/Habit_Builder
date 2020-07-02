@@ -87,11 +87,15 @@ const getHabits = async (doc) => {
 
 /* right way to do await... */
 export const getGoals = (uid) => async (dispatch) => {
+  dispatch(requestGoals());
   const goalDocs = await db
     .collection(USER_COLLECTION)
     .doc(uid)
     .collection(GOALS_COLLECTION)
-    .get();
+    .get()
+    .catch(() => {
+      dispatch(goalsError());
+    });
 
   let goals = [];
   for (const doc of goalDocs.docs) {
