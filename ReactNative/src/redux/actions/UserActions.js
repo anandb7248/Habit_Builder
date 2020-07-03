@@ -3,9 +3,14 @@ import {
   INIT_USER_REQUEST,
   INIT_USER_SUCCESS,
   INIT_USER_FAILURE,
+  GET_GOALS_REQUEST,
+  GET_GOALS_SUCCESS,
+  GET_GOALS_FAILURE,
 } from "./Types";
 
 const USER_COLLECTION = "users";
+const GOALS_COLLECTION = "goals";
+const HABITS_COLLECTION = "habits";
 
 const initRequest = () => {
   return {
@@ -25,19 +30,82 @@ const initFailure = () => {
   };
 };
 
+const receiveGoals = (goals) => {
+  return {
+    type: GET_GOALS_SUCCESS,
+    goals,
+  };
+};
+
+const goalsError = () => {
+  return {
+    type: GET_GOALS_FAILURE,
+  };
+};
+
+const requestGoals = () => {
+  return {
+    type: GET_GOALS_REQUEST,
+  };
+};
+
 /* Called after sign in with email password in actions */
 const startInit = (dispatch, new_user) => {
   console.log("INITING USER");
   console.log(new_user);
   db.collection(USER_COLLECTION)
     .doc(new_user.uid)
-    .set({ email: new_user.email })
+    .set(
+      {
+        email: new_user.email,
+      },
+      { merge: true }
+    )
     .then(() => {
       dispatch(initSuccess());
     })
     .catch(() => {
       dispatch(initFailure());
     });
+};
+
+const getHabits = async (doc) => {
+  return doc.ref
+    .collection(HABITS_COLLECTION)
+    .get()
+    .then((snapshot) => {
+      return snapshot.docs.map((doc) => {
+        return {
+          name: doc.data().name,
+        };
+      });
+    })
+    .catch(() => {
+      console.log("Error retrieving habits");
+    });
+};
+
+/* right way to do await... */
+export const getGoals = (uid) => async (dispatch) => {
+  dispatch(requestGoals());
+  const goalDocs = await db
+    .collection(USER_COLLECTION)
+    .doc(uid)
+    .collection(GOALS_COLLECTION)
+    .get()
+    .catch(() => {
+      dispatch(goalsError());
+    });
+
+  let goals = [];
+  for (const doc of goalDocs.docs) {
+    const habits = await getHabits(doc);
+    goals.push({
+      name: doc.data().name,
+      habits: habits,
+    });
+  }
+  dispatch(receiveGoals(goals));
 };
 
 export const initUser = (uid) => async (dispatch) => {

@@ -41,7 +41,6 @@ export default function App({ navigation }) {
     //     </NavigationContainer>
     //   </Provider>
     // );
-
     return (
       <Provider store={store}>
         <NavigationContainer>
