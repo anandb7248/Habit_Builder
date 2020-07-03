@@ -13,7 +13,10 @@
 Have you wanted to develop a new skill or habit? Well we've got you covered! With HabitBuilder you are one step away from achieving your dreams! :star: Easily track daily habits and goals in one glorious app! Set habits to repeat or add a new goal with sub-habits. Anything is possible when you use HabitBuilder :fire: :fire:
  
 ## Build
-This is a react-native app built using the expo framework.
+This is a react-native app built using the expo framework. You can check out the docs for building with expo <a href="https://docs.expo.io/distribution/building-standalone-apps/">here</a>.
+
+
+
 #### How to start
 > npm install
 > expo start 
@@ -31,4 +34,17 @@ or
 
 
 ## Dependencies 
-Some of the neat libraries we are using in our app include Lottie animations, Styled Components, and Google Firestore :fire:
+Some of the neat libraries we are using in our app include Redux-Thunk, Lottie animations, Styled Components, and Google Firestore :fire:.
+
+## Useful Resources
+<a href="https://docs.expo.io/distribution/building-standalone-apps/">Expo Build Docs</a>
+
+<a href="https://firebase.google.com/docs/firestore/query-data/get-data">Firestore Docs</a>
+
+<a href="https://redux.js.org/basics/basic-tutorial">Redux Tutorial Docs</a>
+
+<a href="https://github.com/reduxjs/redux-thunk">Redux Thunk Docs</a>
+
+
+
+
