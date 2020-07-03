@@ -17,7 +17,10 @@ This is a react-native app built using the expo framework.
 #### How to start
 > npm install
 > expo start 
+
 or
+
+
 > npx expo start
 
 #### Build Release for iOS
