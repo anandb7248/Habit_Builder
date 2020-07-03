@@ -4,6 +4,7 @@ import OnboardingScreen from "./screens/OnboardingScreen";
 import NotificationScreen from "./screens/NotificationScreen";
 import SetGoalScreen from "./screens/SetGoalScreen";
 import SetHabitScreen from "./screens/SetHabitScreen";
+import EditHabitScreen from "./screens/EditHabitScreen";
 import SignUpScreen from "./screens/SignUpScreen";
 import * as Font from "expo-font";
 import { AppLoading } from "expo";
