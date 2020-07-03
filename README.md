@@ -6,7 +6,7 @@
  > Build daily habits!
  
 
-[![Platform](https://img.shields.io/badge/language-javascript-yellow)](#) 
+[![Platform](https://img.shields.io/badge/language-javascript-yellow)](#) [![Platform](https://img.shields.io/badge/framework-react--native-purple)](#) 
 
 ## Description
 
