@@ -8,7 +8,7 @@ import moment from "moment";
 import ModTextInput from "../components/ModTextInput";
 import TextLabel from "../components/TextLabel";
 import DatePicker from "../components/DatePicker";
-import { TouchableOpacity } from "react-native";
+import { TouchableOpacity, Platform } from "react-native";
 import {
   heightPercentageToDP as hp,
   widthPercentageToDP as wp,
@@ -20,8 +20,10 @@ function SetGoalScreen({ navigation }) {
   const defaultDaysToComplete = 21;
   const startDate = new Date();
   const [endDate, setEndDate] = useState(new Date());
-  const [showDatePicker, toggleDatePicker] = useState(false);
+  const [showIOSDate, toggleDatePicker] = useState(false);
   const [numberOfDays, setNumberOfDays] = useState(0);
+  const [show, setShow] = useState(false);
+  const [mode, setMode] = useState("date");
 
   useEffect(() => {
     // Right initially, set the end date to 21 days from today
@@ -34,6 +36,9 @@ function SetGoalScreen({ navigation }) {
   }, []);
 
   const configureDates = (changedDate) => {
+    setShow(Platform.OS === "ios");
+    // setShow(true);
+
     if (changedDate < startDate) {
       setEndDate(startDate);
       setNumberOfDays(0);
@@ -44,6 +49,20 @@ function SetGoalScreen({ navigation }) {
       const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
       setNumberOfDays(diffDays);
     }
+  };
+
+  const showMode = (currentMode) => {
+    setShow(true);
+    setMode(currentMode);
+  };
+
+  const showDatePicker = () => {
+    showMode("date");
+  };
+
+  const date = () => {
+    showDatePicker();
+    toggleDatePicker((prev) => !prev);
   };
 
   return (
@@ -62,12 +81,7 @@ function SetGoalScreen({ navigation }) {
       ></ModTextInput>
       <TextLabel label="When do you want to achieve your goal?" />
       <Container>
-        <TouchableOpacity
-          style={{ flex: 1 }}
-          onPress={() => {
-            toggleDatePicker((prev) => !prev);
-          }}
-        >
+        <TouchableOpacity style={{ flex: 1 }} onPress={date}>
           <Label>{moment(endDate).format("MMM D, YYYY")}</Label>
         </TouchableOpacity>
       </Container>
@@ -93,12 +107,15 @@ function SetGoalScreen({ navigation }) {
         height="10%"
         spacing="3%"
       />
-      <DatePicker
-        show={showDatePicker}
-        toggle={toggleDatePicker}
-        date={endDate}
-        onChange={configureDates}
-      />
+      {show && (
+        <DatePicker
+          show={showDatePicker}
+          showIOS={showIOSDate}
+          toggle={toggleDatePicker}
+          onChange={configureDates}
+          date={endDate}
+        />
+      )}
     </View>
   );
 }
@@ -111,7 +128,7 @@ const View = styled.View`
 `;
 
 const StartingDate = styled.Text`
-  font-size: ${wp("5%")};
+  font-size: ${wp("5%")}px;
   color: white;
   margin: 0 auto;
   padding: ${hp("1%")}px;
@@ -120,7 +137,7 @@ const StartingDate = styled.Text`
 
 const DaysToCompletion = styled.Text`
   color: ${COLORS.appYelow};
-  font-size: ${wp("4%")};
+  font-size: ${wp("4%")}px;
   font-weight: bold;
   margin: 5px auto;
   font-family: "PTSans-Regular";
@@ -129,14 +146,14 @@ const DaysToCompletion = styled.Text`
 const Container = styled.View`
   background: white;
   border-radius: 25px;
-  width: ${wp("85%")};
-  height: ${hp("4.1%")};
+  width: ${wp("85%")}px;
+  height: ${hp("4.1%")}px;
   margin: ${hp("1.3%")}px auto;
 `;
 
 const Label = styled.Text`
   color: ${COLORS.appBlue};
-  font-size: ${wp("4%")};
+  font-size: ${wp("4%")}px;
   font-weight: bold;
   margin: auto auto;
   font-family: "PTSans-Regular";

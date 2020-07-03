@@ -9,7 +9,6 @@ import SignUpScreen from "../screens/SignUpScreen";
 import LoginScreen from "../screens/LoginScreen";
 import AppNav from "./AppNav";
 import COLORS from "../styles/Colors";
-
 const Stack = createStackNavigator();
 
 function InitialAppNav() {
