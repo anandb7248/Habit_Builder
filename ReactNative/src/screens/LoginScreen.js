@@ -73,25 +73,38 @@ const LoginScreen = ({ navigation }) => {
     }
   });
 
+  const getLottie = () => {
+    if (Platform.OS != "android") {
+      return (
+        <LottieContainer>
+          <LottieView
+            source={require("../assets/animations/failed.json")}
+            autoPlay
+            style={{
+              opacity: failedLogin ? 1 : 0,
+              zIndex: failedLogin ? 2 : 0,
+            }}
+          />
+          <LottieView
+            source={require("../assets/animations/checkmark.json")}
+            autoPlay
+            style={{
+              opacity: authenticated ? 1 : 0,
+              zIndex: authenticated ? 3 : 0,
+            }}
+          />
+        </LottieContainer>
+      );
+    }
+  };
+
   return (
     <LoginView>
-      <LottieView
-        source={require("../assets/animations/failed.json")}
-        autoPlay
-        style={{ opacity: failedLogin ? 1 : 0, zIndex: failedLogin ? 2 : 0 }}
-      />
-      <LottieView
-        source={require("../assets/animations/checkmark.json")}
-        autoPlay
-        style={{
-          opacity: authenticated ? 1 : 0,
-          zIndex: authenticated ? 3 : 0,
-        }}
-      />
       <PageHeader
         text="Habit Builder"
         hasHeader={Platform.OS === "android" ? false : true}
       />
+      {getLottie()}
       <Divider />
       <LogoContainer>
         <AppLogo width="100%" height="33%" />
@@ -137,6 +150,8 @@ const LoginScreen = ({ navigation }) => {
     </LoginView>
   );
 };
+
+const LottieContainer = styled.View``;
 
 const LoginView = styled.View`
   background-color: ${COLORS.appBlue};
