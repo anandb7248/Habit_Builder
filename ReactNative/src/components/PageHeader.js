@@ -13,7 +13,7 @@ function PageHeader(props) {
 export default PageHeader;
 
 const HeaderText = styled.Text`
-  font-size: ${hp("6%")};
+  font-size: ${hp("6%")}px;
   color: ${COLORS.appYelow};
   padding: ${(props) => (props.hasHeader ? hp("0%") : hp("6%"))}px 26px 0px;
   margin: 0 auto;

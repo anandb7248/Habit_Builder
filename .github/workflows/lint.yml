@@ -28,10 +28,10 @@ jobs:
         uses: samuelmeuli/lint-action@v1
         with:
           github_token: ${{ secrets.github_token }}
-          prettier_dir: ./ReactNative/src
+          prettier_dir: ./ReactNative/src/screens
           # Enable linters
           prettier: true
-
+          
 defaults:
   run:
     working-directory: ./ReactNative

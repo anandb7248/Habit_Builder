@@ -123,7 +123,7 @@ const SignUpScreen = ({ props, navigation }) => {
 const View = styled.View`
   background-color: ${COLORS.appBlue};
   flex: 1;
-  width: ${wp("100%")};
+  width: ${wp("100%")}px;
   align-items: center;
   justify-content: center;
 `;

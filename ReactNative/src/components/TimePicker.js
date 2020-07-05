@@ -5,7 +5,6 @@ import { Animated, Platform } from "react-native";
 
 function TimePicker(props) {
   const topTimePicker = useRef(new Animated.Value(0)).current;
-  // const [date, setDate] = useState(new Date());
 
   const show = () => {
     Animated.spring(topTimePicker, { toValue: -250 }).start();
