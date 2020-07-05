@@ -6,6 +6,9 @@ import {
   GET_GOALS_REQUEST,
   GET_GOALS_SUCCESS,
   GET_GOALS_FAILURE,
+  PUSH_GOAL_FAILURE,
+  PUSH_GOAL_REQUEST,
+  PUSH_GOAL_SUCCESS,
 } from "./Types";
 
 const USER_COLLECTION = "users";
@@ -30,6 +33,24 @@ const initFailure = () => {
   };
 };
 
+const pushGoalRequest = () => {
+  return {
+    type: PUSH_GOAL_REQUEST,
+  };
+};
+
+const pushGoalSuccess = () => {
+  return {
+    type: PUSH_GOAL_SUCCESS,
+  };
+};
+
+const pushGoalFailure = () => {
+  return {
+    type: PUSH_GOAL_FAILURE,
+  };
+};
+
 const receiveGoals = (goals) => {
   return {
     type: GET_GOALS_SUCCESS,
@@ -47,6 +68,50 @@ const requestGoals = () => {
   return {
     type: GET_GOALS_REQUEST,
   };
+};
+
+/* 
+  action creator for pushing new goals
+  goal schema => {
+    name: ...
+    start_date: epoch...
+    end_date: epoch...
+    habits: [
+      {
+        name: ...,
+        notification_time: ... (format?)
+      },
+      ...
+    ]
+  } 
+ */
+export const pushGoal = (goal, uid) => (dispatch) => {
+  dispatch(pushGoalRequest());
+  db.collection(USER_COLLECTION)
+    .doc(uid)
+    .collection(GOALS_COLLECTION)
+    .add({
+      name: goal.name,
+      end_date: goal.end_date,
+      start_date: goal.start_date,
+    })
+    .then(async (docRef) => {
+      /* add habit collection */
+      await Promise.all(
+        goals.habits.map((habit) => {
+          docRef.collection(HABITS_COLLECTION).add({
+            name: habit.name,
+            notification_time: habit.notification_time,
+          });
+        })
+      );
+
+      dispatch(pushGoalSuccess());
+      dispatch(getGoals(uid));
+    })
+    .catch((error) => {
+      dispatch(pushGoalFailure());
+    });
 };
 
 /* Called after sign in with email password in actions */

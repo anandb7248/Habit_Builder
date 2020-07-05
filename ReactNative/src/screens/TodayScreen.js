@@ -5,9 +5,29 @@ import styled from "styled-components";
 import ModButton from "../components/ModButton";
 import { logoutUser } from "../redux/actions/AuthActions";
 import { useDispatch, useSelector } from "react-redux";
-import { getGoals } from "../redux/actions/UserActions";
+import { getGoals, pushGoal } from "../redux/actions/UserActions";
 import GoalsScreen from "./GoalsScreen";
 import COLORS from "../styles/Colors";
+
+const test_goal = {
+  name: "Test Goal Push",
+  end_date: 1292031,
+  start_date: 1493944,
+  habits: [
+    {
+      name: "habit 1",
+      notification_time: "noon",
+    },
+    {
+      name: "habit 2",
+      notification_time: "midnight",
+    },
+    {
+      name: "habit 3",
+      notification_time: "morning",
+    },
+  ],
+};
 
 const TodayView = styled.View`
   background-color: ${COLORS.appBlue};
@@ -32,6 +52,11 @@ const TodayScreen = () => {
     console.log("getting goals" + user.uid);
     dispatch(getGoals(user.uid));
   }, []);
+
+  // useEffect(() => {
+  //   console.log("Test goal Push w/ " + test_goal);
+  //   dispatch(pushGoal(goal, user.uid));
+  // }, []);
 
   const formatGoals = () => {
     return (
