@@ -35,20 +35,21 @@ const store = configureStore();
 export default function App({ navigation }) {
   const [fontsLoaded, setFontsLoaded] = useState(false);
   if (fontsLoaded) {
-    // return (
-    //   <Provider store={store}>
-    //     <NavigationContainer>
-    //       <AppNav />
-    //     </NavigationContainer>
-    //   </Provider>
-    // );
     return (
       <Provider store={store}>
         <NavigationContainer>
-          <StartNav />
+          <AppNav />
         </NavigationContainer>
       </Provider>
     );
+
+    // return (
+    //   <Provider store={store}>
+    //     <NavigationContainer>
+    //       <StartNav />
+    //     </NavigationContainer>
+    //   </Provider>
+    // );
   } else {
     return (
       <AppLoading startAsync={getFont} onFinish={() => setFontsLoaded(true)} />
