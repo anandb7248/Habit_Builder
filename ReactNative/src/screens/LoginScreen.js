@@ -5,14 +5,12 @@ import PasswordIcon from "../assets/images/Password.svg";
 import ModButton from "../components/ModButton";
 import styled from "styled-components";
 import Divider from "../components/Divider";
-import { connect } from "react-redux";
 import { loginUser, googleLoginUser } from "../redux/actions/AuthActions";
 import PageHeader from "../components/PageHeader";
 import { useDispatch, useSelector } from "react-redux";
 import ModTextInput from "../components/ModTextInput";
 import COLORS from "../styles/Colors";
 import { Platform } from "react-native";
-import { app } from "firebase";
 import LottieView from "lottie-react-native";
 
 //hooks give state control to stateless functions, which replaced classes in react
@@ -33,6 +31,15 @@ const LoginScreen = ({ navigation }) => {
   const [requestMade, setRequestMade] = useState(false);
   const [authenticated, setAuthenticated] = useState(false);
   const [failedLogin, setFailedLogin] = useState(false);
+
+  /* 
+    will skip login to main screen if already authenticated 
+    need main sign out button 
+  */
+  if (isAuthenticated === true) {
+    console.log("isAuthenticated " + isAuthenticated);
+    navigation.navigate("MainScreen");
+  }
 
   const handleEmailInput = (text) => {
     setEmail(text);
@@ -99,6 +106,7 @@ const LoginScreen = ({ navigation }) => {
       </ModTextInput>
       <ModTextInput
         setInputText={handlePasswordInput}
+        secure={true}
         placeholder="Password"
         width="90%"
         height="8%"

@@ -7,6 +7,7 @@ import NotificationScreen from "../screens/NotificationScreen";
 import { Platform } from "react-native";
 import SignUpScreen from "../screens/SignUpScreen";
 import LoginScreen from "../screens/LoginScreen";
+import AppNav from "./AppNav";
 import COLORS from "../styles/Colors";
 const Stack = createStackNavigator();
 
@@ -55,6 +56,14 @@ function InitialAppNav() {
             backgroundColor: COLORS.appBlue,
           },
           headerTintColor: COLORS.appYelow,
+        }}
+      />
+      <Stack.Screen
+        name="MainScreen"
+        component={AppNav}
+        options={{
+          title: "",
+          headerShown: false,
         }}
       />
     </Stack.Navigator>

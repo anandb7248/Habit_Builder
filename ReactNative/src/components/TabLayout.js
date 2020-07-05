@@ -26,6 +26,7 @@ const createTabScreen = (screen) => {
 
   return (
     <Tab.Screen
+      key={screen.name}
       options={tabOptions}
       style={styleOptions}
       labelStyle={styleOptions}
