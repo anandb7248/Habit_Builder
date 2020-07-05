@@ -85,7 +85,7 @@ const requestGoals = () => {
     ]
   } 
  */
-export const pushGoal = (goal, uid) => (dispatch) => {
+export const pushGoal = (goal, uid) => async (dispatch) => {
   dispatch(pushGoalRequest());
   db.collection(USER_COLLECTION)
     .doc(uid)
@@ -97,15 +97,15 @@ export const pushGoal = (goal, uid) => (dispatch) => {
     })
     .then(async (docRef) => {
       /* add habit collection */
-      await Promise.all(
-        goals.habits.map((habit) => {
-          docRef.collection(HABITS_COLLECTION).add({
-            name: habit.name,
-            notification_time: habit.notification_time,
-          });
-        })
-      );
-
+      /*
+        Not pushing habits correctly to newly pushed goal
+      */
+      goals.habits.map((habit) => {
+        docRef.collection(HABITS_COLLECTION).add({
+          name: habit.name,
+          notification_time: habit.notification_time,
+        });
+      });
       dispatch(pushGoalSuccess());
       dispatch(getGoals(uid));
     })

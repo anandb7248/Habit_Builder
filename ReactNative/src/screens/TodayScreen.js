@@ -55,7 +55,7 @@ const TodayScreen = () => {
 
   useEffect(() => {
     console.log("Test goal Push w/ " + test_goal);
-    dispatch(pushGoal(goal, user.uid));
+    dispatch(pushGoal(test_goal, user.uid));
   }, []);
 
   const formatGoals = () => {
