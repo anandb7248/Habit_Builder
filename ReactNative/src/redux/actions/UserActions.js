@@ -15,6 +15,9 @@ import {
   DELETE_GOAL_REQUEST,
   DELETE_GOAL_SUCCESS,
   DELETE_GOAL_FAILURE,
+  PUSH_HABIT_REQUEST,
+  PUSH_HABIT_SUCCESS,
+  PUSH_HABIT_FAILURE,
   EDIT_HABIT_REQUEST,
   EDIT_HABIT_FAILURE,
   EDIT_HABIT_SUCCESS,
@@ -151,6 +154,24 @@ const deleteHabitSuccess = () => {
 const deleteHabitFailure = () => {
   return {
     type: DELETE_HABIT_FAILURE,
+  };
+};
+
+const pushHabitRequest = () => {
+  return {
+    type: PUSH_HABIT_REQUEST,
+  };
+};
+
+const pushHabitSuccess = () => {
+  return {
+    type: PUSH_HABIT_SUCCESS,
+  };
+};
+
+const pushHabitFailure = () => {
+  return {
+    type: PUSH_HABIT_FAILURE,
   };
 };
 
@@ -323,6 +344,25 @@ export const initUser = () => async (dispatch, getState) => {
   dispatch(initRequest());
   startInit(dispatch, getState().auth.user.uid);
   /* INIT authenticated user in firestore db */
+};
+
+/*
+  Used for creating habits on existing goals
+*/
+export const pushHabit = (habit, goal_id) => async (dispatch, getState) => {
+  dispatch(pushHabitRequest());
+  const uid = getState().auth.user.uid;
+  db.collection(USER_COLLECTION)
+    .doc(uid)
+    .collection(GOALS_COLLECTION)
+    .doc(goal_id)
+    .collection(HABITS_COLLECTION)
+    .add(formatHabit(habit))
+    .then(() => {
+      dispatch(pushHabitSuccess());
+      dispatch(getGoals());
+    })
+    .catch((err) => dispatch(pushHabitFailure()));
 };
 
 /* 

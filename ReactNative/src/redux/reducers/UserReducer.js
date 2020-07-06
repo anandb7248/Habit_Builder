@@ -11,6 +11,12 @@ import {
   DELETE_GOAL_REQUEST,
   DELETE_GOAL_SUCCESS,
   DELETE_GOAL_FAILURE,
+  PUSH_GOAL_REQUEST,
+  PUSH_GOAL_SUCCESS,
+  PUSH_GOAL_FAILURE,
+  PUSH_HABIT_REQUEST,
+  PUSH_HABIT_SUCCESS,
+  PUSH_HABIT_FAILURE,
   EDIT_HABIT_REQUEST,
   EDIT_HABIT_FAILURE,
   EDIT_HABIT_SUCCESS,
@@ -25,6 +31,8 @@ const InitUserState = {
   initError: false,
   loadedGoals: false,
   goalsError: false,
+  goalPushError: false,
+  habitPushError: false,
   goalEditError: false,
   goalDeleteError: false,
   habitEditError: false,
@@ -109,6 +117,34 @@ const UserReducer = (state = InitUserState, action) => {
       return {
         ...state,
         goalDeleteError: true,
+      };
+    case PUSH_GOAL_REQUEST:
+      return {
+        ...state,
+        goalPushError: false,
+      };
+    case PUSH_GOAL_SUCCESS:
+      return {
+        ...state,
+      };
+    case PUSH_GOAL_FAILURE:
+      return {
+        ...state,
+        goalPushError: true,
+      };
+    case PUSH_HABIT_REQUEST:
+      return {
+        ...state,
+        habitPushError: false,
+      };
+    case PUSH_HABIT_SUCCESS:
+      return {
+        ...state,
+      };
+    case PUSH_HABIT_FAILURE:
+      return {
+        ...state,
+        habitPushError: true,
       };
     case EDIT_HABIT_REQUEST:
       return {
