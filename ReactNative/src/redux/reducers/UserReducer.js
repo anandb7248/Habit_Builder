@@ -16,11 +16,19 @@ const InitUserState = {
   goals: [],
 };
 
-/* CURRENT GOAL SCHEMA
+/* CURRENT  ***LOCAL*** GOAL SCHEMA
   goals: [
     name: ...,
+    end_date: ...,
+    start_date: ...,
+    id: firestore_id (in collection)
     habits: [
-      name: ...
+      {
+        name: ...,
+        notification_time: ...,
+        id: firetstore_id (in collection),
+      },
+      ...
     ]
   ]
 */

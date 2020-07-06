@@ -53,10 +53,14 @@ const TodayScreen = () => {
     dispatch(getGoals(user.uid));
   }, []);
 
+  // useEffect(() => {
+  //   console.log("Test goal Push w/ " + test_goal);
+  //   dispatch(pushGoal(test_goal, user.uid));
+  // }, []);
+
   useEffect(() => {
-    console.log("Test goal Push w/ " + test_goal);
-    dispatch(pushGoal(test_goal, user.uid));
-  }, []);
+    console.log("Received Goals!", goals);
+  }, [goals]);
 
   const formatGoals = () => {
     return (
@@ -65,6 +69,7 @@ const TodayScreen = () => {
           return (
             <Container>
               <ModButton
+                key={goal.name}
                 height="5%"
                 width="90%"
                 fontSize="4%"
@@ -76,6 +81,7 @@ const TodayScreen = () => {
                 {goal.habits.map((habit) => {
                   return (
                     <ModButton
+                      key={habit.name}
                       height="5%"
                       width="90%"
                       fontSize="3%"
