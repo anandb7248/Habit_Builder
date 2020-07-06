@@ -50,7 +50,7 @@ const TodayScreen = () => {
   /* Tell Store to get goals only once ... */
   useEffect(() => {
     console.log("getting goals" + user.uid);
-    dispatch(getGoals(user.uid));
+    dispatch(getGoals());
   }, []);
 
   // useEffect(() => {
