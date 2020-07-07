@@ -67,7 +67,7 @@ const TodayScreen = () => {
       <Container>
         {goals.map((goal) => {
           return (
-            <Container>
+            <Container key={goal.name}>
               <ModButton
                 key={goal.name}
                 height="5%"
@@ -77,7 +77,7 @@ const TodayScreen = () => {
                 fontColor={COLORS.appYelow}
                 text={goal.name}
               />
-              <HabitContainer>
+              <HabitContainer key={goal.name}>
                 {goal.habits.map((habit) => {
                   return (
                     <ModButton
