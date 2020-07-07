@@ -3,6 +3,8 @@ import React from "react";
 import { Platform } from "react-native";
 import LoginScreen from "../screens/LoginScreen";
 import COLORS from "../styles/Colors";
+import AppNav from "../navigator/AppNav";
+
 const Stack = createStackNavigator();
 
 function LoggedInNav() {
