@@ -35,13 +35,6 @@ const store = configureStore();
 export default function App({ navigation }) {
   const [fontsLoaded, setFontsLoaded] = useState(false);
   if (fontsLoaded) {
-    // return (
-    //   <Provider store={store}>
-    //     <NavigationContainer>
-    //       <AppNav />
-    //     </NavigationContainer>
-    //   </Provider>
-    // );
     return (
       <Provider store={store}>
         <NavigationContainer>
