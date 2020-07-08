@@ -31,6 +31,7 @@ const createTabScreen = (screen) => {
       style={styleOptions}
       labelStyle={styleOptions}
       name={screen.name}
+      listeners={screen.listeners}
       component={screen.component}
     />
   );
