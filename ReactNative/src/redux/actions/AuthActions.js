@@ -132,6 +132,15 @@ export const googleLoginUser = () => async (dispatch) => {
   from components.
 */
 
+const formatUser = (user) => {
+  console.log("format user =>", user);
+  return {
+    uid: user.user.uid,
+    email: user.user.email,
+    createdAt: user.user.createdAt,
+  };
+};
+
 export const loginUser = (email, password) => (dispatch) => {
   /* alerts our store that a user is logging in */
   dispatch(requestLogin());
@@ -139,14 +148,10 @@ export const loginUser = (email, password) => (dispatch) => {
     .signInWithEmailAndPassword(email, password)
     .then((user) => {
       console.log("LOGIN SUCCESS");
-      const new_user = {
-        uid: user.user.uid,
-        email: user.user.email,
-        createdAt: user.user.createdAt,
-      };
+
       dispatch(
         receiveLogin({
-          ...new_user,
+          ...formatUser(user),
           signedInWithGoogle: false,
         })
       );
@@ -196,7 +201,7 @@ export const logoutUser = () => (dispatch) => {
   running to change user session tokens when they expire. 
 */
 
-export const verifyAuth = () => (dispatch) => {
+export const verifyAuth = () => (dispatch, getState) => {
   dispatch(verifyRequest());
   auth.onAuthStateChanged((user) => {
     if (user !== null) {
@@ -204,7 +209,13 @@ export const verifyAuth = () => (dispatch) => {
         We check if user is null because we only want to log 
         someone in if firebase finds a user session.
       */
-      dispatch(receiveLogin(user));
+      dispatch(
+        receiveLogin({
+          email: user.email,
+          uid: user.uid,
+          createdAt: user.metadata.a,
+        })
+      );
     }
     dispatch(verifySuccess());
   });
