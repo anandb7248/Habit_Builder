@@ -11,6 +11,7 @@ import SettingScreen from "../screens/SettingScreen";
 import { createStackNavigator } from "@react-navigation/stack";
 import GoalScreen from "../screens/SetGoalScreen";
 import HabitScreen from "../screens/SetHabitScreen";
+import LoggedInNav from "../navigator/LoggedInNav";
 
 const PLACEHOLDER = styled.View``;
 
@@ -96,6 +97,7 @@ const RootStackScreen = () => {
       />
       <RootStack.Screen name="CreateHabit" component={HabitScreen} />
       <RootStack.Screen name="CreateGoal" component={GoalScreen} />
+      <RootStack.Screen name="LoggedInNav" component={LoggedInNav} />
     </RootStack.Navigator>
   );
 };
