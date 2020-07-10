@@ -21,6 +21,7 @@ export default ({ navigation }) => (
       height="7%"
       fontSize="3%"
       onPress={() => {
+        navigation.pop();
         navigation.navigate("CreateGoal");
       }}
     />
@@ -31,6 +32,7 @@ export default ({ navigation }) => (
       height="7%"
       fontSize="3%"
       onPress={() => {
+        navigation.pop();
         navigation.navigate("CreateHabit");
       }}
     />
