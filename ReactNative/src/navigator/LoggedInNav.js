@@ -2,6 +2,7 @@ import { createStackNavigator } from "@react-navigation/stack";
 import React from "react";
 import { Platform } from "react-native";
 import LoginScreen from "../screens/LoginScreen";
+import AppNav from "../navigator/AppNav";
 import COLORS from "../styles/Colors";
 const Stack = createStackNavigator();
 
@@ -20,6 +21,7 @@ function LoggedInNav() {
           headerTintColor: COLORS.appYelow,
         }}
       />
+<<<<<<< Updated upstream
       <Stack.Screen
         name="MainScreen"
         component={AppNav}
@@ -28,6 +30,9 @@ function LoggedInNav() {
           headerShown: false,
         }}
       />
+=======
+      <Stack.Screen name="MainScreen" component={AppNav} />
+>>>>>>> Stashed changes
     </Stack.Navigator>
   );
 }

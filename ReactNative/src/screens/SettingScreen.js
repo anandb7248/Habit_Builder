@@ -4,12 +4,36 @@ import PageHeader from "../components/PageHeader";
 import COLORS from "../styles/Colors";
 import ModButton from "../components/ModButton";
 import Divider from "../components/Divider";
+import { logoutUser } from "../redux/actions/AuthActions";
 import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
 } from "react-native-responsive-screen";
+import { useSelector, useDispatch } from "react-redux";
+import LoggedInNav from "../navigator/LoggedInNav";
 
 function SettingScreen({ navigation }) {
+  const loginStatus = useSelector((state) => state.auth.isAuthenticated);
+  const dispatch = useDispatch();
+  const logout = () => {
+    if (loginStatus) {
+      console.log("logging out");
+      dispatch(logoutUser());
+    } else {
+      console.log("logging in");
+      //Errors all over the place
+      navigation.navigate("LoginScreen");
+    }
+  };
+
+  useEffect(() => {
+    if (loginStatus) {
+      console.log("A user is logged in");
+    } else {
+      console.log("No users logged in");
+    }
+  }, loginStatus);
+
   return (
     <View>
       <PageHeader text="Settings"></PageHeader>
@@ -48,6 +72,7 @@ function SettingScreen({ navigation }) {
         width="100%"
         fontSize="4%"
         text="Sign In/Log Out"
+        onPress={logout}
       />
       <ModButton
         cornerRadius="0"

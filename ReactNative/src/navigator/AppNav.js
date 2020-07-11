@@ -5,12 +5,17 @@ import TabLayout from "../components/TabLayout";
 import TodayScreen from "../screens/TodayScreen";
 import GoalsScreen from "../screens/GoalsScreen";
 import CalendarScreen from "../screens/CalendarScreen";
+import LoginScreen from "../screens/LoginScreen";
+import MainScreen from "../components/TabLayout";
 import styled from "styled-components";
 import ModButton from "../components/ModButton";
 import SettingScreen from "../screens/SettingScreen";
+<<<<<<< Updated upstream
 import { createStackNavigator } from "@react-navigation/stack";
 import GoalScreen from "../screens/SetGoalScreen";
 import HabitScreen from "../screens/SetHabitScreen";
+=======
+>>>>>>> Stashed changes
 
 const PLACEHOLDER = styled.View``;
 
@@ -57,6 +62,10 @@ const Tabs = ({ navigation }) => {
           name: "Settings",
           component: SettingScreen,
           iconName: "tune",
+        },
+        {
+          name: "LoginScreen",
+          component: LoginScreen,
         },
       ]}
     />
