@@ -56,6 +56,7 @@ const AuthReducer = (state = InitAuthState, action) => {
       return {
         ...state,
         isLoggingIn: false,
+        isVerifying: false,
         isAuthenticated: false,
         loginError: true,
       };
@@ -70,7 +71,7 @@ const AuthReducer = (state = InitAuthState, action) => {
         ...state,
         isLoggingOut: false,
         isAuthenticated: false,
-        user: {},
+        user: null,
       };
     case LOGOUT_FAILURE:
       return {

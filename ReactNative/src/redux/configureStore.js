@@ -1,4 +1,4 @@
-import { createStore, applyMiddleware, compose } from "redux";
+import { createStore, applyMiddleware } from "redux";
 import thunkMiddleware from "redux-thunk";
 import { verifyAuth } from "./actions/AuthActions";
 import RootReducer from "./reducers/RootReducer";
@@ -9,7 +9,6 @@ import { composeWithDevTools } from "redux-devtools-extension";
   and call our verifyAuth() action function to create our Auth State
   Change Listener.
 */
-
 const configureStore = (persistedState) => {
   const store = createStore(
     RootReducer,

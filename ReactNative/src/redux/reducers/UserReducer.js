@@ -5,6 +5,24 @@ import {
   GET_GOALS_REQUEST,
   GET_GOALS_FAILURE,
   GET_GOALS_SUCCESS,
+  EDIT_GOAL_REQUEST,
+  EDIT_GOAL_SUCCESS,
+  EDIT_GOAL_FAILURE,
+  DELETE_GOAL_REQUEST,
+  DELETE_GOAL_SUCCESS,
+  DELETE_GOAL_FAILURE,
+  PUSH_GOAL_REQUEST,
+  PUSH_GOAL_SUCCESS,
+  PUSH_GOAL_FAILURE,
+  PUSH_HABIT_REQUEST,
+  PUSH_HABIT_SUCCESS,
+  PUSH_HABIT_FAILURE,
+  EDIT_HABIT_REQUEST,
+  EDIT_HABIT_FAILURE,
+  EDIT_HABIT_SUCCESS,
+  DELETE_HABIT_REQUEST,
+  DELETE_HABIT_FAILURE,
+  DELETE_HABIT_SUCCESS,
 } from "../actions/Types";
 
 /* Initial Login state to build from */
@@ -13,14 +31,28 @@ const InitUserState = {
   initError: false,
   loadedGoals: false,
   goalsError: false,
+  goalPushError: false,
+  habitPushError: false,
+  goalEditError: false,
+  goalDeleteError: false,
+  habitEditError: false,
+  habitDeleteError: false,
   goals: [],
 };
 
-/* CURRENT GOAL SCHEMA
+/* CURRENT  ***LOCAL*** GOAL SCHEMA
   goals: [
     name: ...,
+    end_date: ...,
+    start_date: ...,
+    id: firestore_id (in collection)
     habits: [
-      name: ...
+      {
+        name: ...,
+        notification_time: ...,
+        id: firetstore_id (in collection),
+      },
+      ...
     ]
   ]
 */
@@ -57,6 +89,90 @@ const UserReducer = (state = InitUserState, action) => {
       return {
         ...state,
         goalsError: true,
+      };
+    case EDIT_GOAL_REQUEST:
+      return {
+        ...state,
+        goalEditError: false,
+      };
+    case EDIT_GOAL_SUCCESS:
+      return {
+        ...state,
+      };
+    case EDIT_GOAL_FAILURE:
+      return {
+        ...state,
+        goalEditError: true,
+      };
+    case DELETE_GOAL_REQUEST:
+      return {
+        ...state,
+        goalDeleteError: false,
+      };
+    case DELETE_GOAL_SUCCESS:
+      return {
+        ...state,
+      };
+    case DELETE_GOAL_FAILURE:
+      return {
+        ...state,
+        goalDeleteError: true,
+      };
+    case PUSH_GOAL_REQUEST:
+      return {
+        ...state,
+        goalPushError: false,
+      };
+    case PUSH_GOAL_SUCCESS:
+      return {
+        ...state,
+      };
+    case PUSH_GOAL_FAILURE:
+      return {
+        ...state,
+        goalPushError: true,
+      };
+    case PUSH_HABIT_REQUEST:
+      return {
+        ...state,
+        habitPushError: false,
+      };
+    case PUSH_HABIT_SUCCESS:
+      return {
+        ...state,
+      };
+    case PUSH_HABIT_FAILURE:
+      return {
+        ...state,
+        habitPushError: true,
+      };
+    case EDIT_HABIT_REQUEST:
+      return {
+        ...state,
+        habitEditError: false,
+      };
+    case EDIT_HABIT_SUCCESS:
+      return {
+        ...state,
+      };
+    case EDIT_HABIT_FAILURE:
+      return {
+        ...state,
+        habitEditError: true,
+      };
+    case DELETE_HABIT_REQUEST:
+      return {
+        ...state,
+        habitDeleteError: false,
+      };
+    case DELETE_HABIT_SUCCESS:
+      return {
+        ...state,
+      };
+    case DELETE_HABIT_FAILURE:
+      return {
+        ...state,
+        habitDeleteError: true,
       };
     default:
       return state;

@@ -20,6 +20,14 @@ function LoggedInNav() {
           headerTintColor: COLORS.appYelow,
         }}
       />
+      <Stack.Screen
+        name="MainScreen"
+        component={AppNav}
+        options={{
+          title: "",
+          headerShown: false,
+        }}
+      />
     </Stack.Navigator>
   );
 }
