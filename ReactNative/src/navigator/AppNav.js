@@ -5,16 +5,11 @@ import TabLayout from "../components/TabLayout";
 import TodayScreen from "../screens/TodayScreen";
 import GoalsScreen from "../screens/GoalsScreen";
 import CalendarScreen from "../screens/CalendarScreen";
-import styled from "styled-components";
-import ModButton from "../components/ModButton";
 import SettingScreen from "../screens/SettingScreen";
 import { createStackNavigator } from "@react-navigation/stack";
 import GoalScreen from "../screens/SetGoalScreen";
 import HabitScreen from "../screens/SetHabitScreen";
 import LoggedInNav from "../navigator/LoggedInNav";
-import { RotationGestureHandler } from "react-native-gesture-handler";
-
-const PLACEHOLDER = styled.View``;
 
 /*
   CONCERNING ICONS
@@ -24,7 +19,6 @@ const PLACEHOLDER = styled.View``;
 */
 
 const ModalContainer = () => <View style={{ flex: 1 }} />;
-
 const Tabs = ({ navigation }) => {
   return (
     <TabLayout
