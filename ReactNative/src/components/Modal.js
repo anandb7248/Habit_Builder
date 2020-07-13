@@ -22,7 +22,7 @@ export default ({ navigation }) => (
       fontSize="3%"
       onPress={() => {
         navigation.pop();
-        navigation.navigate("CreateGoal");
+        navigation.navigate("CreateGoal", { IsModal: true });
       }}
     />
     <ModButton
@@ -33,7 +33,7 @@ export default ({ navigation }) => (
       fontSize="3%"
       onPress={() => {
         navigation.pop();
-        navigation.navigate("CreateHabit");
+        navigation.navigate("CreateHabit", { IsModal: true });
       }}
     />
   </TouchableOpacity>
