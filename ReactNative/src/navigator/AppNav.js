@@ -5,14 +5,11 @@ import TabLayout from "../components/TabLayout";
 import TodayScreen from "../screens/TodayScreen";
 import GoalsScreen from "../screens/GoalsScreen";
 import CalendarScreen from "../screens/CalendarScreen";
-import styled from "styled-components";
-import ModButton from "../components/ModButton";
 import SettingScreen from "../screens/SettingScreen";
 import { createStackNavigator } from "@react-navigation/stack";
 import GoalScreen from "../screens/SetGoalScreen";
 import HabitScreen from "../screens/SetHabitScreen";
-
-const PLACEHOLDER = styled.View``;
+import LoggedInNav from "../navigator/LoggedInNav";
 
 /*
   CONCERNING ICONS
@@ -22,7 +19,6 @@ const PLACEHOLDER = styled.View``;
 */
 
 const ModalContainer = () => <View style={{ flex: 1 }} />;
-
 const Tabs = ({ navigation }) => {
   return (
     <TabLayout
@@ -63,53 +59,42 @@ const Tabs = ({ navigation }) => {
   );
 };
 
-const RootStack = createStackNavigator();
-const RootStackScreen = () => {
+function ModalOptions() {
+  return {
+    animationEnabled: true,
+    cardStyle: { backgroundColor: "rgba(0, 0, 0, 0.15)" },
+    cardOverlayEnabled: true,
+    cardStyleInterpolator: ({ current: { progress } }) => {
+      return {
+        cardStyle: {
+          opacity: progress.interpolate({
+            inputRange: [0, 0.5, 0.9, 1],
+            outputRange: [0, 0.25, 0.7, 1],
+          }),
+        },
+        overlayStyle: {
+          opacity: progress.interpolate({
+            inputRange: [0, 1],
+            outputRange: [0, 0.5],
+            extrapolate: "clamp",
+          }),
+        },
+      };
+    },
+  };
+}
+
+const Stack = createStackNavigator();
+function AppNav({ navigation }) {
   return (
-    <RootStack.Navigator headerMode="none">
-      <RootStack.Screen name="Tabs" component={Tabs} />
-      <RootStack.Screen
-        name="Modal"
-        component={Modal}
-        options={{
-          animationEnabled: true,
-          cardStyle: { backgroundColor: "rgba(0, 0, 0, 0.15)" },
-          cardOverlayEnabled: true,
-          cardStyleInterpolator: ({ current: { progress } }) => {
-            return {
-              cardStyle: {
-                opacity: progress.interpolate({
-                  inputRange: [0, 0.5, 0.9, 1],
-                  outputRange: [0, 0.25, 0.7, 1],
-                }),
-              },
-              overlayStyle: {
-                opacity: progress.interpolate({
-                  inputRange: [0, 1],
-                  outputRange: [0, 0.5],
-                  extrapolate: "clamp",
-                }),
-              },
-            };
-          },
-        }}
-      />
-      <RootStack.Screen name="CreateHabit" component={HabitScreen} />
-      <RootStack.Screen name="CreateGoal" component={GoalScreen} />
-    </RootStack.Navigator>
+    <Stack.Navigator headerMode="none">
+      <Stack.Screen name="Tabs" component={Tabs} />
+      <Stack.Screen name="Modal" component={Modal} options={ModalOptions} />
+      <Stack.Screen name="CreateHabit" component={HabitScreen} />
+      <Stack.Screen name="CreateGoal" component={GoalScreen} />
+      <Stack.Screen name="LoggedInNav" component={LoggedInNav} />
+    </Stack.Navigator>
   );
-};
+}
 
-const AppNav = ({ navigation }) => {
-  return;
-};
-
-// export default AppNav;
-
-export default () => {
-  return (
-    // <NavigationContainer>
-    <RootStackScreen />
-    // </NavigationContainer>
-  );
-};
+export default AppNav;

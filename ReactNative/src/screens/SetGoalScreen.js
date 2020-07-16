@@ -14,7 +14,7 @@ import {
   widthPercentageToDP as wp,
 } from "react-native-responsive-screen";
 
-function SetGoalScreen({ navigation }) {
+function SetGoalScreen({ route, navigation }, props) {
   const [goal, setGoal] = useState("");
   const [habits, setHabits] = useState(["", "", "", "", ""]);
   const defaultDaysToComplete = 21;
@@ -24,6 +24,7 @@ function SetGoalScreen({ navigation }) {
   const [numberOfDays, setNumberOfDays] = useState(0);
   const [show, setShow] = useState(false);
   const [mode, setMode] = useState("date");
+  const isModal = route.params;
 
   useEffect(() => {
     // Right initially, set the end date to 21 days from today
@@ -102,7 +103,11 @@ function SetGoalScreen({ navigation }) {
       ))}
       <ModButton
         text="Set Goal"
-        onPress={() => navigation.navigate("NotificationScreen")}
+        onPress={() =>
+          isModal
+            ? navigation.goBack()
+            : navigation.navigate("NotificationScreen")
+        }
         width="85%"
         height="10%"
         spacing="3%"
