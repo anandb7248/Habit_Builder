@@ -3,6 +3,8 @@ import styled from "styled-components";
 import PageHeader from "../components/PageHeader";
 import COLORS from "../styles/Colors";
 import ModButton from "../components/ModButton";
+import ModTextInput from "../components/ModTextInput";
+import { db } from "../utils/firebase";
 import Divider from "../components/Divider";
 import { logoutUser } from "../redux/actions/AuthActions";
 import {
@@ -14,6 +16,9 @@ import LoggedInNav from "../navigator/LoggedInNav";
 
 function SettingScreen({ navigation }) {
   const loginStatus = useSelector((state) => state.auth.isAuthenticated);
+  const user = useSelector((state) => state.auth.user);
+  const [feedbackRequest, setFeedbackRequest] = useState(false);
+  const [userFeedback, setUserFeedback] = useState("");
   const dispatch = useDispatch();
   const logout = () => {
     if (loginStatus) {
@@ -26,6 +31,40 @@ function SettingScreen({ navigation }) {
     }
   };
 
+  const handleNotification = () => {
+    console.log("going to notification");
+    // navigation.navigate("NotificationScreen");
+  };
+
+  const handleInput = (text) => {
+    setUserFeedback(text);
+  };
+
+  const enableFeedback = () => {
+    setFeedbackRequest(true);
+  };
+
+  const handleFeedback = () => {
+    setFeedbackRequest(false);
+    const feedbackList = db
+      .collection("feedback")
+      .doc(`${user.uid}`)
+      .get()
+      .then((doc) => {
+        if (doc.exists) {
+          const feedback = doc.data();
+          const feedbackCount = Object.keys(feedback).length + 1;
+          const feedbackKey = `feedback${feedbackCount}`;
+          const newFeedback = {
+            ...feedback,
+            [feedbackKey]: `This is the ${feedbackCount} feedback`,
+          };
+          db.collection("feedback").doc(`${user.uid}`).set(newFeedback);
+          console.log(feedback);
+        }
+      });
+  };
+
   useEffect(() => {
     if (loginStatus) {
       console.log("A user is logged in");
@@ -36,6 +75,21 @@ function SettingScreen({ navigation }) {
 
   return (
     <View>
+      <ModButton
+        height="5%"
+        width="90%"
+        fontSize="3%"
+        text="Submit Feedback"
+        onPress={handleFeedback}
+        // style={{ opacity: feedbackRequest ? 1 : 0 }}
+      />
+      <ModTextInput
+        width="100%"
+        height="100%"
+        placeholder="Enter feedback"
+        setInputText={handleInput}
+        style={{ opacity: 0 }}
+      />
       <PageHeader text="Settings"></PageHeader>
       <Divider />
       <ModButton
@@ -44,6 +98,7 @@ function SettingScreen({ navigation }) {
         width="100%"
         fontSize="4%"
         text="Notifications"
+        onPress={handleNotification}
       />
       <ModButton
         cornerRadius="0"
@@ -51,6 +106,7 @@ function SettingScreen({ navigation }) {
         width="100%"
         fontSize="4%"
         text="Send Feedback"
+        onPress={enableFeedback}
       />
       <ModButton
         cornerRadius="0"

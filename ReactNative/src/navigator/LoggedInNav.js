@@ -21,7 +21,6 @@ function LoggedInNav() {
           headerTintColor: COLORS.appYelow,
         }}
       />
-<<<<<<< Updated upstream
       <Stack.Screen
         name="MainScreen"
         component={AppNav}
@@ -30,9 +29,6 @@ function LoggedInNav() {
           headerShown: false,
         }}
       />
-=======
-      <Stack.Screen name="MainScreen" component={AppNav} />
->>>>>>> Stashed changes
     </Stack.Navigator>
   );
 }
