@@ -66,6 +66,7 @@ function SettingScreen({ navigation }) {
         fontSize="4%"
         text="Rate on the App Store"
       />
+      {/* TODO: Call "LoggedInNav" */}
       <ModButton
         cornerRadius="0"
         height="10%"
