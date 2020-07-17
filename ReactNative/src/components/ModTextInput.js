@@ -8,7 +8,7 @@ import {
 
 function ModTextInput(props) {
   return (
-    <View width={props.width} height={props.height}>
+    <View width={props.width} height={props.height} display={props.display}>
       <Icon>{props.children}</Icon>
       <TextInput
         secureTextEntry={props.secure ? true : false}
@@ -24,6 +24,7 @@ export default ModTextInput;
 
 const View = styled.View`
   background: white;
+  display: ${(props) => (props.display ? "none" : "flex")};
   height: ${(props) => (props.height ? hp(props.height) : "60")}px;
   width: ${(props) => (props.width ? wp(props.width) : "350")}px;
   border-radius: 25px;

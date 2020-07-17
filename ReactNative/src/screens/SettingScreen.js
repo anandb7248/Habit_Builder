@@ -1,4 +1,5 @@
 import React, { useState, useRef, useEffect } from "react";
+import { TextInput } from "react-native";
 import styled from "styled-components";
 import PageHeader from "../components/PageHeader";
 import COLORS from "../styles/Colors";
@@ -27,7 +28,7 @@ function SettingScreen({ navigation }) {
     } else {
       console.log("logging in");
       //Errors all over the place
-      navigation.navigate("LoginScreen");
+      navigation.navigate("LoginScsreen");
     }
   };
 
@@ -81,14 +82,13 @@ function SettingScreen({ navigation }) {
         fontSize="3%"
         text="Submit Feedback"
         onPress={handleFeedback}
-        // style={{ opacity: feedbackRequest ? 1 : 0 }}
       />
       <ModTextInput
+        setInputText={handleInput}
         width="100%"
         height="100%"
-        placeholder="Enter feedback"
-        setInputText={handleInput}
-        style={{ opacity: 0 }}
+        placeholder="Enter Feedback Here"
+        display={!feedbackRequest}
       />
       <PageHeader text="Settings"></PageHeader>
       <Divider />
