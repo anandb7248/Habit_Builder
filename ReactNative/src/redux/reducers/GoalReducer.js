@@ -16,17 +16,13 @@ import {
 const InitGoalState = {
   isInit: false,
   initError: false,
-  
 
   loadedGenGoals: false,
   genGoalsError: false,
+  genGoalPushError: false,
+  genGoalEditError: false,
+  genGoalDeleteError: false,
 
-  goalPushError: false,
-  habitPushError: false,
-  goalEditError: false,
-  goalDeleteError: false,
-  habitEditError: false,
-  habitDeleteError: false,
   goals: [],
 };
 
@@ -59,59 +55,68 @@ const InitGoalState = {
 */
 
 const GoalReducer = (state = InitGoalState, action) => {
-    switch (action.type) {
-        case GET_GEN_HABIT_REQUEST:
-            return {
-                ...state,
-                genGoalsError: false,
-            };
-        case GET_GEN_HABIT_SUCCESS:
-            return {
-                ...state,
-                loadedGenGoals: true,
-                genGoals: action.genGoals, 
-            };
-        case GET_GEN_HABIT_FAILURE:
-            return {
-                ...state,
-                genGoalsError: true,
-            };
-        case PUSH_GEN_HABIT_REQUEST:
-            return {
-              ...state,
-              genGoalsPushError: false,
-            };
-        case PUSH_GEN_HABIT_SUCCESS:
-            return {
-                ...state,
-            };
-        case PUSH_GEN_HABIT_FAILURE:
-            return {
-                ...state,
-                genGoalsPushError: true,
-            };
-        case PUSH_GEN_HABIT_REQUEST:
-            return {
-              ...state,
-              genGoalsPushError: false,
-            };
-        case PUSH_GEN_HABIT_SUCCESS:
-            return {
-                ...state,
-            };
-        case PUSH_GEN_HABIT_FAILURE:
-            return {
-                ...state,
-                genGoalsPushError: true,
-            };
-        default:
-            return state;
-    }
-}
+  switch (action.type) {
+    case GET_GEN_HABIT_REQUEST:
+      return {
+        ...state,
+        genGoalsError: false,
+      };
+    case GET_GEN_HABIT_SUCCESS:
+      return {
+        ...state,
+        loadedGenGoals: true,
+        genGoals: action.genGoals,
+      };
+    case GET_GEN_HABIT_FAILURE:
+      return {
+        ...state,
+        genGoalsError: true,
+      };
+    case PUSH_GEN_HABIT_REQUEST:
+      return {
+        ...state,
+        genGoalPushError: false,
+      };
+    case PUSH_GEN_HABIT_SUCCESS:
+      return {
+        ...state,
+      };
+    case PUSH_GEN_HABIT_FAILURE:
+      return {
+        ...state,
+        genGoalPushError: true,
+      };
+    case EDIT_GEN_HABIT_REQUEST:
+      return {
+        ...state,
+        genGoalEditError: false,
+      };
+    case EDIT_GEN_HABIT_SUCCESS:
+      return {
+        ...state,
+      };
+    case EDIT_GEN_HABIT_FAILURE:
+      return {
+        ...state,
+        genGoalEditError: true,
+      };
+    case DELETE_GEN_HABIT_REQUEST:
+      return {
+        ...state,
+        genGoalDeleteError: false,
+      };
+    case DELETE_GEN_HABIT_SUCCESS:
+      return {
+        ...state,
+      };
+    case DELETE_GEN_HABIT_FAILURE:
+      return {
+        ...state,
+        genGoalDeleteError: true,
+      };
+    default:
+      return state;
+  }
+};
 
-  EDIT_GEN_HABIT_REQUEST,
-  EDIT_GEN_HABIT_SUCCESS,
-  EDIT_GEN_HABIT_FAILURE,
-  DELETE_GEN_HABIT_REQUEST,
-  DELETE_GEN_HABIT_SUCCESS,
-  DELETE_GEN_HABIT_FAILURE,
+export default GoalReducer;
