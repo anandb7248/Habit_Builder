@@ -5,6 +5,7 @@ import user from "./UserReducer";
 const RootReducer = combineReducers({
   auth,
   user,
+  // TODO: put goal here
 });
 
 export default RootReducer;
