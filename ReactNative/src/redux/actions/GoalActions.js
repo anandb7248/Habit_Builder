@@ -168,8 +168,8 @@ export const pushGenHabit = (genHabit) => async (dispatch, getState) => {
     .collection(GENERAL_HABITS_COLLECTION)
     .add({
       name: genHabit.name,
-      end_date: genHabit.end_date,
-      start_date: genHabit.start_date,
+      notification_time: genHabit.notification_time,
+      //   start_date: genHabit.start_date,
     })
     .then(async (docRef) => {
       //   /* add habit collection */
