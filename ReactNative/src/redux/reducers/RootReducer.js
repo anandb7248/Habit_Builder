@@ -1,11 +1,12 @@
 import { combineReducers } from "redux";
 import auth from "./AuthReducer";
 import user from "./UserReducer";
+import goal from "./GoalReducer";
 
 const RootReducer = combineReducers({
   auth,
   user,
-  // TODO: put goal here
+  goal,
 });
 
 export default RootReducer;

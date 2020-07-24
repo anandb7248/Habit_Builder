@@ -16,7 +16,8 @@ import {
   DELETE_GEN_HABIT_FAILURE,
 } from "./Types";
 
-const GENERAL_HABITS_COLLECTION = "GENERAL_HABITS_COLLECTION";
+const USER_COLLECTION = "users";
+const GENERAL_HABITS_COLLECTION = "general_habits";
 
 const requestGenHabits = () => {
   return {
@@ -55,37 +56,37 @@ const pushGenHabitFailure = () => {
   };
 };
 
-const editGenGoalRequest = () => {
+const editGenHabitRequest = () => {
   return {
     type: EDIT_GEN_HABIT_REQUEST,
   };
 };
 
-const editGenGoalSuccess = () => {
+const editGenHabitSuccess = () => {
   return {
     type: EDIT_GEN_HABIT_SUCCESS,
   };
 };
 
-const editGenGoalFailure = () => {
+const editGenHabitFailure = () => {
   return {
     type: EDIT_GEN_HABIT_FAILURE,
   };
 };
 
-const deleteGenGoalRequest = () => {
+const deleteGenHabitRequest = () => {
   return {
     type: DELETE_GEN_HABIT_REQUEST,
   };
 };
 
-const deleteGenGoalSuccess = () => {
+const deleteGenHabitSuccess = () => {
   return {
     type: DELETE_GEN_HABIT_SUCCESS,
   };
 };
 
-const deleteGenGoalFailure = () => {
+const deleteGenHabitFailure = () => {
   return {
     type: DELETE_GEN_HABIT_FAILURE,
   };
@@ -113,18 +114,6 @@ const deleteGenGoalFailure = () => {
 //   };
 // };
 
-// const getGenHabits = async (doc) => {
-//   return doc.ref
-//     .collection(GENERAL_HABITS_COLLECTION)
-//     .get()
-//     .then((snapshot) => {
-//       return snapshot.docs.map((doc) => extractGenHabit(doc));
-//     })
-//     .catch(() => {
-//       console.log("Error retrieving general habits");
-//     });
-// };
-
 // const formatGenHabit = (habit) => {
 //   return {
 //     name: habit.name,
@@ -149,9 +138,24 @@ const deleteGenGoalFailure = () => {
 //     .catch((err) => dispatch(editHabitFailure()));
 // };
 
+// const getGenHabit = async (doc) => {
+//   return doc.ref
+//     .collection(GENERAL_HABITS_COLLECTION)
+//     .get()
+//     .then((snapshot) => {
+//       return snapshot.docs.map((doc) => extractGenHabit(doc));
+//     })
+//     .catch(() => {
+//       console.log("Error retrieving general habits");
+//     });
+// };
+
 export const pushGenHabit = (genHabit) => async (dispatch, getState) => {
   dispatch(pushGenHabitRequest());
   const uid = getState().auth.user.uid;
+  console.log("Im in GoalAcitons!");
+  console.log("user: " + uid);
+
   /*
     First lets push the goal document to our db.
     After we have pushed the goal document,
@@ -168,19 +172,21 @@ export const pushGenHabit = (genHabit) => async (dispatch, getState) => {
       start_date: genHabit.start_date,
     })
     .then(async (docRef) => {
-      /* add habit collection */
-      await Promise.all(
-        genHabit.habits.map((habit) => {
-          docRef.collection(HABITS_COLLECTION).add({
-            name: habit.name,
-            notification_time: habit.notification_time,
-          });
-        })
-      );
-      dispatch(pushGoalSuccess());
-      dispatch(getGoals());
+      //   /* add habit collection */
+      //   await Promise.all(
+      //     genHabit.habits.map((habit) => {
+      //       docRef.collection(HABITS_COLLECTION).add({
+      //         name: habit.name,
+      //         notification_time: habit.notification_time,
+      //       });
+      //     })
+      //   );
+      dispatch(pushGenHabitSuccess());
+      dispatch(getGenHabit());
+      console.log("ASYNC");
     })
     .catch((error) => {
-      dispatch(pushGoalFailure());
+      dispatch(pushGenHabitFailure());
+      console.log("Push Failed");
     });
 };

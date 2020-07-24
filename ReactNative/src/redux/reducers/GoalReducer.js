@@ -11,7 +11,7 @@ import {
   DELETE_GEN_HABIT_REQUEST,
   DELETE_GEN_HABIT_SUCCESS,
   DELETE_GEN_HABIT_FAILURE,
-} from "./Types";
+} from "../actions/Types";
 
 const InitGoalState = {
   isInit: false,
