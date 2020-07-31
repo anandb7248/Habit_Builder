@@ -93,63 +93,81 @@ const deleteGenHabitFailure = () => {
 };
 
 /**
+ * [x] pushHabit - pushGenHabit
  * [] startInit
- * [x] extractHabit - extractGenHabit
- * [x] getHabits - getGenHabit
- * [x] formatHabit - formatGenHabit
+ * [] extractHabit - extractGenHabit
+ * [] getHabits - getGenHabit
+ * [] formatHabit - formatGenHabit
  * [] editHabit - editGenHabit
  * [] deleteHabit - deleteGenHabit
- * [] pushHabit - pushGenHabit
  */
 
 /*
   Function used to extract what habit properties
   we want from the object stored in our firestore db
 */
-// const extractGenHabit = (doc) => {
-//   return {
-//     id: doc.id,
-//     name: doc.data().name,
-//     notification_time: doc.data().notification_time,
-//   };
-// };
+const extractGenHabit = (doc) => {
+  return {
+    // id: doc.id,
+    name: doc.data().name,
+    notification_time: doc.data().notification_time,
+  };
+};
 
-// const formatGenHabit = (habit) => {
-//   return {
-//     name: habit.name,
-//     notification_time: habit.notification_time,
-//   };
-// };
+const formatGenHabit = (habit) => {
+  return {
+    name: habit.name,
+    notification_time: habit.notification_time,
+  };
+};
 
-// export const editGenHabit = (new_habit, gen_habit_id) => (dispatch, getState) => {
-//   dispatch(editGenHabitRequest());
-//   const uid = getState().auth.user.uid;
-//   db.collection(USER_COLLECTION)
-//     .doc(uid)
-//     .collection(GENERAL_HABITS_COLLECTION)
-//     .doc(gen_habit_id)
-//     .collection(HABITS_COLLECTION)
-//     .doc(new_habit.id)
-//     .update(formatHabit(new_habit))
-//     .then(() => {
-//       dispatch(editHabitSuccess());
-//       dispatch(getGoals());
-//     })
-//     .catch((err) => dispatch(editHabitFailure()));
-// };
+export const editGenHabit = (new_habit, gen_habit_id) => (
+  dispatch,
+  getState
+) => {
+  dispatch(editGenHabitRequest());
+  const uid = getState().auth.user.uid;
+  db.collection(USER_COLLECTION)
+    .doc(uid)
+    .collection(GENERAL_HABITS_COLLECTION)
+    .doc(gen_habit_id)
+    .collection(HABITS_COLLECTION)
+    .doc(new_habit.id)
+    .update(formatHabit(new_habit))
+    .then(() => {
+      dispatch(editHabitSuccess());
+      dispatch(getGoals());
+    })
+    .catch((err) => dispatch(editHabitFailure()));
+};
 
-// const getGenHabit = async (doc) => {
-//   return doc.ref
-//     .collection(GENERAL_HABITS_COLLECTION)
-//     .get()
-//     .then((snapshot) => {
-//       return snapshot.docs.map((doc) => extractGenHabit(doc));
-//     })
-//     .catch(() => {
-//       console.log("Error retrieving general habits");
-//     });
-// };
+export const getGenHabit = () => async (dispatch, getState) => {
+  dispatch(requestGenHabits());
+  const uid = getState().auth.user.uid;
+  const genHabitDocs = await db // Q: where is db defined?
+    .collection(USER_COLLECTION)
+    .doc(uid)
+    .collection(GENERAL_HABITS_COLLECTION)
+    .get()
+    .catch(() => {
+      dispatch(genHabitsError());
+    });
 
+  // console.log(genHabitDocs);
+  //   let goals = [];
+  //   for (const doc of goalDocs.docs) {
+  //     const habits = await getHabits(doc);
+  //     goals.push({
+  //       ...extractGoal(doc),
+  //       habits,
+  //     });
+  //   }
+  dispatch(recieveGenHabits(genHabitDocs));
+};
+
+/**
+ * Q: why async is called for the habits inside of goal
+ */
 export const pushGenHabit = (genHabit) => async (dispatch, getState) => {
   dispatch(pushGenHabitRequest());
   const uid = getState().auth.user.uid;
@@ -169,7 +187,6 @@ export const pushGenHabit = (genHabit) => async (dispatch, getState) => {
     .add({
       name: genHabit.name,
       notification_time: genHabit.notification_time,
-      //   start_date: genHabit.start_date,
     })
     .then(async (docRef) => {
       //   /* add habit collection */
@@ -183,7 +200,7 @@ export const pushGenHabit = (genHabit) => async (dispatch, getState) => {
       //   );
       dispatch(pushGenHabitSuccess());
       dispatch(getGenHabit());
-      console.log("ASYNC");
+      console.log("");
     })
     .catch((error) => {
       dispatch(pushGenHabitFailure());

@@ -6,27 +6,28 @@ import ModButton from "../components/ModButton";
 import { logoutUser } from "../redux/actions/AuthActions";
 import { useDispatch, useSelector } from "react-redux";
 import { getGoals, pushGoal } from "../redux/actions/UserActions";
+import { getGenHabit, pushGenHabit } from "../redux/actions/GoalActions";
 import GoalsScreen from "./GoalsScreen";
 import COLORS from "../styles/Colors";
 
 const test_goal = {
-  name: "Test Goal Push",
-  end_date: 1292031,
-  start_date: 1493944,
-  habits: [
-    {
-      name: "habit 1",
-      notification_time: "noon",
-    },
-    {
-      name: "habit 2",
-      notification_time: "midnight",
-    },
-    {
-      name: "habit 3",
-      notification_time: "morning",
-    },
-  ],
+  // name: "Test Goal Push - #2",
+  // end_date: 1292031,
+  // start_date: 1493944,
+  // habits: [
+  // {
+  name: "Go to sleep early",
+  notification_time: "3:40AM",
+  //   },
+  //   {
+  //     name: "habit 5",
+  //     notification_time: "midnight",
+  //   },
+  //   {
+  //     name: "habit 6",
+  //     notification_time: "morning",
+  //   },
+  // ],
 };
 
 const TodayView = styled.View`
@@ -46,21 +47,22 @@ const TodayScreen = () => {
   const user = useSelector((state) => state.auth.user);
   const isGoalsLoaded = useSelector((state) => state.user.loadedGoals);
   const goals = useSelector((state) => state.user.goals);
+  const genHabit = useSelector((state) => state.goal.genHabit);
 
   /* Tell Store to get goals only once ... */
   useEffect(() => {
     console.log("getting goals" + user.uid);
-    dispatch(getGoals());
+    dispatch(getGenHabit());
   }, []);
 
   // useEffect(() => {
-  //   console.log("Test goal Push w/ " + test_goal);
-  //   dispatch(pushGoal(test_goal, user.uid));
+  //   // console.log("Test goal Push w/ \n" + test_goal + "\n" + user.id);
+  //   dispatch(pushGenHabit(test_goal, user.uid));
   // }, []);
 
   useEffect(() => {
-    console.log("Received Goals!", goals);
-  }, [goals]);
+    console.log("Received Goals!\n", genHabit);
+  }, [genHabit]);
 
   const formatGoals = () => {
     return (
